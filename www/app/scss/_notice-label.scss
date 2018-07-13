@@ -1,0 +1,58 @@
+.notice-label {
+  position: absolute;
+  right: 0;
+  padding: 6px 22px;
+  background: $gws-color-bg-label-notice;
+  font-size: $gws-font-size-mid;
+  text-align: center;
+
+  &.connection-retry {
+    bottom: 24px;
+    padding: 4px 22px;
+    font-size: $gws-font-size-base;
+    z-index: 999999;  
+  }  
+}
+.logout {
+  top: 1px;
+  background: #47475a;
+  width: 96px;
+  height: 24px;
+  padding: 4px 5px;
+  line-height: 1.14;
+  text-align: center;
+  color: #169adb;
+  border-left : 1px solid #36364a;
+}
+.button.logout:hover {
+  background-color: #47475a;
+}
+
+// ウィンドウ幅が1440px未満
+@media screen and (max-width: 1439px) {
+  .notice-label.button-open-account {
+    right: 0;
+    top: 1px;
+  }
+
+  .show-when-window-wide {
+    display: none;
+  }
+  .show-when-window-narrow {
+    display: block;
+  }
+}
+
+// ウィンドウ幅が1440px以上
+@media screen and (min-width: 1440px) {
+  .notice-label.button-open-account {
+    right: 16px;
+  }
+
+  .show-when-window-wide {
+    display: block;
+  }
+  .show-when-window-narrow {
+    display: none;
+  }
+}

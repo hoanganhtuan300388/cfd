@@ -1,0 +1,45 @@
+<!-- 売買最良気配 -->
+<div class="unit-box">
+  <div >
+    <button (mousedown)="orderSender('1')" class="button button-label button-order-bid buttondis" [ngClass]="{'speed-order':isSpeedOrder, 'cursor-pointer':!isSpeedOrder, 'invaild-price':validFlag =='0' && !isExecMarket}" [disabled]="(isExecMarket && validFlag =='0') || isDisabled"
+      [attr.readonly]="isReadonly">
+      <div class="updown">
+        <i class="svg-icons" [ngClass]="arrowSell"></i><span class="text-bid">BID</span>
+      </div>
+      <div class="price clearfix">
+        <span>{{ bid }}</span>
+      </div>
+    </button>
+  </div>
+
+  <div>
+    <button (mousedown)="orderSender('2')" class="button button-label button-order-ask buttondis" [ngClass]="{'speed-order':isSpeedOrder, 'cursor-pointer':!isSpeedOrder, 'invaild-price':validFlag =='0'  && !isExecMarket}" [disabled]="(isExecMarket && validFlag =='0') || isDisabled"
+      [attr.readonly]="isReadonly">
+      <div class="updown right">
+        <span class="text-ask">ASK</span><i class="svg-icons" [ngClass]="arrowBuy"></i>
+      </div>
+      <div class="price clearfix">
+        <span>{{ ask }}</span>
+      </div>
+    </button>
+  </div>
+
+  <button class="currency" [ngClass]="{'invaild-price': validFlag =='0' && !isExecMarket}" [disabled]="(isExecMarket && validFlag =='0') || isDisabled" [attr.readonly]="isReadonly">
+    <div>{{currency}}</div>
+    <div>{{spread}}</div>
+  </button>
+
+</div>
+<div class="main" *ngIf="isSpeedOrder">
+  <div class="row row-top">
+    <div class="col-left">
+      <div class="label">売建</div>
+    </div>
+    <div class="col-center">
+      <button class="button button-settlement buttondis" (click)="orderSender('3')"  [disabled]="validFlag =='0' || isDisabled">全決済</button>
+    </div>
+    <div class="col-right">
+      <div class="label">買建</div>
+    </div>
+  </div>
+</div>

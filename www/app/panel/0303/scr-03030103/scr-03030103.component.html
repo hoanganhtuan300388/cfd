@@ -1,0 +1,143 @@
+<!-- ファンド情報 -->
+<div class="panel panel-info panel-animate" ng2-resizeable resizeable="height" >
+  <title-bar [title]="title()" [frame]="this" [fixed-width]="true" [title-show]="true"></title-bar>
+
+  <div class="panel-body">
+
+    <div class="accordion list-group" *ngIf="errShow">
+      <div [innerHtml]="errText"></div>
+    </div>
+    <div class="accordion list-group" *ngIf="!errShow">
+
+      <div class="accordion-toggle">
+        <a class="list-group-item" href="#{{cfdProductCode}}collapse-1" data-toggle="collapse">
+          ファンド概要<span class="label label-frame">{{classificationName}}</span>
+        </a>
+      </div>
+      <div id="{{cfdProductCode}}collapse-1" class="collapse in">
+        <div class="article">{{fundSummary}}</div>
+      </div>
+
+
+      <div class="accordion-toggle">
+        <a href="#{{cfdProductCode}}collapse-2" data-toggle="collapse" class="list-group-item">
+          基本データ
+        </a>
+      </div>
+      <div class="collapse in" id="{{cfdProductCode}}collapse-2">
+        <table class="table table-stripe">
+          <tbody>
+            <tr>
+              <th>ETF銘柄名称(日本語)</th>
+              <td>{{etfName}}</td>
+            </tr>
+            <tr>
+              <th>ティッカーコード</th>
+              <td>{{tickerCode}}</td>
+            </tr>
+            <tr>
+              <th>上場市場</th>
+              <td>{{exchange}}</td>
+            </tr>
+            <tr>
+              <th>連動指標名称(英語)</th>
+              <td>{{fundManagersBenchmarkName}}</td>
+            </tr>
+            <tr>
+              <th>基準価額({{latestNavCurrency}})</th>
+              <td class="text-num">{{latestNav}} ({{latestNavDate}})</td>
+            </tr>
+            <tr>
+              <th>純資産総額({{totalNetAssetCurrency}})</th>
+              <td class="text-num">{{totalNetAsset}} ({{totalNetAssetDate}})</td>
+            </tr>
+            <tr>
+              <th>資産クラス</th>
+              <td>{{assetClass}}</td>
+            </tr>
+            <tr>
+              <th>投資地域</th>
+              <td>{{geographicFocus}}</td>
+            </tr>
+            <tr>
+              <th>設定日</th>
+              <td class="text-num">{{launchDate}}</td>
+            </tr>
+            <tr>
+              <th>設定国</th>
+              <td>{{domicile}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-toggle">
+        <a href="#{{cfdProductCode}}collapse-3" data-toggle="collapse" class="list-group-item">
+          騰落率
+        </a>
+      </div>
+      <div class="collapse in" id="{{cfdProductCode}}collapse-3">
+        <table class="table table-stripe">
+          <tbody class="">
+            <tr>
+              <th>1ヶ月</th>
+              <td class="text-num">{{percentageGrowthPerMonth}}</td>
+              <th>1年</th>
+              <td class="text-num">{{percentageGrowthPerYear}}</td>
+            </tr>
+            <tr>
+              <th>3ヶ月</th>
+              <td class="text-num">{{percentageGrowthPer3Months}}</td>
+              <th>2年</th>
+              <td class="text-num">{{percentageGrowthPer2Years}}</td>
+            </tr>
+            <tr>
+              <th>6ヶ月</th>
+              <td class="text-num">{{percentageGrowthPer6Months}}</td>
+              <th>3年</th>
+              <td class="text-num">{{percentageGrowthPer3Years}}</td>
+            </tr>
+            <tr>
+              <th>9ヶ月</th>
+              <td class="text-num">{{percentageGrowthPer9Months}}</td>
+              <th>5年</th>
+              <td class="text-num">{{percentageGrowthPer5Years}}</td>
+            </tr>
+            <tr>
+              <th>年初来</th>
+              <td class="text-num">{{percentageGrowthYtd}}</td>
+              <th>設定来</th>
+              <td class="text-num">{{percentageGrowthLtd}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-toggle">
+        <a href="#{{cfdProductCode}}collapse-4" data-toggle="collapse" class="list-group-item">
+          組入上位銘柄
+        </a>
+      </div>
+      <div class="collapse in" id="{{cfdProductCode}}collapse-4">
+        <table class="table table-stripe">
+          <tbody>
+            <tr *ngFor="let holdingBo of topHoldingBoList">
+              <th title="{{holdingBo.name}}">{{holdingBo.name}}</th>
+              <td class="text-num">{{holdingBo.ratio}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-toggle">
+        <a href="#{{cfdProductCode}}collapse-5" data-toggle="collapse" class="list-group-item">
+          URL
+        </a>
+      </div>
+      <div class="collapse in" id="{{cfdProductCode}}collapse-5">
+        <div class="article"><a href="#" (click)="onClickUrl($event,url)" class="text-link">{{url}}</a></div>
+      </div>
+    </div>
+
+  </div>
+</div>

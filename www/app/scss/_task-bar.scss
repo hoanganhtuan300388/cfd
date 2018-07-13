@@ -1,0 +1,58 @@
+.task-bar {
+  height: 24px;
+  border-top: 1px solid $gws-color-border-header-bottom;
+  .task-bar-list {
+    margin: 0;
+    padding: 0;
+    display: table;
+    .button-group {
+      display: table-cell;
+      .dropdown-toggle {
+        text-align: left;
+        padding-right: 24px;
+        .panel-name {
+          margin-left: 12px;
+          margin-right: 4px;
+        }
+      }
+      .task-bar-top {
+        background: $gws-color-bg-toggle-btn-active;
+      }
+    }
+    .button {
+      min-width: 96px;
+      max-width: 192px;
+      padding-left: 8px;
+      padding-right: 8px;
+      border-right: 1px solid rgba($gws-black, 0.8);
+      background-color: $gws-color-bg-btn-footer;
+      @extend .text-overflow-ellipsis;
+    }
+    .dropdown-menu {
+      &:active{
+        display: block;
+      }
+      &:before {
+        content: none;
+      }
+      top: auto;
+      bottom: calc(100% + 1px);
+      min-width: 96px;
+      box-shadow: none;
+      padding: 8px 0;
+      border-radius: 0;
+      li {
+        padding: 0;
+        i.svg-icons {
+          position: absolute;
+          left: 8px;
+          margin-top: 4px;
+        }
+        a {
+          padding-left: 30px;
+          padding-right: 24px;
+        }
+      }
+    }
+  }
+}

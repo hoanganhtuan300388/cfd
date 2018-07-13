@@ -1,0 +1,100 @@
+/** 初期ローディング画面のスタイル **/
+.Loadingscreen{
+	background-color: $gws-color-bg-panel;
+}
+.row2{
+	position  : absolute;
+	top       : 50%;
+	left      : 50%;
+	transform : translate(-50%,-50%);
+}
+
+  // .heart{
+  //   -webkit-animation: heartAnimate 1s ease infinite;
+  //   animation: heartAnimate 1s ease infinite;
+  //   @keyframes heartAnimate{ 
+  //     0%,100%{transform:rotate(0deg);}
+  //     50%{ transform:rotate(60deg);}
+  //   }
+  //   @-webkit-keyframes heartAnimate{
+  //     0%,100%{-webkit-transform:rotate(0deg);}
+  //     50%{-webkit-transform:rotate(60deg);}
+  //   }
+  // }
+    .s75 {
+        width: 96px;
+        height: 96px;
+    }
+    .s50 {
+        width: 64px;
+        height: 64px;
+    }
+    .load {
+        margin: 0 auto;
+        text-align: center;
+        background: url("../../assets/images/loading/loding-normal.svg");
+        background-size: contain;
+        animation: spin 1.5s ease infinite;
+          @keyframes spin {
+          0% {transform: rotate(37deg);}
+          50% {transform: rotate(-37deg);}
+          100% {transform: rotate(37deg);}
+          }
+    }
+    .load-hart { // ハート
+      background: url("../../assets/images/loading/loding-hart.svg");
+      background-size: contain;
+    }
+    .load-megane { // メガネ
+      background: url("../../assets/images/loading/loding-megane.svg");
+      background-size: contain;
+    }
+    .load-suki { // 着ぐるみ
+      background: url("../../assets/images/loading/loding-suki.svg");
+      background-size: contain;
+    }
+    .load-normal { // 通常
+      background: url("../../assets/images/loading/loding-normal.svg");
+      background-size: contain;
+    }
+
+// ----------- loading -----------
+.process-loading {
+  height: calc(100% - 24px); // パネルヘッダー分覗く
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 24px;
+
+  .process-loading-mark {
+    position: absolute;
+    background-image: url("../../assets/images/loading/loding-normal.svg");
+    background-size: 64px;
+    width: 64px;
+    height: 64px;
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+    padding: 0;
+    z-index: 11;
+    animation: spin 1.5s ease infinite;
+      @keyframes spin {
+      0% {transform: rotate(37deg);}
+      50% {transform: rotate(-37deg);}
+      100% {transform: rotate(37deg);}
+      }
+    > div {
+      display: none;
+    }
+  }
+
+  .process-loading-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: 10;
+    background-color: $gws-color-bg-loading;
+    opacity: 0.5;
+  }
+}

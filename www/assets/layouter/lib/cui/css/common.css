@@ -1,0 +1,9 @@
+.f-left{
+	float: left;
+}
+.f-right{
+	float: right;
+}
+.none{
+	display: none !important;
+}

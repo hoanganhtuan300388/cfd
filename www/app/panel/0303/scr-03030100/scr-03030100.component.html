@@ -1,0 +1,65 @@
+<!-- レート一覧 -->
+<div class="panel panel-rate-list panel-animate" ng2-resizeable  (resizing)="onResizing($event)"  (resized)="onResized($event)" tabindex="100">
+
+  <title-bar [title]="title()" [frame]="this" [add]="addTitleBarId"></title-bar>
+
+  <!-- <div class="process-loading" *ngIf="tabType==0 && watchType==0 &&!loaded"> -->
+  <div class="process-loading" *ngIf="!loaded">
+    <div class="process-loading-bg"></div>
+    <div class="process-loading-mark"></div>
+  </div>  
+
+  <!-- add to title-bar -->
+  <div id="title-bar-add-content" class="selectTabbar">
+    <!-- LEFT -->
+    <div id="title-bar-add-content-left">
+      <div class="content-col">
+        <ul class="toggle-button toggle-button-navbar">
+          <li [(ngModel)]="tabType" btnRadio="0" [class.active]="tabType==0" (click)="onSelectedTab(0)">ウォッチリスト</li>
+          <li [(ngModel)]="tabType" btnRadio="1" [class.active]="tabType==1" (click)="onSelectedTab(1)">指数・商品</li>
+          <li [(ngModel)]="tabType" btnRadio="2" [class.active]="tabType==2" (click)="onSelectedTab(2)">米国株</li>
+          <li [(ngModel)]="tabType" btnRadio="3" [class.active]="tabType==3" (click)="onSelectedTab(3)">中国株</li>
+          <li [(ngModel)]="tabType" btnRadio="4" [class.active]="tabType==4" (click)="onSelectedTab(4)">ETF</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div id="title-bar-add-content-right" class="content-right">
+      <div [class.hide]="totalPage==1" class="content-col content-right pagination">
+        <div class="pagination-page"><a href="#">{{currPage}} / {{totalPage}}</a></div>
+        <button class="button button-icon pageination-button" type="button" (click)="onPrevPage($event)" [disabled]="currPage == 1"><i class="svg-icons icon-arrow-prev"></i></button>
+        <button class="button button-icon pageination-button" type="button" (click)="onNextPage($event)" [disabled]="currPage == totalPage" ><i class="svg-icons icon-arrow-next"></i></button>
+        <div class="content-col content-gap"></div>
+      </div>
+
+      <div [class.hide]="tabType!=0" class="content-col content-right">
+        <button class="button dropdown-toggle button-icon-wide" type="button" (click)="onClickWatchBtn($event)" title="{{WATCH_BUTTON}}">
+          <i class="svg-icons icon-dropdown"></i>
+          <i class="svg-icons icon-bookmark-drop-down"></i>
+        </button>
+        <div class="content-col content-gap"></div>
+
+        <symbol-cfd #SymbolCfd (changed)="onChangeSymbol($event)" [isSearchButtonVisible]="false"></symbol-cfd>
+
+        <ul class="toggle-button toggle-button-navbar toggle-button-icon">
+          <li [(ngModel)]="watchType" btnRadio="0" [class.active]="watchType==0" (click)="onSelectedTab(0)" title="{{WATCH_PANEL}}"><i class="svg-icons icon-rate-panel"></i></li>
+          <li [(ngModel)]="watchType" btnRadio="1" [class.active]="watchType==1" (click)="onSelectedTab(0)" title="{{WATCH_LIST}}"><i class="svg-icons icon-rate-list"></i></li>
+        </ul>
+        <div class="content-col content-gap"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="tabType==0 && watchType==0" class="panel-body panel-body-price-watch">
+    <price-watch #PriceWatch (emitter)="onChangeViewChild($event)"></price-watch>
+  </div>
+  <div *ngIf="tabType!=0 || watchType!=0" class="panel-body">
+    <div *ngIf="tabType==0 && watchType==1"><price-list #PriceList [tabType]="tabType" [initLayoutInfo]="initLayoutInfo" (emitter)="onChangeViewChild($event)"></price-list></div>
+    <div *ngIf="tabType==1"><price-list #PriceList [tabType]="tabType" [initLayoutInfo]="initLayoutInfo" (emitter)="onChangeViewChild($event)"></price-list></div>
+    <div *ngIf="tabType==2"><price-list #PriceList [tabType]="tabType" [initLayoutInfo]="initLayoutInfo" (emitter)="onChangeViewChild($event)"></price-list></div>
+    <div *ngIf="tabType==3"><price-list #PriceList [tabType]="tabType" [initLayoutInfo]="initLayoutInfo" (emitter)="onChangeViewChild($event)"></price-list></div>
+    <div *ngIf="tabType==4"><price-list #PriceList [tabType]="tabType" [initLayoutInfo]="initLayoutInfo" (emitter)="onChangeViewChild($event)"></price-list></div>
+  </div>
+</div>

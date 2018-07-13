@@ -1,0 +1,14 @@
+<!-- 注文詳細 -->
+<div ng2-resizeable resizeable="height" (resizing)="onResizing($event)" class="panel panel-order-detail panel-animate">
+  <title-bar [title]="getTitle()" [frame]="this" [fixed-width]="true"  [title-show]="true"></title-bar>
+
+  <div class="panel-body" >
+    <orderDetail #orderDetail></orderDetail>
+    <div class="row row-footer">
+      <div class="col-xs-12">
+        <button type="button" class="button button-confirm" (click)="close()">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+</div>

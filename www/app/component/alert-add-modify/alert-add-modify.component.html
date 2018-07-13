@@ -1,0 +1,54 @@
+<!-- アラート追加訂正 -->
+    <div class="row row-content">
+      <div class="col-xs-10" *ngIf="fromAlert">
+        <symbol-cfd (changed)="onChangedSymbol($event)" [product]='initProduct' #symbol></symbol-cfd>
+      </div>
+      <div class="col-xs-10" *ngIf="!fromAlert">
+        <div class="label label-name">{{alert.symbolName}}</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-left">
+        <div class="label">レート(BID)</div>
+      </div>
+      <div class="col-right">
+        <div *ngIf="tooltipCheck && tooltipMouseOver" class="tooltip">
+          <div class="tooltip-message">{{tooltipMsg}}</div>
+        </div>
+        <div class="input-qty-set">
+          <input class="input-box rate-input errcheck" [(ngModel)]="alert.basicRate"
+                  (mouseover)="tooltipMouseOverCheck(true)" (mouseleave)="tooltipMouseOverCheck(false)"
+                  type="text" #inBasicRate=ValidatorNumber validator-number [min]="0" [max]="maxRate" [unit]="boUnit"
+                  [base]="getCurrentBidPrice()" [ngClass]="{'tooltip-frame':tooltipCheck}">
+          <button type="button" class="button button-low button-icon errcheck"
+                  (onLongPressing)="inBasicRate.increase()" long-press
+                  (click)="inBasicRate.increase()" id="UP">
+                  <i class="svg-icons icon-spinup"></i>
+          </button>
+          <button type="button" class="button button-low button-icon errcheck"
+                  (onLongPressing)="inBasicRate.decrease()" long-press
+                  (click)="inBasicRate.decrease()" id="DOWN">
+                  <i class="svg-icons icon-spindown"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-wrap">
+      <div class="row row-message" [ngClass]="{'err': tooltipCheck}">
+        <span>{{errMsg}}</span>
+      </div>
+    </div>
+
+    <div class="row row-footer">
+      <div class="col-left">
+        <button class="button button-transparent text-link" (click)="onConfirmClick('CLOSE')">キャンセル</button>
+      </div>
+      <div class="col-right" *ngIf="modifyFlg">
+        <button class="button button-definite" [disabled]="isProcessing" (click)="onConfirmClick('MODIFY')">保存</button>
+      </div>
+      <div class="col-right" *ngIf="!modifyFlg">
+        <button class="button button-definite" [disabled]="isProcessing" (click)="onConfirmClick('ADD')">追加</button>
+      </div>
+    </div>

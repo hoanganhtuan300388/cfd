@@ -1,0 +1,1054 @@
+<!-- 注文変更 -->
+<div class="panel-body-content">
+	<div *ngIf="orderType=='1' || orderType=='5' || orderType=='6'">
+		<div class="row row-label">
+			<div class="col-left col-left-label">
+				<div *ngIf="settleType=='0'" class="label label-arrow">新規</div>
+				<div *ngIf="settleType=='1'" class="label label-arrow">決済</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">売買</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="buySellType=='1'" class="label label-order sell">売</div>
+				<div *ngIf="buySellType=='2'" class="label label-order buy">買</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">注文タイプ</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="executionType=='2'" class="label label-num">指値</div>
+				<div *ngIf="executionType=='3'" class="label label-num">逆指値</div>
+			</div>
+		</div>
+		<div class="row" *ngIf="isSave">
+			<div class="col-left">
+			  <div class="label"></div>
+			</div>
+			<div class="col-right">
+			  <div class="label label-num">トレーリングストップ</div>
+			</div>
+		  </div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">取引数量</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+			</div>
+		</div>
+		<div class="row" *ngIf="settleType=='1'">
+			<div class="col-left">
+				<div class="label">建単価</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">{{holdpriceTxt}}</div>
+			</div>
+		</div>
+		<div class="row" *ngIf="trailing==false">
+			<div class="col-left">
+				<div class="label">注文価格</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="priceBorder&&priceTool" class="tooltip">
+					<div class="tooltip-message">{{priceMessage}}</div>
+				</div>
+				<div class="input-qty-set">
+					<input class="input-box price-input" [(ngModel)]="price" type="text" errorKbn="priceBorder" #inOdrPrice=ValidatorNumber validator-number [min]="0"
+					 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'input-box':true, 'tooltip-frame':priceBorder}"
+					 (ngModelChange)="marginCalc()" (mouseover)="priceErr(true)" (mouseleave)="priceErr(false)" [attr.tabindex]="baseIdx+10"
+					 tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+					<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.increase()" (click)="inOdrPrice.increase()"
+					 [attr.tabindex]="baseIdx+11" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spinup"></i>
+					</button>
+					<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.decrease()" (click)="inOdrPrice.decrease()"
+					 [attr.tabindex]="baseIdx+12" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spindown"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row" *ngIf="trailing==true">
+			<div class="col-left">
+				<div class="label">注文価格</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">{{trailPrice2}}</div>
+			</div>
+		</div>
+		<div class="row" *ngIf="orderType=='6' && isSave!=false">
+			<div class="col-left">
+				<div class="label">トレール幅</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="trailWidthBorder&&trailWidthTool" class="tooltip">
+					<div class="tooltip-message">{{trailWidthMessage}}</div>
+				</div>
+
+				<div class="input-qty-set">
+					<input class="input-box trail-input" [(ngModel)]="trailWidth" type="text" errorKbn="trailWidthBorder" [ngClass]="{'tooltip-frame':trailWidthBorder}" #inTrailWidth=ValidatorNumber
+					 (mouseover)="trailErr(true)" (mouseleave)="trailErr(false)" validator-number [min]="5"
+					 [max]="999" [unit]="1" [attr.tabindex]="baseIdx+40" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+					<button type="button" errorKbn="trailWidthBorder" class="button button-icon" long-press (onLongPressing)="inTrailWidth.increase()" (click)="inTrailWidth.increase()"
+					 [disabled]="isSave==false" [attr.tabindex]="!isSave?-1:baseIdx+41" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spinup"></i>
+					</button>
+					<button type="button" errorKbn="trailWidthBorder" class="button button-icon" long-press (onLongPressing)="inTrailWidth.decrease()" (click)="inTrailWidth.decrease()"
+					 [disabled]="isSave==false" [attr.tabindex]="!isSave?-1:baseIdx+42" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spindown"></i>
+					</button>
+					<!--<span class="form-group-label">pips</span>-->
+					<span class="label label-bright label-font">pips</span>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row" *ngIf="settleType=='0'">
+			<div class="col-left text-transform-80">
+				<div class="label">ロスカットレート</div>
+			</div>
+			<div class="col-right">
+				<ul class="toggle-button">
+					<li [(ngModel)]="autoType" name="autoType" btnRadio="1" (click)="marginCalc()" [attr.tabindex]="baseIdx+70" tab-Index [type]="'ToggleButton'">自動</li>
+					<li [(ngModel)]="autoType" name="autoType" btnRadio="2" (click)="marginCalc()" [attr.tabindex]="baseIdx+71" tab-Index [type]="'ToggleButton'">指定</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="row" *ngIf="autoType=='2'">
+			<div class="col-left">
+				<div class="label"></div>
+			</div>
+
+			<div class="col-right">
+				<div *ngIf="losscutBorder && losscutTool" class="tooltip">
+					<div class="tooltip-message">ロスカットレートを正しく入力してください。</div>
+				</div>
+
+				<div class="input-qty-set" *ngIf="autoType=='2'">
+					<input class="input-box losscut-input" [(ngModel)]="losscut" type="text" errorKbn="losscutBorder" validator-number #inLosscut=ValidatorNumber [ngClass]="{'tooltip-frame':losscutBorder}"
+					 (ngModelChange)="marginCalc()" (mouseover)="losscutErr(true)" (mouseleave)="losscutErr(false)" [min]="0" [max]="priceMax"
+					 [unit]="boUnit" [base]="boUnit" [attr.tabindex]="baseIdx+80" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+					<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.increase()" (click)="inLosscut.increase()"
+					 [attr.tabindex]="baseIdx+81" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spinup"></i>
+					</button>
+					<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.decrease()" (click)="inLosscut.decrease()"
+					 [attr.tabindex]="baseIdx+82" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spindown"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div *ngIf="settleType=='0'" class="panel-body-accordion">
+			<div class="row row-low" *ngIf="plusLabel ==true">
+				<div class="col-left">
+					<div class="label"></div>
+				</div>
+				<div class="col-right">
+					<button class="button button-icon-sm button-frame" (click)="marginChange(false)" [attr.tabindex]="baseIdx+110" tab-Index
+					 [type]="'Input'">＋</button>
+					<span class="label label-sm label-prefix">拘束証拠金</span>
+					<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+					</span>
+				</div>
+			</div>
+
+			<div *ngIf="plusLabel ==false">
+				<div class="row row-low">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<button class="button button-icon-sm button-frame" (click)="marginChange(true)" [attr.tabindex]="baseIdx+120" tab-Index [type]="'Input'">ー</button>
+						<span class="label label-sm label-prefix">拘束証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+				<div class="row row-low">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<span class="label label-sm label-prefix">必要証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(needMargin)" title="{{needMarginFull}}">{{needMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+				<div class="row row-low">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<span class="label label-sm label-prefix">任意証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(tempMargin)" title="{{tempMarginFull}}">{{tempMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div *ngIf="settleType=='1'">
+			<div class="row row-low">
+				<div class="col-left">
+					<div class="label"></div>
+				</div>
+				<div class="col-right" *ngIf="isSave==false">
+          <span class="label label-sm label-prefix">予想損益</span>
+          <span *ngIf="holdMargin > 0" class="label label-num">
+            <span class="text-price-up" title="{{holdMarginTxtFull}}">{{holdMarginTxt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+          <span *ngIf="holdMargin < 0" class="label label-num">
+            <span class="text-price-down" title="{{holdMarginTxtFull}}">{{holdMarginTxt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+          <span *ngIf="holdMargin == 0">
+            <span class="label label-num" title="{{holdMarginTxtFull}}">{{holdMarginTxt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-left">
+				<div class="label">有効期限</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="orderTimeBorder&&orderTimeTool" class="tooltip">
+					<div class="tooltip-message">有効期限を選択してください。</div>
+				</div>
+				<ul class="toggle-button" [ngClass]="{'tooltip-frame':orderTimeBorder}" (mouseover)="orderTimeErr(true)" (mouseleave)="orderTimeErr(false)">
+					<li [class.disabled]="orderTypeFlg1" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="1" [attr.disabled]="orderTypeFlg1 ? true : null" style="width:54px;"
+					 [attr.tabindex]="orderTypeFlg1?-1:baseIdx+130" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)" (click) ="onClickOrderTime('orderTime')">当日</li>
+					<li [class.disabled]="orderTypeFlg2" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="2" [attr.disabled]="orderTypeFlg2 ? true : null" style="width:54px;"
+					 [attr.tabindex]="orderTypeFlg2?-1:baseIdx+131" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)" (click) ="onClickOrderTime('orderTime')">週末</li>
+					<li [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="3" style="width:55px;" [attr.tabindex]="baseIdx+132" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					 (click) ="onClickOrderTime('orderTime')">翌週末</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="orderType=='2'">
+		<div>
+			<div class="row row-label">
+				<div class="col-left col-left-label">
+					<div class="label label-arrow">新規</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">売買</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="buySellType=='1'" class="label label-order sell">売</div>
+					<div *ngIf="buySellType=='2'" class="label label-order buy">買</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-left">
+					<div class="label">注文タイプ</div>
+				</div>
+				<div class="col-right">
+					<div class="label label-num">IFD</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">取引数量</div>
+				</div>
+				<div class="col-right">
+					<div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">注文価格</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="priceBorder&&priceTool" class="tooltip">
+						<div class="tooltip-message">{{priceMessage}}</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box price-input" [(ngModel)]="price" type="text" errorKbn="priceBorder" #inOdrPrice=ValidatorNumber validator-number [min]="0"
+						 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'input-box':true, 'tooltip-frame':priceBorder}"
+						 (ngModelChange)="marginCalc()" (mouseover)="priceErr(true)" (mouseleave)="priceErr(false)" [attr.tabindex]="showDisableDiv?-1:baseIdx+140"
+						 tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.increase()" (click)="inOdrPrice.increase()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+141" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.decrease()" (click)="inOdrPrice.decrease()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+142" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="row">
+				<div class="col-left text-transform-80">
+					<div class="label">ロスカットレート</div>
+				</div>
+				<div class="col-right">
+					<ul class="toggle-button">
+						<li [(ngModel)]="autoType" name="autoType" btnRadio="1" (click)="marginCalc()" [attr.tabindex]="showDisableDiv?-1:baseIdx+170" tab-Index [type]="'ToggleButton'">自動</li>
+						<li [(ngModel)]="autoType" name="autoType" btnRadio="2" (click)="marginCalc()" [attr.tabindex]="showDisableDiv?-1:baseIdx+171" tab-Index [type]="'ToggleButton'">指定</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="row" *ngIf="autoType=='2'">
+				<div class="col-left">
+					<div class="label"></div>
+				</div>
+
+				<div class="col-right">
+					<div *ngIf="losscutBorder&&losscutTool" class="tooltip">
+						<div class="tooltip-message">ロスカットレートを正しく入力してください。</div>
+					</div>
+
+					<div class="input-qty-set" *ngIf="autoType=='2'">
+						<input class="input-box losscut-input" [(ngModel)]="losscut" type="text" errorKbn="losscutBorder" validator-number #inLosscut=ValidatorNumber [ngClass]="{'tooltip-frame':losscutBorder}"
+						 (ngModelChange)="marginCalc()" (mouseover)="losscutErr(true)" (mouseleave)="losscutErr(false)" [min]="0" [max]="priceMax"
+						 [unit]="boUnit" [base]="boUnit" [attr.tabindex]="showDisableDiv?-1:baseIdx+180" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.increase()" (click)="inLosscut.increase()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+181" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.decrease()" (click)="inLosscut.decrease()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+182" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel-body-accordion">
+				<div class="row row-low" *ngIf="plusLabel ==true">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<button class="button button-icon-sm button-frame" (click)="marginChange(false)" [attr.tabindex]="showDisableDiv?-1:baseIdx+210" tab-Index
+						 [type]="'Input'">＋</button>
+						<span class="label label-sm label-prefix">拘束証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+
+				<div *ngIf="plusLabel ==false">
+					<div class="row row-low">
+						<div class="col-left">
+							<div class="label"></div>
+						</div>
+						<div class="col-right">
+							<button class="button button-icon-sm button-frame" (click)="marginChange(true)" [attr.tabindex]="baseIdx+220" tab-Index [type]="'Input'">ー</button>
+							<span class="label label-sm label-prefix">拘束証拠金</span>
+							<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+							</span>
+						</div>
+					</div>
+					<div class="row row-low">
+						<div class="col-left">
+							<div class="label"></div>
+						</div>
+						<div class="col-right">
+							<span class="label label-sm label-prefix">必要証拠金</span>
+							<span class="label" [ngClass]="getClassByLen(needMargin)" title="{{needMarginFull}}">{{needMargin}}<span class="label label-bright label-jp">円</span>
+							</span>
+						</div>
+					</div>
+					<div class="row row-low">
+						<div class="col-left">
+							<div class="label"></div>
+						</div>
+						<div class="col-right">
+							<span class="label label-sm label-prefix">任意証拠金</span>
+							<span class="label" [ngClass]="getClassByLen(tempMargin)" title="{{tempMarginFull}}">{{tempMargin}}<span class="label label-bright label-jp">円</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">指値/逆指値</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="executionType=='2'" class="label">指値</div>
+					<div *ngIf="executionType=='3'" class="label">逆指値</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-left">
+					<div class="label">有効期限</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="orderTimeBorder&&orderTimeTool" class="tooltip">
+						<div class="tooltip-message">有効期限を選択してください。</div>
+					</div>
+					<ul class="toggle-button" [ngClass]="{'tooltip-frame':orderTimeBorder}" (mouseover)="orderTimeErr(true)" (mouseleave)="orderTimeErr(false)">
+						<li [class.disabled]="orderTypeFlg1" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="1" (click) ="onClickOrderTime('orderTime')" [attr.disabled]="orderTypeFlg1 ? true : null" style="width:54px;"
+						 [attr.tabindex]="(orderTypeFlg1 || showDisableDiv)?-1:baseIdx+230" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">当日</li>
+						<li [class.disabled]="orderTypeFlg2" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="2" (click) ="onClickOrderTime('orderTime')" [attr.disabled]="orderTypeFlg2 ? true : null" style="width:54px;"
+						 [attr.tabindex]="(orderTypeFlg1 || showDisableDiv)?-1:baseIdx+231" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">週末</li>
+						<li [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="3" (click) ="onClickOrderTime('orderTime')" style="width:55px;" [attr.tabindex]="showDisableDiv?-1:baseIdx+232" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">翌週末</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row row-label">
+			<div class="col-left col-left-label">
+				<div class="label label-arrow">決済</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">売買</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="buySellType2=='1'" class="label label-order sell">売</div>
+				<div *ngIf="buySellType2=='2'" class="label label-order buy">買</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-left">
+				<div class="label">取引数量</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">{{qty2}}&nbsp;(x{{tradeUnit}})</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-left">
+				<div class="label">注文価格</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="price2Border&&price2Tool" class="tooltip">
+					<div class="tooltip-message">{{price2Message}}</div>
+				</div>
+				<div class="input-qty-set">
+					<input class="input-box price-input2" [(ngModel)]="price2" errorKbn="price2Border" type="text" #inPrice2=ValidatorNumber validator-number [min]="0"
+					 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'tooltip-frame':price2Border}" (mouseover)="price2Err(true)"
+					 (mouseleave)="price2Err(false)" [min]="0" [max]="priceMax" [attr.tabindex]="baseIdx+240" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+					<button type="button" errorKbn="price2Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice2.increase()" (click)="inPrice2.increase()"
+					 [attr.tabindex]="baseIdx+241" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spinup"></i>
+					</button>
+					<button type="button" errorKbn="price2Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice2.decrease()" (click)="inPrice2.decrease()"
+					 [attr.tabindex]="baseIdx+242" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<i class="svg-icons icon-spindown"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-left">
+				<div class="label">指値/逆指値</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="executionType2=='2'" class="label">指値</div>
+				<div *ngIf="executionType2=='3'" class="label">逆指値</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-left">
+				<div class="label">有効期限</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="orderTime2Border&&orderTime2Tool" class="tooltip">
+					<div class="tooltip-message">有効期限を選択してください。</div>
+				</div>
+
+				<ul class="toggle-button" [ngClass]="{'tooltip-frame':orderTime2Border}" (mouseover)="orderTime2Err(true)" (mouseleave)="orderTime2Err(false)">
+					<li [class.disabled]="orderTime =='2' || orderTime =='3' || orderTypeFlg3" [(ngModel)]="orderTime2" errorKbn="orderTime2Border" btnRadio="1" [attr.disabled]="orderTime =='2' || orderTime =='3' || orderTypeFlg3 ? true : null"
+					 style="width:54px;" [attr.tabindex]="(orderTime =='2' || orderTime =='3' || orderTypeFlg3)?-1:baseIdx+270" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					 (click) ="onClickOrderTime('orderTime2')">当日</li>
+					<li [class.disabled]="orderTime =='3' || orderTypeFlg4" [(ngModel)]="orderTime2" errorKbn="orderTime2Border" btnRadio="2" [attr.disabled]="orderTime =='3' || orderTypeFlg4 ? true : null"
+					 style="width:54px;" [attr.tabindex]="(orderTime =='3' || orderTypeFlg4)?-1:baseIdx+271" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					 (click) ="onClickOrderTime('orderTime2')">週末</li>
+					<li [(ngModel)]="orderTime2" errorKbn="orderTime2Border" btnRadio="3" style="width:55px;" [attr.tabindex]="baseIdx+272" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					 (click) ="onClickOrderTime('orderTime2')">翌週末</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<div *ngIf="orderType=='3'">
+		<div class="row row-label">
+			<div class="col-left col-left-label col-left-label-wide">
+        <div *ngIf="settleType=='0'" class="label label-arrow">新規</div>
+				<div *ngIf="settleType=='1'" class="label label-arrow">決済</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">売買</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="buySellType=='1'" class="label label-order sell">売</div>
+				<div *ngIf="buySellType=='2'" class="label label-order buy">買</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">注文タイプ</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">OCO</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">取引数量</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+			</div>
+		</div>
+
+		<div class="row" *ngIf="settleType=='1'">
+			<div class="col-left">
+				<div class="label">建単価</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">{{holdpriceTxt}}</div>
+			</div>
+		</div>
+
+		<div>
+			<div class="row">
+				<div class="col-left">
+					<div class="label">注文価格(指値)</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="priceBorder&&priceTool" class="tooltip">
+						<div class="tooltip-message">{{priceMessage}}</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box price-input" [(ngModel)]="price" errorKbn="priceBorder" type="text" #inOdrPrice=ValidatorNumber validator-number [min]="0"
+						 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'input-box':true, 'tooltip-frame':priceBorder}"
+						 (ngModelChange)="holdMarginCalcOco()" (mouseover)="priceErr(true)" (mouseleave)="priceErr(false)" [attr.tabindex]="baseIdx+280"
+						 tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.increase()" (click)="inOdrPrice.increase()"
+						 [attr.tabindex]="baseIdx+281" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.decrease()" (click)="inOdrPrice.decrease()"
+						 [attr.tabindex]="baseIdx+282" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row row-low" *ngIf="settleType=='1'">
+				<div class="col-left">
+					<div class="label"></div>
+				</div>
+				<div class="col-right">
+          <span class="label label-sm label-prefix">予想損益</span>
+
+          <span *ngIf="holdMargin > 0" class="label label-num">
+            <span class="text-price-up" title="{{holdMarginTxtFull}}">{{holdMarginTxt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+          <span *ngIf="holdMargin < 0" class="label label-num">
+            <span class="text-price-down" title="{{holdMarginTxtFull}}">{{holdMarginTxt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+          <span *ngIf="holdMargin == 0" >
+            <span class="label label-num" title="{{holdMarginTxtFull}}">{{holdMarginTxt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left text-right">
+					<div class="label">(逆指値)</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="price2Border&&price2Tool" class="tooltip">
+						<div class="tooltip-message">{{price2Message}}</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box price-input2" [(ngModel)]="price2" errorKbn="price2Border" type="text" #inPrice2=ValidatorNumber validator-number [min]="0"
+						 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'input-box':true, 'tooltip-frame':price2Border}"
+						 (ngModelChange)="holdMarginCalcOco()" (mouseover)="price2Err(true)" (mouseleave)="price2Err(false)" [attr.tabindex]="baseIdx+310"
+						 tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="price2Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice2.increase()" (click)="inPrice2.increase()"
+						 [attr.tabindex]="baseIdx+311" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="price2Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice2.decrease()" (click)="inPrice2.decrease()"
+						 [attr.tabindex]="baseIdx+312" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row row-low" *ngIf="settleType=='1'">
+				<div class="col-left">
+					<div class="label"></div>
+				</div>
+				<div class="col-right">
+          <span class="label label-sm label-prefix">予想損益</span>
+
+          <span *ngIf="holdMargin2 > 0" class="label label-num">
+            <span class="text-price-up" title="{{holdMargin2TxtFull}}">{{holdMargin2Txt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+          <span *ngIf="holdMargin2 < 0" class="label label-num">
+            <span class="text-price-down" title="{{holdMargin2TxtFull}}">{{holdMargin2Txt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+          <span *ngIf="holdMargin2 == 0" >
+            <span class="label label-num" title="{{holdMargin2TxtFull}}">{{holdMargin2Txt}}</span>
+            <span class="label label-bright label-jp">円</span>
+          </span>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row" *ngIf="settleType=='0'">
+			<div class="col-left text-transform-80">
+				<div class="label">ロスカットレート</div>
+			</div>
+			<div class="col-right">
+				<ul class="toggle-button">
+					<li [(ngModel)]="autoType" name="autoType" btnRadio="1" (click)="marginCalc()" [attr.tabindex]="baseIdx+340" tab-Index [type]="'ToggleButton'">自動</li>
+					<li [(ngModel)]="autoType" name="autoType" btnRadio="2" (click)="marginCalc()" [attr.tabindex]="baseIdx+350" tab-Index [type]="'ToggleButton'">指定</li>
+				</ul>
+			</div>
+		</div>
+			
+		<div *ngIf="autoType=='2'">
+			<div class="row">
+				<div class="col-left text-right">
+					<div class="label">(指値)</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="losscutBorder&&losscutTool" class="tooltip">
+						<div class="tooltip-message">ロスカットレートを正しく入力してください。</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box losscut-input" [(ngModel)]="losscut" errorKbn="losscutBorder" type="text" [ngClass]="{'tooltip-frame':losscutBorder}" (ngModelChange)="marginCalc()"
+							#inLosscut=ValidatorNumber (mouseover)="losscutErr(true)" (mouseleave)="losscutErr(false)" validator-number [min]="0"
+							[max]="priceMax" [unit]="boUnit" [base]="boUnit" [attr.tabindex]="baseIdx+360" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.increase()" (click)="inLosscut.increase()"
+							[attr.tabindex]="baseIdx+361" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.decrease()" (click)="inLosscut.decrease()"
+							[attr.tabindex]="baseIdx+362" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left text-right">
+					<div class="label">(逆指値)</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="losscutBorder&&losscut2Tool" class="tooltip">
+						<div class="tooltip-message">ロスカットレートを正しく入力してください。</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box losscut-input2" [(ngModel)]="losscut2" errorKbn="losscut2Border" type="text" [ngClass]="{'tooltip-frame':losscut2Border}" #inLosscut2=ValidatorNumber
+							(ngModelChange)="marginCalc()" (mouseover)="losscut2Err(true)" (mouseleave)="losscut2Err(false)" validator-number
+							[min]="0" [max]="priceMax" [unit]="boUnit" [base]="boUnit" [attr.tabindex]="baseIdx+390" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="losscut2Border" class="button button-low button-icon" long-press (onLongPressing)="inLosscut2.increase()" (click)="inLosscut2.increase()"
+							[attr.tabindex]="baseIdx+391" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="losscut2Border" class="button button-low button-icon" long-press (onLongPressing)="inLosscut2.decrease()" (click)="inLosscut2.decrease()"
+							[attr.tabindex]="baseIdx+392" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div *ngIf="settleType=='0'" class="panel-body-accordion">
+			<div class="row row-low" *ngIf="plusLabel ==true">
+				<div class="col-left">
+					<div class="label"></div>
+				</div>
+				<div class="col-right">
+					<button class="button button-icon-sm button-frame" (click)="marginChange(false)" [attr.tabindex]="baseIdx+420" tab-Index
+					 [type]="'Input'">＋</button>
+					<span class="label label-sm label-prefix">拘束証拠金</span>
+					<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+					</span>
+				</div>
+			</div>
+
+			<div *ngIf="plusLabel ==false">
+				<div class="row row-low">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<button class="button button-icon-sm button-frame" (click)="marginChange(true)" [attr.tabindex]="baseIdx+430" tab-Index [type]="'Input'">ー</button>
+						<span class="label label-sm label-prefix">拘束証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+				<div class="row row-low">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<span class="label label-sm label-prefix">必要証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(needMargin)" title="{{needMarginFull}}">{{needMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+				<div class="row row-low">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<span class="label label-sm label-prefix">任意証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(tempMargin)" title="{{tempMarginFull}}">{{tempMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">有効期限</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="orderTimeBorder&&orderTimeTool" class="tooltip">
+					<div class="tooltip-message">有効期限を選択してください。</div>
+				</div>
+				<ul class="toggle-button" [ngClass]="{'tooltip-frame':orderTimeBorder}" (mouseover)="orderTimeErr(true)" (mouseleave)="orderTimeErr(false)">
+					<li [class.disabled]="orderTypeFlg1" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="1" [attr.disabled]="orderTypeFlg1 ? true : null" style="width:54px;"
+					 [attr.tabindex]="orderTypeFlg1?-1:baseIdx+440" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)" (click) ="onClickOrderTime('orderTime')">当日</li>
+					<li [class.disabled]="orderTypeFlg2" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="2" [attr.disabled]="orderTypeFlg2 ? true : null" style="width:54px;"
+					 [attr.tabindex]="orderTypeFlg2?-1:baseIdx+441" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)" (click) ="onClickOrderTime('orderTime')">週末</li>
+					<li [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="3" style="width:55px;" [attr.tabindex]="baseIdx+442" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					(click) ="onClickOrderTime('orderTime')">翌週末</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="orderType=='4'">
+		<div>
+			<div class="row row-label">
+				<div class="col-left col-left-label">
+					<div class="label label-arrow">新規</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-left">
+					<div class="label">売買</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="buySellType=='1'" class="label label-order sell">売</div>
+					<div *ngIf="buySellType=='2'" class="label label-order buy">買</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">注文タイプ</div>
+				</div>
+				<div class="col-right">
+					<div class="label label-num">IFD-OCO</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">取引数量</div>
+				</div>
+				<div class="col-right">
+					<div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">注文価格</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="priceBorder&&priceTool" class="tooltip">
+						<div class="tooltip-message">{{priceMessage}}</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box price-input" [(ngModel)]="price" errorKbn="priceBorder" type="text" #inOdrPrice=ValidatorNumber validator-number [min]="0"
+						 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'input-box':true, 'tooltip-frame':priceBorder}"
+						 (ngModelChange)="marginCalc()" (mouseover)="priceErr(true)" (mouseleave)="priceErr(false)" title=" " [attr.tabindex]="showDisableDiv?-1:baseIdx+450"
+						 tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.increase()" (click)="inOdrPrice.increase()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+451" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="priceBorder" class="button button-low button-icon" long-press (onLongPressing)="inOdrPrice.decrease()" (click)="inOdrPrice.decrease()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+452" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left text-transform-80">
+					<div class="label">ロスカットレート</div>
+				</div>
+				<div class="col-right">
+					<ul class="toggle-button">
+						<li [(ngModel)]="autoType" name="autoType" btnRadio="1" (click)="marginCalc()" [attr.tabindex]="showDisableDiv?-1:baseIdx+480" tab-Index [type]="'ToggleButton'">自動</li>
+						<li [(ngModel)]="autoType" name="autoType" btnRadio="2" (click)="marginCalc()" [attr.tabindex]="showDisableDiv?-1:baseIdx+481" tab-Index [type]="'ToggleButton'">指定</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="row" *ngIf="autoType=='2'">
+				<div class="col-left">
+					<div class="label"></div>
+				</div>
+
+				<div class="col-right">
+					<div *ngIf="losscutBorder&&losscutTool" class="tooltip">
+						<div class="tooltip-message">ロスカットレートを正しく入力してください。</div>
+          </div>
+					<div class="input-qty-set" *ngIf="autoType=='2'">
+            <input class="input-box losscut-input" [(ngModel)]="losscut" type="text" errorKbn="losscutBorder" validator-number #inLosscut=ValidatorNumber [ngClass]="{'tooltip-frame':losscutBorder}"
+              (ngModelChange)="marginCalc()" (mouseover)="losscutErr(true)" (mouseleave)="losscutErr(false)" [min]="0" [max]="priceMax"
+              [unit]="boUnit" [base]="boUnit" [attr.tabindex]="showDisableDiv?-1:baseIdx+180" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.increase()" (click)="inLosscut.increase()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+491" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="losscutBorder" class="button button-low button-icon" long-press (onLongPressing)="inLosscut.decrease()" (click)="inLosscut.decrease()"
+						 [attr.tabindex]="showDisableDiv?-1:baseIdx+492" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel-body-accordion">
+				<div class="row row-low" *ngIf="plusLabel ==true">
+					<div class="col-left">
+						<div class="label"></div>
+					</div>
+					<div class="col-right">
+						<button class="button button-icon-sm button-frame" (click)="marginChange(false)" [attr.tabindex]="showDisableDiv?-1:baseIdx+520" tab-Index
+						 [type]="'Input'">＋</button>
+						<span class="label label-sm label-prefix">拘束証拠金</span>
+						<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+						</span>
+					</div>
+				</div>
+
+				<div *ngIf="plusLabel ==false">
+					<div class="row row-low">
+						<div class="col-left">
+							<div class="label"></div>
+						</div>
+						<div class="col-right">
+							<button class="button button-icon-sm button-frame" (click)="marginChange(true)" [attr.tabindex]="baseIdx+530" tab-Index [type]="'Input'">ー</button>
+							<span class="label label-sm label-prefix">拘束証拠金</span>
+							<span class="label" [ngClass]="getClassByLen(needTempMargin)" title="{{needTempMarginFull}}">{{needTempMargin}}<span class="label label-bright label-jp">円</span>
+							</span>
+						</div>
+					</div>
+					<div class="row row-low">
+						<div class="col-left">
+							<div class="label"></div>
+						</div>
+						<div class="col-right">
+							<span class="label label-sm label-prefix">必要証拠金</span>
+							<span class="label" [ngClass]="getClassByLen(needMargin)" title="{{needMarginFull}}">{{needMargin}}<span class="label label-bright label-jp">円</span>
+							</span>
+						</div>
+					</div>
+					<div class="row row-low">
+						<div class="col-left">
+							<div class="label"></div>
+						</div>
+						<div class="col-right">
+							<span class="label label-sm label-prefix">任意証拠金</span>
+							<span class="label" [ngClass]="getClassByLen(tempMargin)" title="{{tempMarginFull}}">{{tempMargin}}<span class="label label-bright label-jp">円</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">指値/逆指値</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="executionType=='2'" class="label">指値</div>
+					<div *ngIf="executionType=='3'" class="label">逆指値</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left">
+					<div class="label">有効期限</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="orderTimeBorder&&orderTimeTool" class="tooltip">
+						<div class="tooltip-message">有効期限を選択してください。</div>
+					</div>
+					<ul class="toggle-button" [ngClass]="{'tooltip-frame':orderTimeBorder}" (mouseover)="orderTimeErr(true)" (mouseleave)="orderTimeErr(false)">
+						<li [class.disabled]="orderTypeFlg1" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="1" (click) ="onClickOrderTime('orderTime')" [attr.disabled]="orderTypeFlg1 ? true : null" style="width:54px;"
+						 [attr.tabindex]="(orderTypeFlg1 || showDisableDiv)?-1:baseIdx+540" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">当日</li>
+						<li [class.disabled]="orderTypeFlg2" [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="2" (click) ="onClickOrderTime('orderTime')" [attr.disabled]="orderTypeFlg2 ? true : null" style="width:54px;"
+						 [attr.tabindex]="(orderTypeFlg2 || showDisableDiv)?-1:baseIdx+541" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">週末</li>
+						<li [(ngModel)]="orderTime" errorKbn="orderTimeBorder" btnRadio="3" (click) ="onClickOrderTime('orderTime')" style="width:55px;" [attr.tabindex]="showDisableDiv?-1:baseIdx+542" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">翌週末</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row row-label">
+			<div class="col-left col-left-label">
+				<div class="label label-arrow">決済</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">売買</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="buySellType2=='1'" class="label label-order sell">売</div>
+				<div *ngIf="buySellType2=='2'" class="label label-order buy">買</div>
+			</div>
+		</div>
+
+		<!-- <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文タイプ</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">OCO</div>
+	    </div>
+	  </div> -->
+
+		<div class="row">
+			<div class="col-left">
+				<div class="label">取引数量</div>
+			</div>
+			<div class="col-right">
+				<div class="label label-num">{{qty2}}&nbsp;(x{{tradeUnit}})</div>
+			</div>
+		</div>
+
+
+		<div>
+			<div class="row">
+				<div class="col-left">
+					<div class="label">注文価格(指値)</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="price2Border&&price2Tool" class="tooltip">
+						<div class="tooltip-message">{{price2Message}}</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box price-input2" [(ngModel)]="price2" errorKbn="price2Border" type="text" #inPrice2=ValidatorNumber validator-number [min]="0"
+						 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'input-box':true, 'tooltip-frame':price2Border}"
+						 (mouseover)="price2Err(true)" (mouseleave)="price2Err(false)" [attr.tabindex]="baseIdx+550" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="price2Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice2.increase()" (click)="inPrice2.increase()"
+						 [attr.tabindex]="baseIdx+551" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="price2Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice2.decrease()" (click)="inPrice2.decrease()"
+						 [attr.tabindex]="baseIdx+552" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-left text-right">
+					<div class="label">(逆指値)</div>
+				</div>
+				<div class="col-right">
+					<div *ngIf="price3Border&&price3Tool" class="tooltip">
+						<div class="tooltip-message">{{price3Message}}</div>
+					</div>
+					<div class="input-qty-set">
+						<input class="input-box price-input3" [(ngModel)]="price3" type="text" errorKbn="price3Border" #inPrice3=ValidatorNumber validator-number [min]="0"
+						 [max]="priceMax" [unit]="boUnit" [base]="getDefaultPrice()" [ngClass]="{'input-box':true, 'tooltip-frame':price3Border}"
+						 (mouseover)="price3Err(true)" (mouseleave)="price3Err(false)" [attr.tabindex]="baseIdx+580" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+						<button type="button" errorKbn="price3Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice3.increase()" (click)="inPrice3.increase()"
+						 [attr.tabindex]="baseIdx+581" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spinup"></i>
+						</button>
+						<button type="button" errorKbn="price3Border" class="button button-low button-icon" long-press (onLongPressing)="inPrice3.decrease()" (click)="inPrice3.decrease()"
+						 [attr.tabindex]="baseIdx+582" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+							<i class="svg-icons icon-spindown"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-left">
+				<div class="label">有効期限</div>
+			</div>
+			<div class="col-right">
+				<div *ngIf="orderTime2Border&&orderTime2Tool" class="tooltip">
+					<div class="tooltip-message">有効期限を選択してください。</div>
+				</div>
+
+				<ul class="toggle-button" [ngClass]="{'tooltip-frame':orderTime2Border}" (mouseover) ="orderTime2Err(true)" (mouseleave) ="orderTime2Err(false)">
+					<!--<li [class.disabled]="orderTime2 =='2' || orderTime2 =='3'" [(ngModel)]="orderTime2" btnRadio="1" [attr.disabled]="(orderTime2 =='2'||orderTime2 =='3')?true:null" style="width:54px;">当日</li>
+					<li [class.disabled]="orderTime2 =='3'" [(ngModel)]="orderTime2" btnRadio="2" [attr.disabled]="(orderTime2 =='3')?true:null" style="width:54px;">週末</li>-->
+					<li [class.disabled]="orderTime =='2' || orderTime =='3' || orderTypeFlg3" [(ngModel)]="orderTime2" errorKbn="orderTime2Border" btnRadio="1" [attr.disabled]="orderTime =='2' || orderTime =='3' || orderTypeFlg3 ? true : null" style="width:54px;" [attr.tabindex]="(orderTime =='2' || orderTime =='3' || orderTypeFlg3)?-1:baseIdx+610" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					  (click) ="onClickOrderTime('orderTime2')">当日</li>
+					<li [class.disabled]="orderTime =='3' || orderTypeFlg4" [(ngModel)]="orderTime2" errorKbn="orderTime2Border" btnRadio="2" [attr.disabled]="orderTime =='3' || orderTypeFlg4 ? true : null" style="width:54px;" [attr.tabindex]="(orderTime =='3' || orderTypeFlg4)?-1:baseIdx+611" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					  (click) ="onClickOrderTime('orderTime2')">週末</li>
+					<li [(ngModel)]="orderTime2" btnRadio="3" errorKbn="orderTime2Border" style="width:55px;" [attr.tabindex]="baseIdx+612" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)"
+					  (click) ="onClickOrderTime('orderTime2')">翌週末</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="poup_div_class" [style.visibility]="showDisableDiv?'visible':'hidden'">
+	</div>
+</div>

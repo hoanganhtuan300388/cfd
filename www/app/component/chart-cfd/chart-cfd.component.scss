@@ -1,0 +1,148 @@
+.chart-wrapper-area {
+  top:0px;
+  height: calc(100% - 66px); /* #2801 */
+  overflow: hidden; /* #2281 */
+
+  background: linear-gradient(0deg, rgba(0,85,255,0.12), rgba(66,66,85,0)); /* #3016 */
+
+  .cursor-TL0002 {
+    cursor: -webkit-image-set(
+      url('assets/images/cursors/icon-chart-crosshair.png') 1x,
+      url('assets/images/cursors/icon-chart-crosshair@2x.png') 2x,
+      url('assets/images/cursors/icon-chart-crosshair@3x.png') 3x
+    )
+  }
+
+  #idChartWrap {
+    position: relative !important;
+    background: transparent; /* #2216 */
+  }
+
+  /* #2216 */
+  #idChartDrawWrap {
+    background: transparent;
+  }
+
+  #idChartArea {
+    background: transparent;
+  }
+  /* [end] #2216 */
+
+  /* #2293 */
+  .classChartItem {
+    overflow: hidden;
+  }
+  /* [end] #2293 */
+}
+
+.chart-scroll-area {
+  bottom: 0px;
+  width: 100%;
+  height: 68px; /* #2801 */
+
+  .chart-scroll-area-wrap {
+    position: relative;
+    padding: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #idZsWrap {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position:absolute;
+    left:0px; top:0px; width:100%; height:100%;
+    background-color:rgba(255, 255, 255, 0) !important;
+  }
+
+  .classZsArea {
+    margin: 0;
+    padding: 0;
+    border: 1px;
+    border-color: blue;
+    position:absolute;
+    background-color:rgba(255, 255, 255, 0) !important;
+  }
+
+  .classZsThumbSize {
+    margin: 0;
+    padding: 0;
+    border-left: 1px;
+    border-top: 1px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #0A0A0B;
+    position:absolute;
+    background-color:rgb(225, 222, 232);
+  }
+
+  .classZsThumbMove {
+    margin: 0;
+    padding: 0;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-left: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: blue;
+    position:absolute;
+    background-color:rgb(223, 230, 9);
+  }
+
+  .classZsScrollArea {
+    margin: 0;
+    padding: 0;
+    border: 1px;
+    border-style:solid;
+    border-color: blue;
+    position:absolute;
+    background-color:#EDECEC;
+  }
+
+  .classZsActionArea {
+    margin: 0;
+    padding: 0;
+    border: 1px;
+    width:40px;
+    border-style:solid;
+    border-color: blue;
+    position:absolute;
+    background-color:rgb(8, 174, 232);
+  }
+
+  .classZsActionButton {
+    margin: 0;
+    padding: 0;
+    border: 0px;
+    width: 100%;
+    height:100%;
+    border-style:solid;
+    border-color: blue;
+    position:absolute;
+  }
+
+  .classZsScrollBackground {
+    position:absolute;
+  }
+
+  #eidZsThumbArea {
+    opacity: 0.3 !important
+  }
+
+  #idZsDrawArea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position:absolute; left:0px; top:0px; width:100%;
+    background-color:#ffffff;
+
+  }
+
+  .classZsBar {
+    position:absolute;
+  }
+}

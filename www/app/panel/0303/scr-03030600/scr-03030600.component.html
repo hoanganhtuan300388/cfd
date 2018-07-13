@@ -1,0 +1,41 @@
+<!-- チャート -->
+<div ng2-resizeable (resizing)="onResizing($event)" (resized)="onResized($event)" class="panel panel-chart panel-animate">
+  <title-bar #titleBar [title]="title()" [frame]="this" [title-show]="true"></title-bar>
+
+  <div class="panel-body">
+
+    <div class="panel-body-header">
+      <chart-setting #Setting
+        (showTechnical)="showTechnicalWindowFromSetting($event)"
+        (changeChartType)="changeChartTypeFromSetting($event)"
+        (changeRequestData)="changeRequestDataFromSetting($event)"
+        (changeUseOrderLine)="changeUseOrderLineFromSetting($event)"
+        (changeUsePositionLine)="changeUsePositLineFromSetting($event)"
+        (changeUseExecutionLine)="changeUseExecutionLineFromSetting($event)"
+        (changeUseAlertLine)="changeUseAlertLineFromSetting($event)"
+        (trendLineCode)="onTriggerApplyTrendline($event)"
+        (changeCrosslineShow)="changeCrosslineShowFromSetting($event)"
+
+        [isSettingDisabled]="isSettingDisabled"
+        [isTechnicalDisabled]="isTechnicalDisabled"
+        [isTechnicalVisible]="isTechnicalVisible"
+        [isInfoPanelVisible]="isInfoPanelVisible"
+        [isEditPanelVisible]="isEditPanelVisible"
+        [isRightMenuVisible]="isRightMenuVisible"
+      >
+      </chart-setting>
+    </div>
+
+    <div class="panel-body-chart">
+        <div class="panel-body-chart-wrapper">
+          <chart-cfd #chart
+            (showInfoPanel)="toggleShowInfoPanelFromSetting($event)"
+            ></chart-cfd>
+        </div>
+
+        <!-- 四本値情報パネル 移動可能エリア -->
+        <chart-info-panel #InfoPanel [hidden]="!isInfoPanelVisible" (close)="closeInfoPanelFromInfo($event)"></chart-info-panel>
+    </div>
+
+  </div>
+</div>

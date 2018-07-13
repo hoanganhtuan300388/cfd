@@ -1,0 +1,36 @@
+<!-- 建玉一覧 -->
+<div ng2-resizeable (resizing)="onResizing($event)" class="panel panel-position-list panel-animate" tabindex="100">
+    <title-bar [title]="title()" [frame]="this" [add]="addTitleBarId"></title-bar>
+
+    <div id="title-bar-add-content" class="selectTabbar">
+        <div id="title-bar-add-content-left">
+            <div class="content-col dropdown-list">
+                <dropdown #dropDownProductList [items]="productListItem" [select]="productListItem[0].value" (changed)="onChangeProductList($event)" [dropdown-option-show]="true"></dropdown>
+                <dropdown #dropDownOrderType [items]="orderTypeItem" [select]="orderTypeItem[0].value" (changed)="onChangeOrderType($event)"></dropdown>
+
+                <!-- RIGHT -->
+                <div class="content-right content-gap"></div>
+                <button type="button" class="button button-icon content-right" (click)="onClickRefresh($event)"><i class="svg-icons icon-refresh"></i></button>
+
+                <div class="content-right content-gap"></div>
+                <div class="content-right">
+                  <dropdown #dropDownViewType [items]="viewTypeItem" [select]="viewTypeItem[0].value" (changed)="onChangeViewType($event)"  ></dropdown>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel-body">
+        <div id="grid{{pageId}}"></div>
+    </div>
+</div>
+<context-menu #contextMenuComponent>
+    <ng-template *ngFor="let item of contextItems;"
+        contextMenuItem
+        [enabled]="item.enabled"
+        [divider]="item.divider ? 'true' : ''"
+        (execute)="onClickContextItem($event.item, item)">
+        {{item.title}}
+    </ng-template>
+</context-menu>

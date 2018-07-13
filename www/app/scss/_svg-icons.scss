@@ -1,0 +1,941 @@
+@mixin svg-icon($iconType) {
+  background-image: url("../../assets/images/icons/#{$iconType}.svg");
+  background-repeat: no-repeat
+}
+
+.svg-icons {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  cursor: default;
+
+  &.icon-refresh {
+    width: 12px;
+    height: 12px;
+    margin-bottom: -1px;
+    margin-left: -2px;
+    @include svg-icon("icon-refresh");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-refresh-hover");
+    }
+    &:active {
+      @include svg-icon("icon-refresh-active");
+    }
+  }
+
+  &.icon-window-close {
+    margin-top: 3px;
+    @include svg-icon("icon-window-close");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-window-close-hover");
+    }
+    &:active {
+      @include svg-icon("icon-window-close-active");
+    }
+  }
+
+  &.icon-window-max {
+    margin-top: 3px;
+    @include svg-icon("icon-window-max");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-window-max-hover");
+    }
+    &:active {
+      @include svg-icon("icon-window-max-active");
+    }
+  }
+
+  &.icon-window-min {
+    margin-top: 3px;
+    @include svg-icon("icon-window-min");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-window-min-hover");
+    }
+    &:active {
+      @include svg-icon("icon-window-min-active");
+    }
+  }
+
+  &.icon-window-appinout {
+    margin-top: 3px;
+    @include svg-icon("icon-window-appinout");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-window-appinout-hover");
+    }
+    &:active {
+      @include svg-icon("icon-window-appinout-active");
+    }
+  }
+
+  &.icon-rate-list {
+    width: 16px;
+    height: 9px;
+    margin-bottom: 2px;
+    @include svg-icon("icon-rate-list");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-rate-list-hover");
+    }
+    &:active {
+      @include svg-icon("icon-rate-list-active");
+    }
+  }
+
+  &.icon-rate-panel {
+    width: 17px;
+    height: 10px;
+    margin-bottom: 2px;
+    margin-left: 1px;
+    @include svg-icon("icon-rate-panel");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-rate-panel-hover");
+    }
+    &:active {
+      @include svg-icon("icon-rate-panel-active");
+    }
+  }
+
+  &.icon-bookmark-drop-down {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 6px;
+    @include svg-icon("icon-bookmark-drop-down");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-bookmark-drop-down-hover");
+    }
+    &:active {
+      @include svg-icon("icon-bookmark-drop-down-active");
+    }
+  }
+  
+  &.bookmark-drop-down2 {
+    margin-bottom:-3px;
+  }
+
+  &.icon-arrow-prev {
+    width: 11px;
+    height: 12px;
+    margin-bottom: -1px;
+    margin-left: -2px;
+    @include svg-icon("icon-arrow-prev");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-arrow-prev-hover");
+    }
+    &:active {
+      @include svg-icon("icon-arrow-prev-active");
+    }
+  }
+
+  &.icon-arrow-next {
+    width: 11px;
+    height: 12px;
+    margin-bottom: -1px;
+    @include svg-icon("icon-arrow-next");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-arrow-next-hover");
+    }
+    &:active {
+      @include svg-icon("icon-arrow-next-active");
+    }
+  }
+
+  &.icon-dropdown {
+    width: 16px;
+    height: 24px;
+    @include svg-icon("icon-dropdown");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-dropdown-hover");
+    }
+    &:active {
+      @include svg-icon("icon-dropdown-active");
+    }
+  }
+
+  &.icon-ratedown {
+    width: 20px;
+    height: 20px;
+    @include svg-icon("icon-ratedown");
+    &.speed-order {
+      @include svg-icon("icon-ratedown-speed-order");
+    }
+  }
+
+  &.icon-rateup {
+    width: 20px;
+    height: 20px;
+    @include svg-icon("icon-rateup");
+    &.speed-order {
+      @include svg-icon("icon-rateup-speed-order");
+    }
+  }
+
+  &.icon-spindown {
+    width: 13px;
+    height: 9px;
+    margin-left: -3px;
+    @include svg-icon("icon-spindown");
+  }
+
+  &.icon-spinup {
+    width: 13px;
+    height: 9px;
+    margin-left: -3px;
+    @include svg-icon("icon-spinup");
+  }
+
+  &.icon-minus {
+    width: 11px;
+    height: 2px;
+    margin-left: -3px;
+    margin-bottom: 1px;
+    @include svg-icon("icon-minus");
+  }
+
+  &.icon-plus {
+    width: 12px;
+    height: 12px;
+    margin-left: -2px;
+    margin-bottom: 2px;
+    @include svg-icon("icon-plus");
+  }
+
+  &.icon-bookmark-on {
+    height: 24px;
+    width: 24px;
+    @include svg-icon("icon-bookmark-on");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-bookmark-on-hover");
+    }
+    &:active {
+      @include svg-icon("icon-bookmark-on-active");
+    }
+  }
+
+  &.icon-bookmark-off {
+    height: 24px;
+    width: 24px;
+    @include svg-icon("icon-bookmark-off");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-bookmark-off-hover");
+    }
+    &:active {
+      @include svg-icon("icon-bookmark-off-active");
+    }
+  }
+
+  &.icon-position-open {
+    height: 7px;
+    width: 10px;
+    margin-left: -5px;
+    margin-bottom: 1px;
+    @include svg-icon("icon-position-open");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-position-open-hover");
+    }
+    &:active {
+      @include svg-icon("icon-position-open-active");
+    }
+  }
+
+  &.icon-position-close {
+    height: 7px;
+    width: 10px;
+    margin-left: -5px;
+    margin-bottom: 2px;
+    @include svg-icon("icon-position-close");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-position-close-hover");
+    }
+    &:active {
+      @include svg-icon("icon-position-close-active");
+    }
+  }
+
+  &.icon-speedorder {
+    height: 16px;
+    width: 16px;
+    margin-left: -6px;
+    margin-bottom: 2px;
+    @include svg-icon("icon-speedorder");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-speedorder-hover");
+    }
+    &:active {
+      @include svg-icon("icon-speedorder-active");
+    }
+  }
+
+  &.icon-logic-order {
+    height: 20px;
+    width: 32px;
+    margin-left: 1em;
+    @include svg-icon("icon-logic-order");
+    &:hover,
+    &:focus {
+      //@include svg-icon("icon-logic-order-hover");
+    }
+  }
+
+  &.icon-fund {
+    height: 16px;
+    width: 16px;
+    margin-left: -6px;
+    margin-bottom: -2px;
+    @include svg-icon("icon-fund");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-fund-hover");
+    }
+    &:active {
+      @include svg-icon("icon-fund-active");
+    }
+  }
+
+  &.icon-priceadj {
+    height: 16px;
+    width: 16px;
+    margin-left: -6px;
+    margin-bottom: -2px;
+    @include svg-icon("icon-priceadj");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-priceadj-hover");
+    }
+    &:active {
+      @include svg-icon("icon-priceadj-active");
+    }
+  }
+
+  &.icon-corporate {
+    height: 16px;
+    width: 16px;
+    margin-left: -6px;
+    margin-bottom: -2px;
+    @include svg-icon("icon-corporate");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-corporate-hover");
+    }
+    &:active {
+      @include svg-icon("icon-corporate-active");
+    }
+  }
+
+  &.icon-close-exdata {
+    height: 16px;
+    width: 16px;
+    @include svg-icon("icon-close-exdata");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-close-exdata-hover");
+    }
+    &:active {
+      @include svg-icon("icon-close-exdata-active");
+    }
+  }
+
+  &.icon-open-exdata {
+    height: 16px;
+    width: 16px;
+    @include svg-icon("icon-open-exdata");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-open-exdata-hover");
+    }
+    &:active {
+      @include svg-icon("icon-open-exdata-active");
+    }
+  }
+
+  &.icon-sort-asc {
+    height: 16px;
+    width: 16px;
+    @include svg-icon("icon-sort-asc");
+  }
+
+  &.icon-sort-desc {
+    height: 16px;
+    width: 16px;
+    @include svg-icon("icon-sort-desc");
+  }
+
+  &.icon-prev {
+    height: 16px;
+    width: 16px;
+    @include svg-icon("icon-prev");
+  }
+
+  &.icon-next {
+    height: 16px;
+    width: 16px;
+    @include svg-icon("icon-next");
+  }
+
+  &.icon-to-bottom {
+    height: 25px;
+    width: 24px;
+    @include svg-icon("icon-to-bottom");
+  }
+
+  &.icon-attention {
+    height: 24px;
+    width: 24px;
+    @include svg-icon("icon-attention");
+  }
+
+  &.icon-arrow-drop-up {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    opacity: 0.8;
+    @include svg-icon("icon-arrow-drop-up");
+  }
+
+  /** Vendor Icons **/
+  &[class*="icon-vender-"] {
+    height: 24px;
+    width: 24px;
+    margin-bottom: -4px;
+  }
+  &.icon-vender-dowjones {
+    @include svg-icon("icon-vender-dowjones");
+  }
+
+  &.icon-vender-marketwin-24 {
+    @include svg-icon("icon-vender-marketwin-24");
+  }
+
+  &.icon-vender-nikkei {
+    @include svg-icon("icon-vender-nikkei");
+  }
+
+  &.icon-vender-msaaf {
+    @include svg-icon("icon-vender-msaaf");
+  }
+
+  &.icon-vender-dhz {
+    @include svg-icon("icon-vender-dhz");
+  }
+
+  &.icon-vender-jp {
+    @include svg-icon("icon-vender-jp");
+  }
+
+  &.icon-pdf {
+    height: 24px;
+    width: 25px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    margin-left: 20px;
+    @include svg-icon("icon-pdf");
+  }
+
+  /** Contory Flg Icons **/
+  &[class*="icon-flg-"] {
+    height: 16px;
+    width: 24px;
+    margin-right: 4px;
+    &:last-child {
+      margin-right: 16px;
+      margin-bottom: -3px;
+    }
+  }
+
+  &.icon-flg-US {
+    @include svg-icon("flag-us");
+  }
+
+  &.icon-flg-UK {
+    @include svg-icon("flag-uk");
+  }
+
+  &.icon-flg-TU {
+    @include svg-icon("flag-tu");
+  }
+
+  &.icon-flg-TH {
+    @include svg-icon("flag-th");
+  }
+
+  &.icon-flg-TA {
+    @include svg-icon("flag-ta");
+  }
+
+  &.icon-flg-SZ {
+    @include svg-icon("flag-sz");
+  }
+
+  &.icon-flg-SW {
+    @include svg-icon("flag-sw");
+  }
+
+  &.icon-flg-SK {
+    @include svg-icon("flag-sk");
+  }
+
+  &.icon-flg-SI {
+    @include svg-icon("flag-si");
+  }
+
+  &.icon-flg-SA {
+    @include svg-icon("flag-sa");
+  }
+
+  &.icon-flg-RU {
+    @include svg-icon("flag-ru");
+  }
+
+  &.icon-flg-PH {
+    @include svg-icon("flag-ph");
+  }
+
+  &.icon-flg-NZ {
+    @include svg-icon("flag-nz");
+  }
+
+  &.icon-flg-MX {
+    @include svg-icon("flag-mx");
+  }
+
+  &.icon-flg-MA {
+    @include svg-icon("flag-ma");
+  }
+
+  &.icon-flg-JN {
+    @include svg-icon("flag-jn");
+  }
+
+  &.icon-flg-IT {
+    @include svg-icon("flag-it");
+  }
+
+  &.icon-flg-IN {
+    @include svg-icon("flag-in");
+  }
+
+  &.icon-flg-ID {
+    @include svg-icon("flag-id");
+  }
+
+  &.icon-flg-HK {
+    @include svg-icon("flag-hk");
+  }
+
+  &.icon-flg-GE {
+    @include svg-icon("flag-ge");
+  }
+
+  &.icon-flg-FR {
+    @include svg-icon("flag-fr");
+  }
+
+  &.icon-flg-EC {
+    @include svg-icon("flag-ec");
+  }
+
+  &.icon-flg-CL {
+    @include svg-icon("flag-cl");
+}
+
+  &.icon-flg-CH {
+    @include svg-icon("flag-ch");
+  }
+
+  &.icon-flg-CA {
+    @include svg-icon("flag-ca");
+  }
+
+  &.icon-flg-BZ {
+    @include svg-icon("flag-bz");
+  }
+
+  &.icon-flg-AU {
+    @include svg-icon("flag-au");
+  }
+
+  &.icon-losscut-arrow {
+    @include svg-icon("losscut-arrow");
+  }
+
+
+  &.icon-chart-crosshair {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-crosshair");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-crosshair-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-crosshair-active");
+    }
+  }
+
+  &.icon-chart-move {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-move");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-move-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-move-active");
+    }
+  }
+
+  &.icon-chart-h {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-h");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-h-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-h-active");
+    }
+  }
+
+  &.icon-chart-v {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-v");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-v-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-v-active");
+    }
+  }
+
+  &.icon-chart-trend {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-trend");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-trend-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-trend-active");
+    }
+  }
+
+  &.icon-chart-channel {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-channel");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-channel-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-channel-active");
+    }
+  }
+
+  &.icon-chart-fr {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-fr");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-fr-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-fr-active");
+    }
+  }
+
+  &.icon-chart-ff {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-ff");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-ff-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-ff-active");
+    }
+  }
+
+  &.icon-chart-erase {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-erase");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-erase-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-erase-active");
+    }
+  }
+
+  &.icon-chart-clear {
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    @include svg-icon("icon-chart-clear");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-chart-clear-hover");
+    }
+    &:active {
+      @include svg-icon("icon-chart-clear-active");
+    }
+  }
+
+  &.icon-current-mark {
+    height: 16px;
+    width: 16px;
+    @include svg-icon("icon-current-mark");
+    &:hover,
+    &:focus {
+      @include svg-icon("icon-current-mark-hover");
+    }
+    &:active {
+      @include svg-icon("icon-current-mark-active");
+    }
+  }
+
+  &.icon-chart-legend-order {
+    height: 24px;
+    width: 24px;
+    @include svg-icon("icon-chart-legend-order");
+  }
+
+  &.icon-chart-legend-position {
+    height: 24px;
+    width: 24px;
+    @include svg-icon("icon-chart-legend-position");
+  }
+
+  &.icon-chart-legend-execution {
+    height: 24px;
+    width: 24px;
+    @include svg-icon("icon-chart-legend-execution");
+  }
+
+  &.icon-chart-legend-alert {
+    height: 24px;
+    width: 24px;
+    @include svg-icon("icon-chart-legend-alert");
+  }
+
+}
+
+.toggle-button-icon.active{
+  .svg-icons {
+    &.icon-rate-list {
+      @include svg-icon("icon-rate-list-on");
+    }
+    &.icon-rate-panel {
+      @include svg-icon("icon-rate-panel-on");
+    }
+  }
+}
+
+.button-icon-dropdown {
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      .svg-icons.icon-bookmark-drop-down {
+        @include svg-icon("icon-bookmark-drop-down-hover");
+      }
+    }
+    &:active {
+      .svg-icons.icon-bookmark-drop-down {
+        @include svg-icon("icon-bookmark-drop-down-active");
+      }
+    }
+  }
+
+  &:disabled {
+    .svg-icons {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}
+
+.button {
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      .svg-icons.icon-position-open {
+        @include svg-icon("icon-position-open-hover");
+      }
+      .svg-icons.icon-position-close {
+        @include svg-icon("icon-position-close-hover");
+      }
+    }
+    &:active {
+      .svg-icons.icon-position-open {
+        @include svg-icon("icon-position-open-active");
+      }
+      .svg-icons.icon-position-close {
+        @include svg-icon("icon-position-close-active");
+      }
+    }
+  }
+
+  &:disabled {
+    .svg-icons {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}
+
+.dropdown-toggle {
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      .svg-icons.icon-dropdown {
+        @include svg-icon("icon-dropdown-hover");
+      }
+    }
+    &:active {
+      .svg-icons.icon-dropdown {
+        @include svg-icon("icon-dropdown-active");
+      }
+    }
+  }
+
+  &:disabled {
+    .svg-icons {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}
+
+.toggle-button {
+  li {
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        .svg-icons.icon-chart-crosshair {
+          @include svg-icon("icon-chart-crosshair-hover");
+        }
+        .svg-icons.icon-chart-move {
+          @include svg-icon("icon-chart-move-hover");
+        }
+        .svg-icons.icon-chart-h {
+          @include svg-icon("icon-chart-h-hover");
+        }
+        .svg-icons.icon-chart-v {
+          @include svg-icon("icon-chart-v-hover");
+        }
+        .svg-icons.icon-chart-trend {
+          @include svg-icon("icon-chart-trend-hover");
+        }
+        .svg-icons.icon-chart-channel {
+          @include svg-icon("icon-chart-channel-hover");
+        }
+        .svg-icons.icon-chart-fr {
+          @include svg-icon("icon-chart-fr-hover");
+        }
+        .svg-icons.icon-chart-ff {
+          @include svg-icon("icon-chart-ff-hover");
+        }
+        .svg-icons.icon-chart-erase {
+          @include svg-icon("icon-chart-erase-hover");
+        }
+        .svg-icons.icon-chart-clear {
+          @include svg-icon("icon-chart-clear-hover");
+        }
+      }
+      &:active {
+        .svg-icons.icon-chart-crosshair {
+          @include svg-icon("icon-chart-crosshair-active");
+        }
+        .svg-icons.icon-chart-move {
+          @include svg-icon("icon-chart-move-active");
+        }
+        .svg-icons.icon-chart-h {
+          @include svg-icon("icon-chart-h-active");
+        }
+        .svg-icons.icon-chart-v {
+          @include svg-icon("icon-chart-v-active");
+        }
+        .svg-icons.icon-chart-trend {
+          @include svg-icon("icon-chart-trend-active");
+        }
+        .svg-icons.icon-chart-channel {
+          @include svg-icon("icon-chart-channel-active");
+        }
+        .svg-icons.icon-chart-fr {
+          @include svg-icon("icon-chart-fr-active");
+        }
+        .svg-icons.icon-chart-ff {
+          @include svg-icon("icon-chart-ff-active");
+        }
+        .svg-icons.icon-chart-erase {
+          @include svg-icon("icon-chart-erase-active");
+        }
+        .svg-icons.icon-chart-clear {
+          @include svg-icon("icon-chart-clear-active");
+        }
+      }
+    }
+  }
+  &:disabled {
+    .svg-icons {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}
+
+.dropdown-menu {
+  li {
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        .svg-icons.icon-current-mark {
+          @include svg-icon("icon-current-mark-hover");
+        }
+      }
+      &:active {
+        .svg-icons.icon-current-mark {
+          @include svg-icon("icon-current-mark-active");
+        }
+      }
+    }
+  }
+  &:disabled {
+    .svg-icons {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

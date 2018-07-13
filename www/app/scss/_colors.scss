@@ -1,0 +1,216 @@
+/* ------------ FOR CFD ------------ */
+$gws-color-bg-header: #47475a;
+$gws-color-bg-header-add: #55556d;
+$gws-color-bg-footer: #36364a;
+$gws-color-bg-container: #292933;
+$gws-color-bg-light: #dde1f0;
+$gws-color-bg-input: #36364b;
+$gws-color-bg-panel: #2d2d42;
+$gws-color-bg-panel-inside: #363636;
+$gws-color-bg-panel-footer: #47475a;
+$gws-color-bg-panel-login: #323251;
+$gws-color-bg-panel-chart-info: rgba(#06063d, 0.9);
+$gws-color-bg-context-menu: rgba(#2d2d42, 0.9);
+
+$gws-color-bg-menu-actiev: #1777e6;
+
+$gws-color-bg-table-header: #2f2f4a;
+$gws-color-bg-table-current: rgba(#1777e6, 0.8);
+$gws-color-bg-table-sync: rgba(#4ea32d, 0.8);
+$gws-color-bg-table-header-select: rgba(#0072ff, 0.2);
+$gws-color-bg-table-row-hover: rgba(#0072ff, 0.2);
+$gws-color-bg-table-drag-bar: rgba(#0072ff, 0.4);
+$gws-color-bg-table-row-odd: rgb(54,54,74);
+$gws-color-bg-table-row-even: rgb(45,45,65);
+
+$gws-color-bg-box-ask-bid-unit: #222239;
+
+$gws-color-bg-btn-normal: rgba(#dde1f0, 0.1);
+$gws-color-bg-btn-normal-hover: rgba(#dde1f0, 0.2);
+$gws-color-bg-btn-normal-active: #27273a;
+
+$gws-color-bg-btn-panel: #3e3e58;
+$gws-color-bg-btn-panel-hover: #5e5f76;
+
+$gws-color-bg-btn-detail: #507cb5;
+$gws-color-bg-btn-detail-hover: #5289cc;
+$gws-color-bg-btn-detail-active: #294466;
+
+$gws-color-bg-btn-order-bid: #243f68;
+$gws-color-bg-btn-order-ask: #572735;
+$gws-color-bg-btn-order-list-bid: rgba(#243f68, 0.8);
+$gws-color-bg-btn-order-list-ask: rgba(#572735, 0.8);
+$gws-color-bg-btn-speed-order-bid: #0088ff;
+$gws-color-bg-btn-speed-order-ask: #ff1100;
+$gws-color-bg-btn-order-blink-down: #0088ff;
+$gws-color-bg-btn-order-blink-up: #ff1100;
+
+$gws-color-bg-btn-order-sell: #243f68;
+$gws-color-bg-btn-order-sell-hover: #047fec;
+$gws-color-bg-btn-order-sell-active: #0976d9;
+$gws-color-bg-btn-order-buy: #572735;
+$gws-color-bg-btn-order-buy-hover: #e41407;
+$gws-color-bg-btn-order-buy-active: #d2170d;
+$gws-color-bg-btn-settlement: #008234;
+$gws-color-bg-btn-settlement-hover: #00993d;
+$gws-color-bg-btn-settlement-active: darken(#008234, 10%);
+$gws-color-bg-btn-bg: #20202e;
+
+$gws-color-bg-btn-confirm: #2996cc;
+$gws-color-bg-btn-confirm-hover: #1ab2ff;
+$gws-color-bg-btn-confirm-active: #2996cc;
+$gws-color-bg-btn-confirm-disable: #2996cc;
+$gws-color-bg-btn-definite: #e62e4c;
+$gws-color-bg-btn-definite-hover: #ff1a40;
+$gws-color-bg-btn-definite-active: #e62e4c;
+$gws-color-bg-btn-definite-disable: #e62e4c;
+
+$gws-color-bg-btn-open-account: #cc1414;
+$gws-color-bg-btn-open-account-hover: #ff1a1a;
+$gws-color-bg-btn-open-account-active: #660a0a;
+
+$gws-color-bg-btn-footer: #47475a;
+
+$gws-color-bg-btn-collective-settlement: #7b45ad;
+$gws-color-bg-btn-collective-settlement-hover: #9152cc;
+$gws-color-bg-btn-collective-settlement-active: #442266;
+$gws-color-bg-btn-settlement: #008234;
+$gws-color-bg-btn-settlement-hover: #00b347;
+$gws-color-bg-btn-settlement-active: #004d1f;
+$gws-color-bg-btn-settlement-triangle: #0f4d28;
+$gws-color-bg-btn-settlement-triangle-hover: #0f4d28;
+$gws-color-bg-btn-settlement-triangle-active: #0f4d28;
+$gws-color-bg-btn-collective-change: #9e7c20;
+$gws-color-bg-btn-collective-change-hover: #cca029;
+$gws-color-bg-btn-collective-change-active: #665014;
+
+$gws-color-bg-btn-change: #3d5799;
+$gws-color-bg-btn-change-hover: #5274cc;
+$gws-color-bg-btn-change-active: #293a66;
+$gws-color-bg-btn-cancel: #991f47;
+$gws-color-bg-btn-cancel-hover: #cc295f;
+$gws-color-bg-btn-cancel-active: #661430;
+$gws-color-bg-btn-edit: #31801a;
+$gws-color-bg-btn-edit-hover: #45b324;
+$gws-color-bg-btn-edit-active: #20202e;
+
+$gws-color-bg-label-buy: #ac191d;
+$gws-color-bg-label-sell: #2066b4;
+$gws-color-bg-label-settlement-icon: #0f4d28;
+$gws-color-bg-label-notice: #1a8cff;
+$gws-color-bg-label-order: #815f28;
+$gws-color-font-label-order: #e6decf;
+$gws-color-bg-label-losscut-current: #3e6837;
+$gws-color-bg-label-losscut-change: #4ea32d;
+$gws-color-font-label-losscut: #dde1f0;
+$gws-color-font-label-news-important: #a42833;
+$gws-color-font-label-news-unread: #ffe699;
+$gws-color-font-label-cal-soon: #ffcc66;
+$gws-color-font-label-info-frame: #96cc29;
+$gws-color-font-label-margin-call: #ffd633;
+$gws-color-font-label-wait-settlement: #ff66ff;
+
+$gws-color-bg-toggle-btn-active: #4ea32d;
+$gws-color-bg-toggle-btn-active-hover: #33cc14;
+
+$gws-color-bg-checkbox: #4ea32d;
+$gws-color-bg-checkbox-hover: #33cc14;
+$gws-color-bg-checkbox-check: #dde1f0;;
+$gws-color-bg-checkbox-check-hover: #fff;;
+$gws-color-bg-radio: #45a328;
+$gws-color-bg-radio-hover: #33cc14;
+
+$gws-color-bg-input: #262638;
+
+$gws-color-bg-range-slider-thumb: #aab8d8;
+$gws-color-bg-range-slider-thumb-border: #20202e;
+$gws-color-bg-range-slider-track: #5e5f76;
+
+$gws-color-bg-tooltip-error: #ff99cc;
+
+$gws-color-bg-row-border: rgba(#dde1f0, 0.05);
+
+$gws-color-bg-dropdown-menu: rgba(#55556d, 0.9);
+$gws-color-bg-divider: rgba(#dde1f0, 0.2);
+
+$gws-color-bg-loading: #404080;
+
+$gws-color-bg-transfer-top: #2f2f4a;
+
+$gws-color-bg-panel-info: rgba(#00479d, 0.2);
+$gws-color-border-panel-info: rgba(#dde1f0, 0.2);
+
+$gws-color-icon-bookmark-drop-down: #f0bb0e;
+$gws-color-icon-up: #e01616;
+$gws-color-icon-down: #167be0;
+
+$gws-color-font-normal: #dde1f0;
+$gws-color-font-normal-underline: rgba(#dde1f0, 0.4);
+$gws-color-font-normal-underline-hvoer: rgba(#dde1f0, 0.8);
+$gws-color-font-buy: #f54242;
+$gws-color-font-sell: #4296f5;
+$gws-color-font-ask: #ff7066;
+$gws-color-font-bid: #66b8ff;
+$gws-color-font-rate-ask: #f54242;
+$gws-color-font-rate-bid: #4296f5;
+$gws-color-font-price-up: #ff8080;
+$gws-color-font-price-down: #80bdff;
+$gws-color-font-table-header: #aab8d8;
+$gws-color-font-label: #aab8d8;
+$gws-color-bg-error-message: #fae8ec;
+$gws-color-font-error-message: #e62e8a;
+$gws-color-font-price-change: #6fe540;
+$gws-color-bg-price-change-frame: rgba(#dde1f0, 0.2);
+
+
+$gws-color-font-link: #2ea8e5;
+$gws-color-font-link-hover: #66ccff;
+$gws-color-font-link-active: #127db2;
+$gws-color-font-link-disable: #2996cc;
+$gws-color-font-btn-active: #cceeff;
+$gws-color-font-btn-disabled: #dde1f0;
+$gws-color-font-news-link: #99c9ff;
+$gws-color-font-news-link-hover: #b1d2f6;
+$gws-color-font-news-link-active: #5f9adb;
+
+$gws-color-border-panel-top: #a5bca4;
+$gws-color-border-panel-left: #656678;
+$gws-color-border-panel-right: #121229;
+$gws-color-border-header-top: #656678;
+$gws-color-border-header-bottom: #121229;
+$gws-color-border-input: rgba(#dde1f0, 0.2);
+$gws-color-border-input-hover: rgba(#dde1f0, 0.4);
+$gws-color-border-table: rgba(#dde1f0, 0.2);
+$gws-color-border-table-header: rgb(79,81,102);
+$gws-color-border-table-section: #786393;
+$gws-color-border-table-divider: rgba(#dde1f0, 0.2);
+$gws-color-border-button-top: rgba(#dde1f0, 0.1);
+$gws-color-border-button-panel-top: rgba(#dde1f0, 0.2);
+$gws-color-border-button-bottom-active: rgba(#dde1f0, 0.1);
+$gws-color-border-button-frame: rgba(#dde1f0, 0.4);
+$gws-color-border-dropdown: rgba(#dde1f0, 0.2);
+$gws-color-border-dropdown-hover: rgba(#dde1f0, 0.4);
+$gws-color-border-settlement: #9696a1;
+$gws-color-border-sell: #1264b3;
+$gws-color-border-buy: #ab1c1a;
+$gws-color-border-section: #5e5f76;
+
+$gws-color-shadow-window: rgba(0, 0, 30, 0.4);
+$gws-color-shadow-dropdown: rgba(0, 0, 30, 0.4);
+$gws-color-shadow-panel: rgba(0, 0, 30, 0.6);
+
+$gws-color-scroll-bar: rgba(#dde1f0, 0.4);
+$gws-color-scroll-bar-active: rgba(#dde1f0, 0.8);
+/* ------------ FOR CFD ------------ */
+
+/* base */
+$gws-black: #000000;
+$gws-rgb-black: "0,0,0";
+$gws-white: #ffffff;
+$gws-rgb-white: "255,255,255";
+
+/* #3015 */
+/* price-list */
+$gws-color-font-label-mini-chart: #dde1f0;
+
+/* [end] #3015 */

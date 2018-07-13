@@ -1,0 +1,7 @@
+<a class="panel-tab-item" draggable="false">
+	<div class="panel-tab-item-text" draggable="false">
+	</div>
+	<div class="panel-tab-item-close" draggable="false">
+		×
+	</div>
+</a>

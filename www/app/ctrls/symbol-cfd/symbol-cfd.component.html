@@ -1,0 +1,44 @@
+<!-- CFD銘柄コードコントロール -->
+<button *ngIf="isSearchButtonVisible" type="button" class="button button-dropdown-frame" (click)="onSearch($event)" title="{{ cfdSymbolName }}" [attr.tabindex]="baseIdx==0?-1:baseIdx+10" tab-Index [type]="'Symbol'"><span>{{ cfdSymbolName }}</span>
+  <i class="svg-icons icon-dropdown"></i>
+</button>
+
+<div [style.visibility]="isSearchPanelVisible?'visible':'hidden'" class="dropdown-menu-search">
+  <div class="left-area">
+    <nav class="nav-sidebar">
+      <ul class="nav tabs">
+        <li class="active"><span [(ngModel)]="productType" class="li-search" name="productType" btnRadio="00" data-toggle="tab" (click)="onclickProductType($event)">検索</span></li>
+        <li><span [(ngModel)]="productType" name="productType" btnRadio="01" data-toggle="tab" (click)="onclickProductType($event)" class="text-transform-90">ウォッチリスト</span>
+        </li>
+        <li><span [(ngModel)]="productType" name="productType" btnRadio="02" data-toggle="tab" (click)="onclickProductType($event)">指数・商品</span></li>
+        <li><span [(ngModel)]="productType" name="productType" btnRadio="03" data-toggle="tab" (click)="onclickProductType($event)">米国株</span></li>
+        <li><span [(ngModel)]="productType" name="productType" btnRadio="04" data-toggle="tab" (click)="onclickProductType($event)">中国株</span></li>
+        <li><span [(ngModel)]="productType" name="productType" btnRadio="05" data-toggle="tab" (click)="onclickProductType($event)">ETF</span></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- tab content -->
+  <div class="tab-content">
+    <div class="tab-pane active">
+      <div class="right-area">
+        <input class="input-box input-box-search" (ngModelChange)="inCfdSymbolCode($event)" [(ngModel)]="searchCode" type="text" placeholder="銘柄名/コード" maxlength='15'>
+        <div class="table-area">
+          <div class="">
+            <div *ngIf="showHistory" class="refs">参照履歴</div>
+            <div *ngIf="showResult" class="refs">検索結果</div>
+          </div>
+
+          <table class="table">
+            <tbody class="">
+              <tr *ngFor="let dat of showList">
+                <td class="table-cell-left" (click)="selected($event, dat?.cfdProductCode, dat?.meigaraSeiKanji)" title="{{dat.meigaraSeiKanji}}" >{{ dat.meigaraSeiKanji }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

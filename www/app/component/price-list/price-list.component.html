@@ -1,0 +1,11 @@
+<!-- レート一覧：価格リスト -->
+<div class="pq-grid-area" dnd-droppable (onDropSuccess)="ondrop($event)"></div>
+<context-menu #contextMenuComponent>
+    <ng-template *ngFor="let item of contextItems;" 
+        contextMenuItem
+        [enabled]="item.enabled"
+        [divider]="item.divider ? 'true' : ''"
+        (execute)="onClickContextItem($event.item, item)">
+        {{item.title}}
+    </ng-template>
+</context-menu>

@@ -1,0 +1,31 @@
+$toggle-button-bg-colors: (navy:unquote("rgba(#{"255,255,255"}, 0.1)"), black:unquote("rgba(#{"255,255,255"}, 0.1)"), gray:rgba(#3c9ccb, 0.1), brown:rgba(#856957, 0.1));
+.toggle-button {
+    > li {
+        > a,
+        > span {
+            &:hover,
+            &:focus {
+                background: map-get($toggle-button-bg-colors, black);
+            }
+        }
+    }
+}
+
+.toggle-button-float span{
+    &[disabled="disabled"]{
+        cursor: no-drop;
+    }
+}
+.navbar-menu-separator a{
+    &[disabled="disabled"]{
+        cursor: no-drop;
+    }
+}
+//仮想画面、ディスプレイアイコンがマウスオーバーで色が変わらないように対応
+.navbar-menu-cursor a:hover{
+  background-color: transparent;
+  cursor: default;
+}
+span.navbar-menu-cursor2:hover{
+  cursor: default;
+}

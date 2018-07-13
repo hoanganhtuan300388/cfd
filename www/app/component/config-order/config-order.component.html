@@ -1,0 +1,56 @@
+<!-- 設定：注文 -->
+<div class="row">
+  <div class="col-xs-4">
+    <p class="label">初期画面設定</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-4 col-indent-1">
+    <p>注文画面</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-indent-2">
+    <p>銘柄</p>
+  </div>
+  <div class="col-xs-7">
+    <symbol-cfd (changed)="onChangedSymbol($event)" [product]='orderSettings.initProduct'></symbol-cfd>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-indent-2">
+    <p>注文タイプ</p>
+  </div>
+  <div class="col-xs-7">
+    <dropdown [items]="orderTypeList" [select]="orderSettings.initOrderType" (changed)="onChangedOrderType($event)" class="dropdown-type-frame" [btnwidth]="113"></dropdown>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-indent-2">
+    <div class="checkbox">
+      <label> <input type="checkbox" [(ngModel)]="orderSettings.initConfirmOmit">確認画面を省略する</label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-indent-2">
+    <div class="checkbox">
+      <label> <input type="checkbox" [(ngModel)]="orderSettings.initOrderFormDisplay">注文画面を残す</label>
+    </div>
+  </div>
+</div>
+<div class="row row-gap"></div>
+<div class="row">
+  <div class="col-xs-4 col-indent-1">
+    <p>スピード注文</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-indent-2">
+    <p>銘柄</p>
+  </div>
+  <div class="col-xs-7">
+    <symbol-cfd (changed)="onChangedSymbolSpeed($event)" [product]='orderSettings.initSpeedOrderProduct'></symbol-cfd>
+  </div>
+</div>

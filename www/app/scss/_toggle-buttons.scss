@@ -1,0 +1,152 @@
+/** ---------- FOR CFD ---------- **/
+$toggle-button-height: 24px;
+
+.toggle-button {
+  padding: 0;
+  margin: 0;
+  float: left;
+  line-height: 22px;
+  height: $toggle-button-height;
+  // 空白を削除
+  letter-spacing: -.4em;
+
+  &.disabled {
+    > li {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  }
+
+  &.toggle-button-fill {
+    display: block;
+    width: 100%;
+    > li {
+      @for $i from 1 through 10 {
+        &:first-child:nth-last-child(#{$i}),
+        &:first-child:nth-last-child(#{$i}) ~ li {
+          width: floor(( 1 / $i ) * 10000% ) / 100;
+        }
+      }
+    }
+  }
+
+  > li {
+    letter-spacing: normal;
+    font-size: $gws-font-size-base;
+    display: inline-block;
+    padding: 0;
+    border-top: 1px solid $gws-color-border-button-top;
+    box-sizing: border-box;
+    background-color: $gws-color-bg-btn-normal;
+    line-height: 22px;
+    height: $toggle-button-height;
+    text-align: center;
+    cursor: default;
+    min-width: 82px;
+    margin-right: 1px;
+    @extend .text-overflow-ellipsis;
+
+    &.active {
+      &:not(.disabled) {
+        color: $gws-white;
+        background-color: $gws-color-bg-toggle-btn-active;
+
+        &:hover,
+        &:focus {
+          background-color: $gws-color-bg-toggle-btn-active-hover;
+        }
+      }
+    }
+
+    &:not(.disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-normal-hover;
+      }
+      &:active {
+        color: $gws-color-font-btn-active;;
+        background-color: $gws-color-bg-btn-normal-active;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid $gws-color-border-button-bottom-active;
+      }
+    }
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &.toggle-button-sell,
+    &.toggle-button-sell:active {
+      background-color: $gws-color-bg-btn-order-sell;
+      &.active {
+        background-color: $gws-color-bg-btn-order-sell-active;
+      }
+      &:not(.disabled) {
+        &:hover,
+        &:focus {
+          background-color: $gws-color-bg-btn-order-sell-hover;
+        }
+        &:active {
+          background-color: $gws-color-bg-btn-order-sell;
+        }
+      }
+    }
+    &.toggle-button-buy,
+    &.toggle-button-buy-active {
+      background-color: $gws-color-bg-btn-order-buy;
+      &.active {
+        background-color: $gws-color-bg-btn-order-buy-active;
+      }
+      &:not(.disabled) {
+        &:hover,
+        &:focus {
+          background-color: $gws-color-bg-btn-order-buy-hover;
+        }
+        &:active {
+          background-color: $gws-color-bg-btn-order-buy;
+        }
+      }
+    }
+
+    &:first-child:nth-last-child(3),
+    &:first-child:nth-last-child(3) ~ li {
+      min-width: 50px;
+    }
+  }
+
+  &.toggle-button-icon {
+    > li {
+      width: 24px;
+      min-width: 24px;
+      padding: 3px;
+      margin-right: 0;
+    }
+  }
+
+  &.toggle-button-trans {
+    > li {
+      width: 84px;
+      background-color: transparent;
+      border: 2px solid transparent;
+      margin-right: 0;
+      &.active {
+        border: 2px solid $gws-color-bg-toggle-btn-active;
+        background-color: transparent;
+        &:not(.disabled) {
+          &:hover,
+          &:focus {
+            border: 2px solid $gws-color-bg-toggle-btn-active-hover;
+            background-color: transparent;
+          }
+        }
+      }
+      &:not(.disabled) {
+        &:hover,
+        &:focus {
+          border: 2px solid $gws-color-bg-toggle-btn-active-hover;
+        }
+      }
+    }
+  }
+
+}

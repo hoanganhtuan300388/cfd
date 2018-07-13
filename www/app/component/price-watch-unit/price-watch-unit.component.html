@@ -1,0 +1,98 @@
+<!-- レート一覧：WatchList詳細 -->
+<div class="panel" (contextmenu)="showContextMenu($event,watchData)">
+  <div class="con">
+
+    <div class="row hd">
+      <div class="col-left">
+        <i class="svg-icons"  (click)="onClickWatchBtn($event)" title="{{TITLE_WATCH}}" [class.icon-bookmark-on]="isWatchOn" [class.icon-bookmark-off]="!isWatchOn"></i>
+      </div>
+      <div class="col-center">
+        <span title="{{productName}}">{{productName}}</span>
+      </div>
+      <div class="col-right">
+        <button class="button button-icon-sm" (click)="onClickSpeedOrder($event)" title="{{SPEED_ORDER}}"><i class="svg-icons icon-speedorder"></i></button>
+      </div>
+    </div>
+
+    <div class="num_box" [ngClass]="{'ask-bid-disabled':validFlag=='0'}">
+      <div class="num_box-price">
+        <div class="num_box-price-bid"><span class="text-rate-bid">BID</span><i class="svg-icons" [class.icon-rateup]="bidArrow=='up'" [class.icon-ratedown]="bidArrow=='down'"></i></div>
+        <button class="button button-label button-order-bid" (click)="onClickBidBtn($event)">{{bid}}</button>
+      </div>
+      <div class="num_box-price">
+        <div class="num_box-price-ask"><span class="text-rate-ask">ASK</span><i class="svg-icons" [class.icon-rateup]="askArrow=='up'" [class.icon-ratedown]="askArrow=='down'"></i></div>
+        <button class="button button-label button-order-ask button-2nd" (click)="onClickAskBtn($event)">{{ask}}</button>
+      </div>
+      <div class="num_box-currency">{{sp}}</div>
+    </div>
+
+    <div class="rate">
+      <div class="rate-item label label-num-lg">
+        <span class="{{getNumberColor(change)}}">{{change}}</span>
+        <span class="{{getNumberColor(changeRate)}}">({{changeRate}}%)</span>
+      </div>
+    </div>
+
+    <div class="grp_box">
+      <!--mini-chart #chart1 (click)="onClickChart($event)" ></mini-chart-->
+      <div class="panel-mini-chart" (click)="onClickChart($event)">
+        <chart-cfd-mini #miniChart></chart-cfd-mini>
+      </div>
+      <div class="panel-ohlc-label"><!-- #2205 -->
+        <p><span class="jp">始</span><span class="label label-num-lg label-bright">{{open}}</span></p>
+        <p><span class="jp">高</span><span class="label label-num-lg label-bright">{{high}}</span></p>
+        <p><span class="jp">安</span><span class="label label-num-lg label-bright">{{low}}</span></p>
+        <p><span class="jp">終</span><span class="label label-num-lg label-bright">{{close}}</span></p>
+      </div><!-- #2205 -->
+    </div>
+
+    <div class="grp_info">
+      <div class="row">
+        <div class="col-xs-4 info-right">
+          <div class="label label-num-lg label-bright">{{currQtySell}}</div>
+        </div>
+        <div class="col-xs-3 info-center">
+          <div class="label label-num label-bright">建玉</div>
+        </div>
+        <div class="col-xs-4">
+          <div class="label label-num-lg label-bright">{{currQtyBuy}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4 info-right">
+          <div class="label label-num label-bright">損益</div>
+        </div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-5 info-right">
+          <div [ngSwitch]="profit[0]">
+            <span *ngSwitchCase="'+'">
+              <span class="label label-num label-bright">
+                <span class="text-price-up">{{profit}}</span>
+              </span>
+            </span>
+            <span *ngSwitchCase="'-'">
+              <span class="label label-num label-bright">
+                <span class="text-price-down">{{profit}}</span>
+              </span>
+            </span>
+            <span *ngSwitchDefault>
+              <span class="label label-num label-bright">{{profit}}</span>
+            </span>
+            <span class="label label-bright jp">円</span>
+          </div>          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<context-menu #contextMenuComponent>
+    <ng-template *ngFor="let item of contextItems;"
+        contextMenuItem
+        [enabled]="item.enabled"
+        [divider]="item.divider ? 'true' : ''"
+        (execute)="onClickContextItem($event.item, item)">
+        {{item.title}}
+    </ng-template>
+</context-menu>

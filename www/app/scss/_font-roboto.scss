@@ -1,0 +1,21 @@
+/*
+* https://fonts.google.com/specimen/Roboto
+ */
+@font-face {
+  font-family: 'Roboto';
+  font-style: right;
+  font-weight: 200;
+  src: url(./fonts/roboto_notosans/Roboto-Light.ttf) format('truetype'),
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url(./fonts/roboto_notosans/Roboto-Regular.ttf) format('truetype'),
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url(./fonts/roboto_notosans/RobotoCondensed-Regular.ttf) format('truetype'),
+}

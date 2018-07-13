@@ -1,0 +1,12 @@
+.window-controller {
+  float: right;
+  line-height: 22px;
+  overflow: hidden;
+  padding-right: 16px;
+  cursor: default;
+  -webkit-app-region: no-drag;
+  
+  .button:not(:first-child) {
+    margin-left: 4px;
+  }
+}

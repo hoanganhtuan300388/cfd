@@ -1,0 +1,18 @@
+.panel-heading {
+  padding: 3px 0 3px 15px;
+  width: 100%;
+
+  button {
+    position: relative;
+    top: -4px;
+    right: 16px;
+  }
+}
+
+.panel-config {
+  height: 422px;
+  .row.row-footer {
+    position: absolute;
+    bottom: 0;
+  }
+}

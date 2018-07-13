@@ -1,0 +1,49 @@
+<div class="calc">
+  <div class="row row-wide">
+    <div class="col-left">
+      <div class="label">取引数量</div>
+    </div>
+    <div class="col-right">
+      <div *ngIf="qtyBorder&&qtyTool" class="tooltip">
+        <div class="tooltip-message">{{qtyMessage}}</div>
+      </div>
+      <div class="input-qty-set">
+        <input [ngClass]="{'input-box':true,'qty-input':true,'tooltip-frame':qtyBorder}"
+          [(ngModel)]="qty" type="text" #inQty=ValidatorNumber errorKbn="qtyBorder"
+          validator-number [min]="1" [max]="999999" [unit]="1" 
+          (mouseover) ="setqty()" (mouseleave) ="getqty()" [attr.tabindex]="baseIdx+20" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+        <button type="button" class="button button-low button-icon" errorKbn="qtyBorder"
+          long-press (onLongPressing)="inQty.increase()" (click)="inQty.increase()" [attr.tabindex]="baseIdx+21" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+          <i class="svg-icons icon-spinup"></i>
+        </button>
+        <button type="button" class="button button-low button-icon" errorKbn="qtyBorder"
+          long-press (onLongPressing)="inQty.decrease()" (click)="inQty.decrease()" [attr.tabindex]="baseIdx+22" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+          <i class="svg-icons icon-spindown"></i>
+        </button>
+        <span class="label label-bright label-font">x{{tradeUnit}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-left">
+      <div class="label"></div>
+    </div>
+    <div class="col-right button-group">
+      <button class="button button-low button-num finde" errorKbn="qtyBorder" (click)="onclickUnitQty($event, 1)" [attr.tabindex]="baseIdx+60" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)"><span>+1</span></button>
+      <button class="button button-low button-num" errorKbn="qtyBorder" (click)="onclickUnitQty($event, 5)" [attr.tabindex]="baseIdx+70" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)"><span>+5</span></button>
+      <button class="button button-low button-num" errorKbn="qtyBorder" (click)="onclickUnitQty($event, 10)" [attr.tabindex]="baseIdx+80" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)"><span>+10</span></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-left">
+      <button class="button button-low" (click)="onReset()" [attr.tabindex]="baseIdx+50" tab-Index [type]="'Input'" >RESET</button>
+    </div>
+    <div class="col-right button-group">
+      <button class="button button-low button-num" errorKbn="qtyBorder" (click)="onclickUnitQty($event, 50)" [attr.tabindex]="baseIdx+90" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)"><span>+50</span></button>
+      <button class="button button-low button-num" errorKbn="qtyBorder" (click)="onclickUnitQty($event, 100)" [attr.tabindex]="baseIdx+100" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)"><span>+100</span></button>
+      <button class="button button-low button-num" errorKbn="qtyBorder" (click)="onclickUnitQty($event, 500)" [attr.tabindex]="baseIdx+110" tab-Index [type]="'Input'" [minIndex]="baseIdx+10" (dismissErrorKbn)="dismissError($event)"><span>+500</span></button>
+    </div>
+  </div>
+</div>

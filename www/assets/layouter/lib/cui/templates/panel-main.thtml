@@ -1,0 +1,13 @@
+<div class="panel-main">
+	<div class="panel-tabs">
+		<div class="panel-tab-items"></div>
+		<a class="panel-tab-option" draggable="false">
+			<span class="panel-tab-option-text">≡</span>
+		</a>
+		<a class="panel-tab-item-add" draggable="false">
+			<span class="panel-tab-item-add-text" data-toggle="tooltip" data-container="body" title="追加">+</span>
+		</a>
+	</div>
+	<div class="panel-contents">
+	</div>
+</div>

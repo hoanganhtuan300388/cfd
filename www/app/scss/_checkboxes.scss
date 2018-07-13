@@ -1,0 +1,213 @@
+// override checkboxes.less
+.checkbox .checkbox-material:before,
+label.checkbox-inline .checkbox-material:before {
+  height: 0;
+  width: 0;
+}
+
+// override forms.less
+.checkbox.disabled label{
+  pointer-events: none;
+}
+
+// Animations
+@keyframes checkbox-on {
+  100% {
+    box-shadow:
+      0 0 0 10px,
+      10px -10px 0 10px,
+      32px 0px 0 20px,
+      0px 32px 0 20px,
+      -5px 5px 0 10px,
+      20px -12px 0 11px;
+  }
+}
+
+@keyframes checkbox-off {
+  100% {
+    transform: rotate(0deg);
+    margin-top: -2px;
+    margin-left: -2px;
+    width: 20px;
+    height: 20px;
+    box-shadow:
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0 0 0 0,
+      0px 0px 0 0px inset;
+  }
+}
+
+@keyframes rippleOn {
+  100% {
+    opacity: 0;
+    // transform: scale(13,13);
+  }
+}
+@keyframes rippleOff {
+  100% {
+    opacity: 0;
+    // transform: scale(13,13);
+  }
+}
+
+.checkbox {
+  margin-top: 0;
+  margin-bottom: 0;
+  cursor: default;
+  label {
+    color: $gws-color-font-normal;
+    display: block;
+    font-size: $gws-font-size-base;
+    cursor: default;
+    .checkbox-material {
+      top: 2px;
+      .check {
+        margin-right: 8px;
+        margin-top: 0;
+        border: 2px solid $gws-color-bg-checkbox;
+        height: 16px;
+        width: 16px;
+        z-index: 0;
+      }
+    }
+  }
+
+  input[type=checkbox] {
+    cursor: default;
+    &:checked+.checkbox-material .check {
+      color: $gws-color-bg-checkbox;
+      border-color: $gws-color-bg-checkbox;
+      &:before {
+        color: $gws-color-bg-checkbox;
+        background-color: $gws-color-bg-checkbox;
+        left: -5px;
+        width: 10px;
+        height: 6px;
+        margin-top: 2px;
+        border-left: 2px solid $gws-color-bg-checkbox-check;
+        border-bottom: 2px solid $gws-color-bg-checkbox-check;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+    &[disabled]:not(:checked)~.checkbox-material .check {
+      pointer-events: none;
+    }
+  }
+
+  &:not(.disabled) {
+    &:hover,
+    &:focus {
+      label {
+        color: $gws-white;
+        .checkbox-material {
+          .check {
+            border: 2px solid $gws-color-bg-checkbox-hover;
+          }
+        }
+      }
+
+      input[type=checkbox] {
+        &:checked+.checkbox-material .check {
+          color: $gws-color-bg-checkbox-hover;
+          border-color: $gws-color-bg-checkbox-hover;
+          &:before {
+            color: $gws-color-bg-checkbox-hover;
+            background-color: $gws-color-bg-checkbox-hover;
+            border-left: 2px solid $gws-color-bg-checkbox-check-hover;
+            border-bottom: 2px solid $gws-color-bg-checkbox-check-hover;
+          }
+        }
+      }
+    }
+  }
+
+  /* tab focus */
+  label {
+    .checkbox-material .check.tab-focusing {
+      border: 2px solid $gws-color-bg-checkbox-hover;
+    }
+  }
+  input[type=checkbox] {
+    &:checked+.checkbox-material .check.tab-focusing {
+      color: $gws-color-bg-checkbox-hover;
+      border-color: $gws-color-bg-checkbox-hover;
+      &:before {
+        color: $gws-color-bg-checkbox-hover;
+        background-color: $gws-color-bg-checkbox-hover;
+        border-left: 2px solid $gws-color-bg-checkbox-check-hover;
+        border-bottom: 2px solid $gws-color-bg-checkbox-check-hover;
+      }
+    }
+  }
+
+}
+
+
+/* @NOTE テーブル更新のたびに$material.init()を実行すると描画がちらつくため、
+scr-03010500.component.ts(アラート)内では処理を呼ばすに、そのままのタブを指定した結果、
+自動追加されるcheckbox-materiaを非表示にする */
+.checkbox {
+  label {
+    input + .checkbox-material + .checkbox-material {
+      display: none;
+    }
+  }
+}
+
+.checkbox.checkmark {
+  label {
+    .checkbox-material {
+      .check {
+        border: 0;
+      }
+    }
+  }
+
+  input[type=checkbox] {
+    cursor: default;
+    &:checked+.checkbox-material .check {
+      color: transparent;
+      border-color: transparent;
+      &:before {
+        color: transparent;
+        background-color: transparent;
+        width: 11px;
+        height: 7px;
+        border-left: 2.5px solid $gws-color-bg-checkbox-check;
+        border-bottom: 2.5px solid $gws-color-bg-checkbox-check;
+      }
+    }
+  }
+
+  &:not(.disabled) {
+    &:hover,
+    &:focus {
+      label {
+        .checkbox-material {
+          .check {
+            border: 0;
+          }
+        }
+      }
+
+      input[type=checkbox] {
+        &:checked+.checkbox-material .check {
+          color: transparent;
+          border-color: transparent;
+          &:before {
+            color: transparent;
+            background-color: transparent;
+            border-left: 2.5px solid $gws-color-bg-checkbox-check-hover;
+            border-bottom: 2.5px solid $gws-color-bg-checkbox-check-hover;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<!-- ニュース：リスト -->
+<div class="panel panel-news panel-animate" ng2-resizeable (resizing)="onResizing($event)">
+  <title-bar [title]="title()" [frame]="this"></title-bar>
+  <div class="panel-body">
+
+    <div class="row row-header">
+      <div class="col-xs-12">
+        <input class="input-box" type="text" [(ngModel)]="searchText" id="searchText" name="searchText" placeholder="銘柄名/キーワード" maxlength="15" (keyup.enter)="onSearch($event)">
+        <button class="button button-low" (click)="onSearch($event)">検索</button>
+      </div>
+    </div>
+
+    <div class="panel-content-msg" *ngIf="listErrShow">
+      <div [innerHtml]="listErrText"></div>
+    </div>
+
+    <div class="grd" *ngIf="!listErrShow">
+      <div id="grid{{pageId}}"></div>
+    </div>
+
+    <div class="row row-table-footer">
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,21 @@
+.col-left-area {
+  width: 160px;
+  height: 382px;
+  margin: 16px 16px 16px 8px;
+  border: 1px solid #52536b;
+  background: #262638;
+  padding: 8px 0;
+  .nav-sidebar li span {
+    width: 160px;
+  }
+}
+
+.col-right-area {
+  width: 526px;
+  .row {
+    margin-top: 16px;
+  }
+  div.carousel-inner {
+    overflow: visible;
+  }
+}

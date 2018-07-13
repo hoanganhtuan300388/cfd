@@ -1,0 +1,9 @@
+.carousel{
+  &>.carousel-inner>.item{
+    transition: transform .1s ease-in-out;
+    .row-footer {
+      bottom: 0;
+      width: 100%;
+    }
+  }
+}

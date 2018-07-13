@@ -1,0 +1,138 @@
+<!-- 振替 -->
+<div class="panel panel-transfer panel-animate" #dragTarget>
+    <title-bar [title]="title()" [frame]="this" [hide-max]="true"></title-bar>
+
+    <div class="panel-body">
+        <div class="process-loading" *ngIf="!loaded">
+            <div class="process-loading-bg"></div>
+            <div class="process-loading-mark"></div>
+        </div>
+
+        <div #slider class="carousel slide" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <!-- tab 1 -->
+                <div class="item active">
+
+                    <div class="panel-body-top">
+                        <div class="row row-header">
+                            <div class="col-left">
+                                <span class="label">最終更新日時</span>
+                            </div>
+                            <div class="col-center">
+                                <span class="label label-num label-bright">{{nowDate}}</span>
+                            </div>
+                            <div class="col-right">
+                                <button class="button button-icon" (click)="getCashTransferInfo()" [disabled]="disabledCheck==true"><i class="svg-icons icon-refresh"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="row row-label">
+                            <div class="col-left">
+                                <div class="label label-arrow">振替元</div>
+                            </div>
+                            <div class="col-right">
+                                <div class="label">{{outText}}</div>
+                            </div>
+                        </div>
+                        <div class="row row-price">
+                            <div class="col-xs-12">
+                                <span class="label label-bright text-huge">{{outAmount}}</span><span class="label label-unit">円</span>
+                            </div>
+                        </div>
+
+                        <div class="row row-exchange">
+                            <div class="col-xs-6">
+                                <i class="svg-icons icon-to-bottom"></i>
+                            </div>
+                            <div class="col-xs-6">
+                                <button class="button button-low button-outline " (click)="changeBtnClick($event)">入れ替え</button>
+                            </div>
+                        </div>
+
+                        <div class="row row-label">
+                            <div class="col-left">
+                                <div class="label label-arrow">振替先</div>
+                            </div>
+                            <div class="col-right">
+                                <div class="label">{{inText}}</div>
+                            </div>
+                        </div>
+                        <div class="row row-price">
+                            <div class="col-xs-12">
+                                <span class="label text-huge text-price-change">{{inAmount}}</span><span class="label label-unit">円</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row row-input">
+                        <div class="col-left">
+                            <div class="label">振替金額</div>
+                        </div>
+                        <div class="col-right">
+                            <div *ngIf="tooltipCheck && tooltipMouseOver" class="tooltip">
+                                <div class="tooltip-message">{{tooltipMsg}}</div>
+                            </div>
+                            <input class="input-box input-box-num" [(ngModel)]="price" [ngClass]="{'tooltip-frame':tooltipCheck}" 
+                                type="text" validator-number min="0" max="999999999999" maxlength="12"
+                                #inPrice=ValidatorNumber (blur)="priceBlur()" (focus)="priceFocus()" 
+                                (mouseover)="tooltipMouseOverCheck(true)" (mouseleave)="tooltipMouseOverCheck(false)" [disabled]="disabledCheck==true">
+                            <span class="label">円</span>
+                        </div>
+                    </div>
+
+                    <!-- MESSAGE -->
+                    <div class="row row-message" [ngClass]="{'err': tooltipCheck}">
+                        <span>未入力の項目があります。</span>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <div class="row row-footer">
+                        <div class="col-left">
+                            <button class="button button-transparent text-link" (click)="windowClose()">キャンセル</button>
+                        </div>
+                        <div class="col-right">
+                            <button class="button button-confirm" (click)="onNavBtnClickBack('GO')" [disabled]="disabledCheck==true">確認画面へ</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- tab 1 END -->
+
+                <!-- tab 2 -->
+                <div class="item">
+                    <div class="panel-body-top">
+                        <div class="row row-title">
+                            <div class="col-xs-12 text-center">                                
+                                <div *ngIf="!toCFD" class="label">CFD取引口座 → 証券取引口座</div>
+                                <div *ngIf="toCFD" class="label">証券取引口座 → CFD取引口座</div>
+                            </div>
+                        </div>
+                        <div class="row row-transfer-price">
+                            <div class="col-xs-12 text-center">
+                                <span class="label text-price-change" id="transfer-price" [ngClass]="getClassByPriceLen()">{{priceTxt}}</span><span class="label label-unit">円</span><span class="label label-unit">振替</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-info">
+                        <div class="col-xs-12">【証券取引口座の振替可能時間】<br/>6:00～15:00、17:00～翌5:15<br/><br/>※17:00以降の振替については翌営業日付の振替として計上いたしますが、余力への反映はリアルタイムで行います。</div>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <div class="row row-footer">
+                        <div class="col-xs-4">
+                            <button class="button button-transparent text-link" (click)="onNavBtnClickBack('BACK')">再入力</button>
+                        </div>
+                        <div class="col-xs-8">
+                            <button class="button button-definite" (click)="cashTransfer()">振替確定</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- tab 2 END -->
+
+            </div>
+        </div>
+
+    </div>
+</div>

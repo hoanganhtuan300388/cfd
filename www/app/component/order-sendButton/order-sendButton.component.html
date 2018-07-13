@@ -1,0 +1,29 @@
+<div [ngClass]="{'row':true,'row-message':true,'err':errCanvas}" >
+  <span [innerHTML]="errMessage"></span>
+</div>
+<div class="panel-body-content">
+  <div class="row">
+    <div class="col-left">
+      <div class="checkbox">
+        <label> <input type="checkbox" [(ngModel)]="isSkip" name="isSkip" [attr.tabindex]="baseIdx+700" tab-Index [type]="'Confirm'" />確認省略</label>
+      </div>
+    </div>
+    <div class="col-right" *ngIf="closeBoolean">
+      <div class="checkbox">
+        <label> <input type="checkbox" [(ngModel)]="isClose" name="isClose" [attr.tabindex]="baseIdx+710" tab-Index [type]="'Confirm'" />注文画面を残す</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-footer">
+  <div class="col-left">
+    <button class="button button-transparent text-link" (click)="onNavBtnClick('CLOSE')" [attr.tabindex]="baseIdx+720" tab-Index [type]="'Confirm'" >キャンセル</button>
+  </div>
+  <div class="col-right" *ngIf="isSkip==false">
+    <button class="button button-confirm" [disabled]="buttonDisabled" (click)="onNavBtnClick('CONFIRM')" [attr.tabindex]="baseIdx+730" tab-Index [type]="'Confirm'" [minIndex]="baseIdx+10">確認画面へ</button>
+  </div>
+  <div class="col-right" *ngIf="isSkip==true">
+    <button class="button button-definite" [disabled]="buttonDisabled" (click)="onNavBtnClick('ORDER');" [attr.tabindex]="baseIdx+740" tab-Index [type]="'Confirm'" [minIndex]="baseIdx+10">注文確定</button>
+  </div>
+</div>

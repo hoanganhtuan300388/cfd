@@ -1,0 +1,18 @@
+@import "_colors.scss";
+
+//== core
+$gws-font-family: "Roboto", "Noto Sans Japanese", "游ゴシック Medium", "游ゴシック体", "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
+//== font size
+$gws-font-size-tin: 11px;
+$gws-font-size-small: 12px;
+$gws-font-size-base: 13px;
+$gws-font-size-mid: 14px;
+$gws-font-size-large: 15px;
+$gws-font-size-large-button: 18px;
+$gws-font-size-large-input: 18px;
+$gws-font-size-huge: 24px;
+$gws-font-size-enormous: 30px;
+
+//== z-index
+$gws-z-indexes: navbar, panel, modal, footer;

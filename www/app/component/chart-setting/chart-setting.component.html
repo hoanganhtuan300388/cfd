@@ -1,0 +1,93 @@
+<!-- Chart Setting -->
+
+<!-- テクニカル選択を閉じるボタン -->
+<div class="row">
+  <div class="col-content-dark">
+    <!-- CFD -->
+    <symbol-cfd #SymbolCfd (changed)="onChangedSymbolCode($event)" [product]="symbolCode" [btnwidth]="128"></symbol-cfd>
+    <!-- 分足 -->
+    <dropdown class="dropdown-type-frame" [items]="timeList" [select]="timeTypeInterval" (changed)="onTimeTypeChanged($event)" [disabled]="isSettingDisabled" [btnwidth]="88"></dropdown>
+    <!-- チャートタイプ -->
+    <dropdown class="dropdown-type-frame" [items]="chartTypeList" [select]="chartType" (changed)="onChartTypeChanged($event)" [disabled]="isChartTypeDisable" [btnwidth]="112"></dropdown>
+
+    <ul class="toggle-button toggle-button-navbar toggle-button-icon">
+      <!-- クロスヘアボタン -->
+      <!--li (click)="onCrosslineIconClicked()" [ngClass]="{'active': crosslineShow}" [attr.disabled]="isSettingDisabled || null"-->
+      <li (click)="onTrendLineIconClicked('TL0001')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL0001" [attr.disabled]="isSettingDisabled|| null">
+        <i class="svg-icons icon-chart-crosshair" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_SHOW_CROSSLINE}}"></i>
+      </li>
+      <!-- 描画移動ボタン -->
+      <li (click)="onTrendLineIconClicked('TL0000')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL0000" [attr.disabled]="isSettingDisabled|| null" class="separator">
+        <i class="svg-icons icon-chart-move" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_OBJECT_SELECT}}"></i>
+        <!-- <i class="svg-icons icon-chart-move" style="display:none;"></i><!-- IEの為、アイコンが表示するように画面再描画にする -->
+      </li>
+
+      <!-- クイックトレンドライン -->
+      <!-- horizontal -->
+      <li (click)="onTrendLineIconClicked('TL0002')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL0002" [attr.disabled]="isSettingDisabled || null">
+        <i class="svg-icons icon-chart-h" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_HORIZON}}"></i>
+      </li>
+      <!-- vertical -->
+      <li (click)="onTrendLineIconClicked('TL4099')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL4099" [attr.disabled]="isSettingDisabled || null">
+        <i class="svg-icons icon-chart-v" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_VERTICAL}}"></i>
+      </li>
+      <!-- trendline -->
+      <li (click)="onTrendLineIconClicked('TL0004')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL0004" [attr.disabled]="isSettingDisabled || null">
+        <i class="svg-icons icon-chart-trend" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_LINE}}"></i>
+      </li>
+
+      <!-- channel line -->
+      <li (click)="onTrendLineIconClicked('TL0091')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL0091" [attr.disabled]="isSettingDisabled || null">
+        <i class="svg-icons icon-chart-channel" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_CHANNEL_LINE}}"></i>
+      </li>
+
+      <!-- fibonacci retracement line -->
+      <li (click)="onTrendLineIconClicked('TL0015')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL0015" [attr.disabled]="isSettingDisabled || null">
+        <i class="svg-icons icon-chart-fr" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_FIBON_RETRACE}}"></i>
+      </li>
+
+      <!-- fibonacci fan -->
+      <li (click)="onTrendLineIconClicked('TL0014')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL0014" [attr.disabled]="isSettingDisabled || null" class="separator">
+        <i class="svg-icons icon-chart-ff" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_FIBON_FAN}}"></i>
+      </li>
+
+      <!-- delete -->
+      <li (click)="onTrendLineIconClicked('TL9991')" [(ngModel)]="selectedTrendLine" name="selectedTrendLine" btnRadio="TL9991" [attr.disabled]="isSettingDisabled || null">
+        <i class="svg-icons icon-chart-erase" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_DELETE}}"></i>
+      </li>
+
+      <!-- delete all -->
+      <li (click)="onTrendLineIconClicked('TL9999', 'TL0001')" name="selectedTrendLine" [attr.disabled]="isSettingDisabled || null">
+        <i class="svg-icons icon-chart-clear" data-toggle="tooltip" data-container="body" title="{{TOOLTIP_DELETE_ALL}}"></i>
+      </li>
+
+    </ul>
+
+    <button class="button button-low separator" (click)="onTechnicalBtnClicked()" [attr.disabled]="isTechnicalActionDisabled || isSettingDisabled || isTechnicalDisabled || null">
+          {{TOOLTIP_TECNICAL}}
+      </button>
+
+    <div class="dropdown-item" dropdown>
+      <button type="button" class="button button-low" data-toggle="dropdown" dropdownToggle>表示</button>
+      <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+        <li>
+          <div class="checkbox checkmark"><label><input type="checkbox" (click)="onChartOrderLineBtnClicked()" [(ngModel)]="useOrderLine">注文<i class="svg-icons icon-chart-legend-order"></i></label></div>
+        </li>
+        <li>
+          <div class="checkbox checkmark"><label><input type="checkbox" (click)="onChartPositionLineBtnClicked()" [(ngModel)]="usePositLine">建玉<i class="svg-icons icon-chart-legend-position"></i></label></div>
+        </li>
+        <!-- #3451 -->
+        <!--
+        <li>
+          <div class="checkbox checkmark"><label><input type="checkbox" (click)="onChartExecutionLineBtnClicked()" [(ngModel)]="useExecuLine">約定履歴<i class="svg-icons icon-chart-legend-execution"></i></label></div>
+        </li>
+        -->
+        <!-- [end] #3451 -->
+        <li>
+          <div class="checkbox checkmark"><label><input type="checkbox" (click)="onChartAlertLineBtnClicked()" [(ngModel)]="useAlertLine">アラート<i class="svg-icons icon-chart-legend-alert"></i></label></div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

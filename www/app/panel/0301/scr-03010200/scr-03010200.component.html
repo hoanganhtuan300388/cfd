@@ -1,0 +1,76 @@
+<!-- ログイン -->
+<div class="panel panel-login panel-animate" [ngClass]="{'panel-login-demo':isDemo}">
+
+  <div class="panel-body">
+
+    <div class="row row-header">
+    </div>
+
+    <div class="row row-logo">
+    </div>
+
+    <div *ngIf="displayLogin()">
+      <div class="row row-login">
+        <div class="col-left">
+          <div class="label" >ユーザーID または ログイン名</div>
+        </div>
+        <div class="col-right">
+          <input class="input-box input-username" [(ngModel)]="user_id" (ngModelChange)="checkInput('username')" maxlength="42" [disabled]="isLoading">
+        </div>
+      </div>
+
+      <div class="row row-login">
+        <div class="col-left">
+          <div class="label" >パスワード</div>
+        </div>
+        <div class="col-right">
+          <input class="input-box input-password" [(ngModel)]="user_pwd" (ngModelChange)="checkInput('password')" type="password" maxlength="10" [disabled]="isLoading" (keydown.enter)="onEnterLogin($event)">
+        </div>
+      </div>
+
+      <div class="row row-save">
+        <div class="col-xs-5">
+          <label>ver. {{version}}</label>
+        </div>
+        <div class="col-xs-7">
+          <div class="checkbox">
+            <label><input type="checkbox" [(ngModel)]="isSave" [disabled]="isLoading"/>ユーザーID または ログイン名を保存</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-footer">
+        <div class="col-left">
+          <button class="button-transparent text-link" (click)="gotoCfdShop()">利用規約</button>
+        </div>
+        <div class="col-right">
+          <button class="button button-transparent text-link" (click)="onBtnClick('CANCEL')" [disabled]="isLoading">キャンセル</button>
+          <button class="button button-confirm" (click)="onBtnClick('LOGIN')" *ngIf="!isLoading">ログイン</button>
+          <button class="button button-confirm" (click)="onBtnClick('LOGIN')" disabled *ngIf="isLoading">ログイン中</button>
+        </div>
+      </div>
+
+      <div *ngIf="isDemo" class="row row-add">
+        <div class="col-xs-12">
+          <button class="button button-svg btn-demo" (click)="gotoRegAccount()"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- version download -->
+    <div *ngIf="!displayLogin()">
+      <div class="row row-login"></div>
+      <div class="row row-login"></div>
+                
+      <div class="row row-download">
+        <div class="col-xs-5">
+          <label class="updatemsg">ver. {{version}}</label>
+        </div>
+        <div class="col-xs-7">
+          <label class="updatemsg">{{message}}</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

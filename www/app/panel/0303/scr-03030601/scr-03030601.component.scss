@@ -1,0 +1,12 @@
+.panel-config {
+  .panel-body {
+    height: calc(100% - 24px);
+  }
+  .row:not(.row-footer) {
+    padding: 8px;
+  }
+  .row.row-footer {
+    position: absolute;
+    bottom: 0;
+  }
+}

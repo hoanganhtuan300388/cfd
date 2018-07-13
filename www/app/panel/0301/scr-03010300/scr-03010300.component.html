@@ -1,0 +1,107 @@
+<!-- 設定 -->
+<div class="panel panel-config panel-animate" #dragTarget>
+  <title-bar [title]="title()" [frame]="this" [hide-max]="true"></title-bar>
+
+  <div class="panel-body">
+    <div class="row">
+
+      <div class="col-left-area">
+        <nav class="nav-sidebar">
+          <ul class="nav tabs">
+            <li class="active"><span [ngModel]="selectTab" btnRadio="0" data-toggle="tab" (ngModelChange)="onSelected($event)">注文</span></li>
+            <li><span [ngModel]="selectTab" btnRadio="1" data-toggle="tab" (ngModelChange)="onSelected($event)">注文（銘柄別）</span></li>
+            <li><span [ngModel]="selectTab" btnRadio="2" data-toggle="tab" (ngModelChange)="onSelected($event)">チャート表示</span></li>
+            <li><span [ngModel]="selectTab" btnRadio="3" data-toggle="tab" (ngModelChange)="onSelected($event)">チャート色</span></li>
+            <li><span [ngModel]="selectTab" btnRadio="4" data-toggle="tab" (ngModelChange)="onSelected($event)" class="chart">チャートテクニカル</span></li>
+            <li><span [ngModel]="selectTab" btnRadio="5" data-toggle="tab" (ngModelChange)="onSelected($event)">サウンド</span></li>
+            <li><span [ngModel]="selectTab" btnRadio="6" data-toggle="tab" (ngModelChange)="onSelected($event)">表示</span></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col-right-area">
+        <div #slider class="carousel" data-interval="false">
+        <div class="carousel-inner" role="listbox">
+
+        <div class="item active">
+        <div class="row">
+          <div class="col-xs-12">
+            <!--注文-->
+            <config-order [config]="setting.order"></config-order>
+          </div>
+        </div>
+        </div>
+
+        <div class="item">
+        <div class="row">
+          <div class="col-xs-12">
+            <!--注文（銘柄別）-->
+            <config-order-symbol [config]="setting.orderProduct"></config-order-symbol>
+          </div>
+        </div>
+        </div>
+      
+        <div class="item">
+        <div class="row">
+          <div class="col-xs-12">
+            <!--チャート表示-->
+            <config-chart-display [config]="setting.chartDisplay"></config-chart-display>
+          </div>
+        </div>
+        </div>
+      
+        <div class="item">
+        <div class="row">
+          <div class="col-xs-12">
+            <!--チャート色-->
+            <config-chart-color [config]="setting.chartColor"></config-chart-color>
+          </div>
+        </div>
+        </div>
+      
+        <div class="item">
+        <div class="row">
+          <div class="col-xs-12">
+            <!--チャートテクニカル-->
+            <config-chart-technical [config]="setting.chartTech"></config-chart-technical>
+          </div>
+        </div>
+        </div>
+      
+        <div class="item">
+        <div class="row">
+          <div class="col-xs-12">
+            <!--サウンド-->
+            <config-sound [config]="setting.sound"></config-sound>
+          </div>
+        </div>
+        </div>
+      
+        <div class="item">
+        <div class="row">
+          <div class="col-xs-12">
+            <!--表示-->
+            <config-display [config]="setting.display"></config-display>
+          </div>
+        </div>
+        </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-footer">
+      <div class="col-left">
+        <button class="button button-transparent text-link" (click)="confirm($event, 'CANCEL')">キャンセル</button>
+      </div>
+      <div class="col-center">
+        <button class="button button-confirm" (click)="confirm($event, 'APPLY')">適用</button>
+      </div>
+      <div class="col-right">
+        <button class="button button-definite" (click)="confirm($event, 'OK')">OK</button>
+      </div>
+    </div>
+  </div>
+
+</div>

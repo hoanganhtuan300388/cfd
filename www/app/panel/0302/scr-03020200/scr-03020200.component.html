@@ -1,0 +1,228 @@
+<!-- ロスカットレート変更 -->
+<div class="panel panel-losscut panel-animate">
+  <title-bar [title]="title()" [frame]="this" [hide-max]="true" [title-show]="true" [attr.tabindex]="baseIdx" tab-Index [type]="'Input'"></title-bar>
+  <div class="panel-body">
+    <div class="process-loading" *ngIf="showLoading">
+      <div class="process-loading-bg"></div>
+      <div class="process-loading-mark" *ngIf="calcState=='after'"></div>
+    </div>
+
+    <div class="row row-header-name row-header-name-with-order-type">
+      <div class="col-xs-12">
+        <div class="label label-name label-bright" title="{{productName}}">{{productName}}</div>
+        <div class="label label-order"
+          [ngClass]="{
+            'sell' : buySellType=='1',
+            'buy' : buySellType=='2',
+            'hidden' : buySellType==''
+          }">{{buySellType=='1' ? '売' : '買'}}
+        </div>
+        <i class="svg-icons icon-attention" *ngIf="hasAttentionMessage" title="{{attentionTooltip}}"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <ask-bid-unit #AskBidUnit (changed)="onChangeAskBidUnit($event)"></ask-bid-unit>
+      </div>
+    </div>
+
+    <div class="panel-body-content panel-body-content-border">
+      <!--<div class="row row-table-header">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+          <div class="label label-arrow-losscut">現在</div>
+        </div>
+        <div class="col-xs-4">
+          <div class="label label-arrow-losscut change">変更後</div>
+        </div>
+      </div>-->
+
+      <div class="row">
+        <div class="col-left">
+          <div class="label">必要証拠金</div>
+        </div>
+        <div class="col-right-double">
+          <p class="label">{{margin}}<span class="text-base">円</span></p>
+        </div>
+      </div>
+
+      <div class="row row-double">
+        <div class="col-left">
+          <div class="label">任意証拠金</div>
+        </div>
+        <div class="col-center">
+          <p class="label" >{{optionalMarginBefore}}<span class="text-base">円</span></p>
+        </div>
+        <i class='svg-icons icon-losscut-arrow'></i>
+        <div class="col-right" [class.col-price-change]="calcType=='margin'" [class.col-price-change-double]="calcType=='margin'" [class]>
+          <p class="row label" [class.text-default]="calcState=='before'" [class.text-change]="calcState=='after'">{{optionalMarginAfter}}<span class="text-base">円&nbsp;</span></p>
+          <p class="label label-text" [class.text-default]="calcState=='before'" [class.text-change]="calcState=='after'">({{optionalMarginVariance}}<span class="text-base">円</span>)</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-left">
+          <div class="label">拘束証拠金</div>
+        </div>
+        <div class="col-center">
+          <p class="label">{{marginBefore}}<span class="text-base">円</span></p>
+        </div>
+        <i class='svg-icons icon-losscut-arrow'></i>
+        <div class="col-right">
+          <p class="label" [class.text-default]="calcState=='before'" [class.text-change]="calcState=='after'">{{marginAfter}}<span class="text-base">円</span></p>
+        </div> 
+      </div>
+
+      <div class="row">
+        <div class="col-left">
+          <div class="label">建玉数 (注文中)</div>
+        </div>
+        <div class="col-right-double col-right-double2">
+          <p class="label">{{orderQuantity}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-left" style="width:65px;">
+          <div class="label">建単価</div>
+        </div>
+        <div class="col-right-double col-right-double3">
+          <p class="label"><span *ngIf="isAll && orderPrice!=''" class="text-base text-unit">平均</span>{{orderPrice}}{{orderPriceRange}}</p>
+        </div>
+      </div>
+
+      <div *ngIf="!isAll" class="row">
+        <div class="col-left">
+          <div class="label">ロスカットレート</div>
+        </div>
+        <div class="col-center col-center2">
+          <p class="label"><span *ngIf="isAll && orderPrice!=''" class="text-base text-unit">平均</span>{{losscutRateBefore}}</p>
+          <div class="col-marge" *ngIf="isAll">
+            <p class="label">{{losscutRateBeforeRange}}</p>
+          </div>
+        </div>
+        <i class='svg-icons icon-losscut-arrow'></i>
+        <div class="col-right" [class.col-price-change]="calcType=='losscut'" [class.col-price-change-double]="isAll && calcType=='losscut'">
+          <p class="label" [class.text-default]="calcState=='before'" [class.text-change]="calcState=='after'">&nbsp;{{losscutRateAfter}}</p>
+        </div>
+      </div>            
+      <div *ngIf="isAll" class="row row-double">
+        <div class="col-left">
+          <div class="label">ロスカットレート</div>
+        </div>
+        <div class="col-center col-center2">
+          <p class="label"><span *ngIf="isAll && orderPrice!=''" class="text-base text-unit">平均</span>{{losscutRateBefore}}</p>
+          <div class="col-marge" *ngIf="isAll">
+            <p class="label">{{losscutRateBeforeRange}}</p>
+          </div>
+        </div>
+        <i class='svg-icons icon-losscut-arrow'></i>
+        <div class="col-right" [class.col-price-change]="calcType=='losscut'" [class.col-price-change-double]="isAll && calcType=='losscut'">
+          <p class="label" [class.text-default]="calcState=='before'" [class.text-change]="calcState=='after'">&nbsp;{{losscutRateAfter}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-left">
+          <div class="label">取引余力</div>
+        </div>
+        <div class="col-center">
+          <p class="label">{{marketPowerBefore}}<span class="text-base">円</span></p>
+        </div>
+        <i class='svg-icons icon-losscut-arrow'></i>
+        <div class="col-right">
+          <p class="label" [class.text-default]="calcState=='before'" [class.text-change]="calcState=='after'">{{marketPowerAfter}}<span class="text-base">円</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-losscut-rate" [class.disabled]="calcState=='after' || calcType=='margin'" (change)="hideError()">
+      <div  *ngIf="!isAll" class="radio-beauty-container col-left">
+          <label>
+              <input type="radio" name="losscut-rate{{uniqueId}}" id="radioId1{{uniqueId}}" [(ngModel)]="calcType" [disabled]="calcState=='after'" value="losscut" hidden/>
+              <label for="radioId1{{uniqueId}}" class="radio-beauty" [ngClass]="{'text-opacity' : calcState=='after'}" [attr.tabindex]="calcState=='after'?-1:baseIdx+10" [attr.tabtype]="'radio'" tab-Index [type]="'Radio'"></label>
+              <span class="radio-name" [ngClass]="{'text-opacity' : calcState=='after'}">ロスカットレートを</span>
+          </label>
+      </div>
+      <div *ngIf="isAll" class="radio-beauty-container col-left">
+          <label>
+              <span class="radio-name" style="padding-left:10px;" [ngClass]="{'text-opacity' : calcState=='after'}">ロスカットレートを</span>
+          </label>
+      </div>
+
+      <div class="col-right">
+        <div *ngIf="losscutError&&losscutTooltip" class="tooltip">
+          <div class="tooltip-message">{{losscutMessage}}</div>
+        </div>
+        <div class="input-qty-set">
+          <input [disabled]="calcState=='after' || calcType=='margin'" [(ngModel)]="inputLosscut" class="input-box qty-input" #inLosscut=ValidatorNumber errorKbn="losscutError"
+                 maxlength="15" type="text" validator-number [min]="0" [max]="maxLosscut" [unit]="boUnit" [base]="baseLosscut" [attr.tabindex]="(calcState=='after' || calcType=='margin')?-1:baseIdx+20" 
+                 tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)"  [class.tooltip-frame]="losscutError==true" (mouseover)="showTooltip()" (mouseout)="hideTooltip()">
+          <button [disabled]="calcState=='after' || calcType=='margin'" type="button" errorKbn="losscutError" class="button button-low button-icon" long-press
+                  (onLongPressing)="inLosscut.increase()"
+                  (click)="inLosscut.increase()" [attr.tabindex]="(calcState=='after' || calcType=='margin')?-1:baseIdx+21" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+                  <i class="svg-icons icon-spinup"></i>
+          </button>
+          <button [disabled]="calcState=='after' || calcType=='margin'" type="button" errorKbn="losscutError" class="button button-low button-icon" long-press
+                  (onLongPressing)="inLosscut.decrease()"
+                  (click)="inLosscut.decrease()" [attr.tabindex]="(calcState=='after' || calcType=='margin')?-1:baseIdx+22" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)">
+                  <i class="svg-icons icon-spindown"></i>
+          </button>
+          <span class="label" [ngClass]="{'text-opacity' : calcState=='after'}">にする</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isAll" class="row row-losscut-margin" [class.disabled]="calcState=='after' || calcType=='losscut'" (change)="hideError()">
+      <div class="radio-beauty-container col-left">
+        <label>
+          <input type="radio" name="losscut-rate{{uniqueId}}" id="radioId2{{uniqueId}}" [(ngModel)]="calcType" [disabled]="calcState=='after'" value="margin" hidden/>
+          <label for="radioId2{{uniqueId}}" class="radio-beauty" [ngClass]="{'text-opacity' : calcState=='after'}" [attr.tabindex]="calcState=='after'?-1:baseIdx+50" [attr.tabtype]="'radio'" tab-Index [type]="'Radio'"></label>
+          <span class="radio-name" [ngClass]="{'text-opacity' : calcState=='after'}">任意証拠金に</span>
+        </label>
+      </div>
+      <div class="col-right">
+        <div *ngIf="marginError&&marginTooltip" class="tooltip">
+          <div class="tooltip-message">{{marginMessage}}</div>
+        </div>
+        <div class="input-qty-set">
+          <input [disabled]="calcState=='after' || calcType=='losscut'" [(ngModel)]="inputMargin" class="input-box qty-input" errorKbn="marginError"
+            type="text" validator-number [min]="0" [max]="9999999999999999999" [unit]="1" [attr.tabindex]="(calcState=='after' || calcType=='losscut')?-1:baseIdx+60" tab-Index [type]="'Input'" (dismissErrorKbn)="dismissError($event)"  [class.tooltip-frame]="marginError" (mouseover)="showTooltip()" (mouseout)="hideTooltip()">
+          <span class="label" [ngClass]="{'text-opacity' : calcState=='after'}">円</span>
+          <ul class="toggle-button" [class.disabled]="calcState=='after' || calcType=='losscut'">
+            <li [(ngModel)]="modePlus" btnRadio="+" (click)="changeAddCancelType($event,'+')" errorKbn="marginError" style="width:30px" [attr.tabindex]="(calcState=='after' || calcType=='losscut')?-1:baseIdx+70" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">増額</li>
+            <li [(ngModel)]="modePlus" btnRadio="-" (click)="changeAddCancelType($event,'-')" errorKbn="marginError" style="width:30px" [attr.tabindex]="(calcState=='after' || calcType=='losscut')?-1:baseIdx+71" tab-Index [type]="'ToggleButton'" (dismissErrorKbn)="dismissError($event)">減額</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-info">
+      <p [innerHTML]="message"></p>
+    </div>
+
+    <!-- MESSAGE -->
+    <div class="row row-message" [class.err]="marginError||losscutError">
+      <span>未入力の項目があります。</span>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="row row-footer" *ngIf="calcState=='before'">
+      <div class="col-left">
+        <button class="button button-transparent text-link" (click)="close()" [attr.tabindex]="baseIdx+80" tab-Index [type]="'Input'">キャンセル</button>
+      </div>
+      <div class="col-right">
+        <button class="button button-confirm" (click)="calcLosscutRate()" [attr.tabindex]="baseIdx+90" tab-Index [type]="'Input'" [minIndex]="calcType=='losscut'?baseIdx+10:baseIdx+50" [disabled]="isCalcBtnDisable">計算</button>
+      </div>
+    </div>
+    <div class="row row-footer" *ngIf="calcState=='after'">
+      <div class="col-left">
+        <button class="button button-transparent text-link" (click)="changeState('before')">再入力</button>
+      </div>
+      <div class="col-right">
+        <button class="button button-definite" (click)="changeLosscutRate()">実行</button>
+      </div>
+    </div>
+
+  </div>
+</div>

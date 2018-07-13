@@ -1,0 +1,19 @@
+<!-- アラート -->
+<div ng2-resizeable resizeable="height" class="panel panel-alert panel-animate" (resizing)="onResizing($event)" tabindex="100" #dragTarget>
+  <title-bar [title]="title()" [frame]="this" [fixed-width]="true"></title-bar>
+  <div class="panel-body">
+    <div #slider class="carousel slide" data-interval="false">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <div id="Grid"></div>
+          <div class="panel-btn-footer">
+            <button class="button" (click)="addAlert()">アラート追加</button>
+          </div>
+        </div>
+        <div class="item">
+          <alert-add-modify #alertAddModify [alert]="alertInfo" (onConfirm)="onConfirm($event)"></alert-add-modify>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="panel panel-config panel-animate">
+  <title-bar [title]="title()" [frame]="this" [hide-export]="true" [hide-min]="true" [hide-max]="true"></title-bar>
+
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <config-chart-technical #TechnicalSetting [config]="config"></config-chart-technical>
+      </div>
+    </div>
+
+    <div class="row row-footer">
+      <div class="col-left">
+        <button class="button button-transparent text-link" (click)="onClickConfirm(-1)">キャンセル</button>
+      </div>
+      <div class="col-center">
+        <button class="button button-confirm" (click)="onClickConfirm(0)">適用</button>
+      </div>
+      <div class="col-right">
+        <button class="button button-definite" (click)="onClickConfirm(1)">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

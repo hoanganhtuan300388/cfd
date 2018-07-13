@@ -1,0 +1,21 @@
+<!-- マーケットサマリー -->
+<div ng2-resizeable (resizing)="onResizing($event)" class="panel panel-market panel-animate">
+  <title-bar [title]="title()" [frame]="this"></title-bar>
+
+  <div class="panel-body">
+
+    <div *ngIf="!noDataFlg" class="row grd">
+      <div id="indexGrid"></div>
+    </div>
+    <div *ngIf="!noDataFlg" class="row grd">
+      <div id="foreignGrid"></div>
+    </div>
+
+    <div *ngIf="noDataFlg" class="panel-content-msg">
+      <div>{{noRowMsg}}</div>
+    </div>
+
+    <div class="row row-table-footer">
+    </div>
+  </div>
+</div>

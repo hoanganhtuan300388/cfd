@@ -1,0 +1,189 @@
+<!-- 設定：注文(銘柄別) -->
+<div class="row">
+  <div class="col-xs-4">
+    <p class="label">設定を行う銘柄</p>
+  </div>
+  <div class="col-xs-7">
+    <symbol-cfd (changed)="onChangedSymbol($event)" [product]='initProduct'></symbol-cfd>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-4 col-indent-1">
+    <p>注文画面</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-9 configbox">
+    <div class="row">
+      <div class="col-xs-4">
+        <p>初期値</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+        <p>取引数量</p>
+      </div>
+      <div class="input-qty-set">
+        <input class="input-box qty-input" [(ngModel)]="targetSetting.initOrderQuantity" #inOdrQty=ValidatorNumber
+          type="text" validator-number [min]="1" [max]="999999" [unit]="1">
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inOdrQty.increase()" long-press 
+          (click)="inOdrQty.increase()">
+            <i class="svg-icons icon-spinup"></i>
+        </button>
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inOdrQty.decrease()" long-press 
+          (click)="inOdrQty.decrease()">
+            <i class="svg-icons icon-spindown"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+        <p>許容スリッページ</p>
+      </div>
+      <div class="col-xs-4">
+        <div class="checkbox">
+          <label><input type="checkbox" [(ngModel)]="targetSetting.initAllowSlippage">制限なし</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+        <p>許容スリッページ値</p>
+      </div>
+      <div class="input-qty-set">
+        <input class="input-box allowslippage-input" [(ngModel)]="targetSetting.initAllowSlippageValue" 
+          [disabled]="targetSetting.initAllowSlippage" #inSlippage=ValidatorNumber
+          type="text" validator-number [min]="0" [max]="maxAllowSlippageValue" [unit]="boUnit">
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inSlippage.increase()" long-press 
+          (click)="inSlippage.increase()"
+          [disabled]="targetSetting.initAllowSlippage">
+            <i class="svg-icons icon-spinup"></i>
+          </button>
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inSlippage.decrease()" long-press 
+          (click)="inSlippage.decrease()"
+          [disabled]="targetSetting.initAllowSlippage">
+            <i class="svg-icons icon-spindown"></i>
+          </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+        <p>トレール幅</p>
+      </div>
+      <div class="input-qty-set">
+        <input class="input-box trail-input" [(ngModel)]="targetSetting.initTrailValue" 
+          #inTrail=ValidatorNumber
+          type="text" validator-number [min]="5" [max]="999" [unit]="1">
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inTrail.increase()" long-press 
+          (click)="inTrail.increase()">
+            <i class="svg-icons icon-spinup"></i>
+          </button>
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inTrail.decrease()" long-press 
+          (click)="inTrail.decrease()">
+            <i class="svg-icons icon-spindown"></i>
+          </button>&nbsp;pips
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row"></div>
+
+<div class="row">
+  <div class="col-xs-4 col-indent-1">
+    <p>スピード注文画面</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-9 configbox">
+    <div class="row">
+      <div class="col-xs-4">
+        <p>初期値</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+        <p>取引数量</p>
+      </div>
+      <div class="input-qty-set">
+        <input class="input-box speedorderqty-input" [(ngModel)]="targetSetting.initSpeedOrderQuantity" 
+          type="text" validator-number [min]="1" [max]="999999" [unit]="1" #inSpdQty=ValidatorNumber>
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inSpdQty.increase()" long-press 
+          (click)="inSpdQty.increase()">
+            <i class="svg-icons icon-spinup"></i>
+          </button>
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inSpdQty.decrease()" long-press 
+          (click)="inSpdQty.decrease()">
+            <i class="svg-icons icon-spindown"></i>
+          </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4">
+        <p>スリッページ</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+        <p>許容スリッページ</p>
+      </div>
+      <div class="col-xs-4">
+        <div class="checkbox">
+          <label> <input type="checkbox" [(ngModel)]="targetSetting.speedOrderAllowSlippage">制限なし</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+        <p>許容スリッページ値</p>
+      </div>
+      <div class="input-qty-set">
+        <input class="input-box speedorderallowslippage-input" [(ngModel)]="targetSetting.speedOrderAllowSlippageValue" 
+          [disabled]="targetSetting.speedOrderAllowSlippage" #inSpdSlippage=ValidatorNumber
+          type="text" validator-number [min]="0" [max]="maxAllowSlippageValue" [unit]="boUnit">
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inSpdSlippage.increase()" long-press 
+          (click)="inSpdSlippage.increase()"
+          [disabled]="targetSetting.speedOrderAllowSlippage">
+            <i class="svg-icons icon-spinup"></i>
+          </button>
+        <button type="button" class="button button-low button-icon" 
+          (onLongPressing)="inSpdSlippage.decrease()" long-press 
+          (click)="inSpdSlippage.decrease()"
+          [disabled]="targetSetting.speedOrderAllowSlippage">
+            <i class="svg-icons icon-spindown"></i>
+          </button>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-xs-1 col-xs-0"></div>
+</div>

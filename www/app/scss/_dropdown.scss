@@ -1,0 +1,148 @@
+/* show dropdown menu when menu is hovered */
+.navbar.navbar-menu {
+  .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* dropdown menu */
+.navbar.navbar-menu .dropdown-menu,
+.navbar .dropdown-menu,
+.dropdown-menu {
+  min-width: 96px;
+  border-radius: 0;
+  background: $gws-color-bg-dropdown-menu;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  margin: 0;
+  overflow-y: auto;
+  // dropdown-menu高さの最大200px
+  max-height: 200px;
+  border-radius: 0 0 4px 4px;
+
+  li:not(.divider) {
+    margin: 0;
+    padding: 0;
+    height: 24px;
+    cursor: default;
+    line-height: 16px;
+    @extend .text-overflow-ellipsis;
+
+    >a {
+      color: $gws-color-font-normal;
+      padding: 3px 16px;
+      font-size: $gws-font-size-base;
+      width: 100%;
+    }
+
+    &:hover,
+    &:focus,
+    >a:hover,
+    >a:focus {
+      color: $gws-white;
+      background-color: $gws-color-bg-menu-actiev;
+    }
+  }
+
+  .divider {
+    background-color: $gws-color-bg-divider;
+    padding: 0;
+    margin: 6px 0;
+  }
+
+  .active>a {
+    background-color: transparent;
+  }
+}
+
+/* dropdown menu for navbar-menu */
+.navbar.navbar-menu .dropdown-menu {
+  min-width: 192px;
+  padding: 14px 0 9px;
+
+  &:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 4px;
+    border-bottom: 4px solid $gws-color-bg-header;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  li {
+    padding: 4px 17px;
+  }
+
+  i {
+    color: $gws-color-font-normal;
+    margin-left: 2px;
+    margin-top: -2px;
+  }
+}
+
+.dropdown-list {
+  // 空白を削除
+  letter-spacing: -.4em;
+  .dropdown-item {
+    position: relative;
+    display: inline-block;
+    letter-spacing: normal;
+  }
+}
+
+.dropdown-type-frame div button.button.dropdown-toggle {
+  @extend .button-dropdown-frame;
+  width: 96px;
+}
+
+// #1966
+.ngx-contextmenu .dropdown-menu {
+  max-height: fit-content;
+  background-color: $gws-color-bg-context-menu;
+  /* #2399 */
+  // min-width: 192px;
+  width: auto;
+  /* [end] #2399 */
+  border-radius: 0;
+  z-index: 1111;// 3130
+
+  li:not(.divider) {
+    &:hover,
+    &:focus,
+    >a:hover,
+    >a:focus {
+      background-color: $gws-color-bg-menu-actiev;
+    }
+  }
+  li.disabled{
+    &:hover{
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.4);
+      cursor: default;
+    }
+    a{
+      color: rgba(255, 255, 255, 0.4);
+    }
+    >a:hover,>a:focus{
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.4);
+      cursor: default;
+    }
+  }
+}
+//
+
+.invisible {
+  display: none;
+}
+
+.dropdown-toggle {
+  div {
+    @extend .text-overflow-ellipsis;
+    width: calc(100% - 20px);
+    display: inline;
+  }
+}

@@ -1,0 +1,36 @@
+<!-- dialog with link -->
+<div class="panel panel-dialog-withlink modal-dialog-withlink" #dragTarget>
+  <div ng2-draggable [drag-target]="dragTarget" class="panel-heading" (contextmenu)="showContextMenu($event)">
+    {{title}}
+    <button class="button button-icon-tin button-transparent" (click)="close()"><i class="svg-icons icon-window-close"></i></button>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">      
+        <span>{{message}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">      
+        <a class='text-link-underline' href='#' (click)="openLink()">{{link}}</a>
+      </div>
+    </div>
+    <div class="row row-footer">
+      <div class="col-xs-4">
+      </div>
+      <div class="col-xs-4">
+        <button class="button button-definite" (click)="close()">OK</button>
+      </div>
+      <div class="col-xs-4">
+      </div>
+    </div>
+  </div>
+</div>
+
+<context-menu #contextMenuComponent>
+  <ng-template *ngFor="let item of contextItems;"
+      contextMenuItem
+      (execute)="onClickContextItem(item)">
+      {{item.title}}
+  </ng-template>
+</context-menu>

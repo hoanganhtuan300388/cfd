@@ -1,0 +1,40 @@
+<!-- チャート -> 情報 -> 四本値表示 -->
+<div ng2-resizeable resizeable="height" class="panel panel-chart-info panel-animate" #dragTarget>
+
+  <div class="panel-body" ng2-draggable [drag-target]="dragTarget" (moved)="onMoved($event)">
+    <div class="row row-header">
+      <div class="col-xs-12">
+        <p class="label label-bright">{{currentDatetime}}</p>
+        <button class="button button-icon-tin button-transparent" (click)="onCloseInfoPanelBtnClicked()"><i class="svg-icons icon-window-close"></i></button>
+      </div>
+    </div>
+
+    <div class="info">
+      <div *ngFor="let data of currentDatas;">
+        <!-- 要素のタイトル -->
+        <div class="row" *ngIf="!data.isPrice">
+          <div class="col-xs-12">
+            <p class="label"></p>
+          </div>
+          <div class="col-xs-12">
+            <p class="label">{{data.display}}</p>
+          </div>
+        </div>
+
+        <!-- 子要素-->
+        <div *ngFor="let child of data.childs;">
+          <div class="row" *ngIf="child.display != ''">
+            <div class="col-xs-5" *ngIf="child.display != ''">
+              <p class="label">{{child.display}}</p>
+            </div>
+            <div class="col-xs-7 text-right" *ngIf="child.display != ''">
+              <p class="label label-bright" [style.color]="child.color">{{child.value}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

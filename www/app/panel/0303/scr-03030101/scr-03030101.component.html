@@ -1,0 +1,38 @@
+<!-- 価格調整額 -->
+<div class="panel panel-info panel-info-price panel-animate">
+  <title-bar [title]="title()" [frame]="this" [hide-max]="true" [title-show]="true"></title-bar>
+
+  <div class="panel-body">
+
+    <table class="table table-stripe">
+      <tbody>
+        <tr>
+          <th>前回発生日</th>
+          <td class="text-num">{{priceAdjustmentDate}}</td>
+        </tr>
+        <tr>
+          <th>売</th>
+          <td class="text-num">{{sellPriceAdjustValue}}<span *ngIf="sellPriceAdjustValue != '' && sellPriceAdjustValue != '-'" class="unit">円</span></td>
+        </tr>
+        <tr>
+          <th>買</th>
+          <td class="text-num">{{buyPriceAdjustValue}}<span *ngIf="buyPriceAdjustValue != '' && buyPriceAdjustValue != '-'" class="unit">円</span></td>
+        </tr>
+        <tr>
+          <th>MID（期近）</th>
+          <td class="text-num">{{nearbyMid}}</td>
+        </tr>
+        <tr>
+          <th>MID（期先）</th>
+          <td class="text-num">{{forwardMid}}</td>
+        </tr>
+        <tr>
+          <th class="th-transform">
+            <div class="text-transform-80"><span class="label label-bright">コンバージョンレート</span></div>
+          </th>
+          <td class="text-num">{{conversionRate}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="conteiner-wrapper">
+    <div class="row">
+      <div class="col-xs-12">
+        <menu-bar [frame]='this' #menuBar></menu-bar>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <menu-bar-amount #menuBarAmount></menu-bar-amount>
+      </div>
+    </div>
+
+    <mdi-area [hidden]="resource.config.common.virtualScreen != '0'" [virtual-index]=0 [panels]="panels[0]" [active]="active[0]"></mdi-area>
+
+    <div class="notice-label connection-retry" *ngIf="displayConnectRetry">
+      ネットワークから切断されました。再接続中ですのでしばらくお待ちください。
+    </div>
+
+    <footer>
+      <div class="footer">
+        <div class="row">
+          <div class="col-xs-12">
+            <task-bar [frame]='this' ></task-bar>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

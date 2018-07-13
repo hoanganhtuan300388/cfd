@@ -1,0 +1,9 @@
+<!-- レート一覧：WatchList -->
+<div class="panel-content-msg" *ngIf="isEmptyWatchList==true" [innerHtml]="MSG_WATCH_EMPTY"></div>
+<div class="panel-content-msg" *ngIf="isErrorWatchList==true" [innerHtml]="MSG_WATCH_ERROR"></div>
+<div class="pn_st" dnd-sortable-container [sortableData]="watchList" draggable="false">
+    <div class="item" *ngFor="let watch of watchList; let idx = index;" dnd-sortable [sortableIndex]="idx" (onDropSuccess)="onDropSuccess($event)" id="{{idx}}">
+        <price-watch-unit #watchUnit [watchData]="watch" (watchEmitter)="onChangeWatchList(watch.cfdProductCode)"></price-watch-unit>
+    </div>
+    <div class="item placeholder" [class.hidden]="hiddenPanel()" *ngFor="let watch of watchList;"></div>
+</div>

@@ -1,0 +1,30 @@
+/** ---------- FOR CFD ---------- **/
+.tooltip {
+  position: absolute;
+  width: 166px;
+  .tooltip-message {
+    width: 100%;
+    height: auto;
+    min-height: 32px;
+    border-radius: 4px;
+    color: $gws-white;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    font-size: $gws-font-size-base;
+    text-align: center;
+    line-height: 32px;
+    margin: 0 auto;
+    margin-top: -41px;
+    background-color: $gws-color-bg-tooltip-error;
+    line-height: 14px;
+    padding: 4px 6px;
+    text-align: left;
+    bottom: 8px;
+    position: absolute;
+  }
+}
+
+.tooltip-frame {
+  outline: 1px solid $gws-color-bg-tooltip-error !important;
+  height: 22px;
+  margin-right: 2px !important;
+}

@@ -1,0 +1,8 @@
+<div class="cdg-modal">
+	<div class="cdg-modal-header">
+		<div class="cdg-modal-title">タイトルです</div>
+		<div class="cdg-modal-close">×</div>
+	</div>
+	<div class="cdg-modal-body">
+	</div>
+</div>

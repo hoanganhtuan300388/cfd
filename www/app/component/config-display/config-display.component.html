@@ -1,0 +1,60 @@
+<!-- 設定：表示 -->
+<div class="row">
+  <div class="col-xs-4">
+    <p class="label">点滅</p>
+  </div>
+  <div class="col-xs-5">
+    <ul class="toggle-button">
+      <li [(ngModel)]="displaySettings.priceFlashing" btnRadio="on">ON</li>
+      <li [(ngModel)]="displaySettings.priceFlashing" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-4">
+    <p class="label">約定・失効通知</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="row">
+    <div class="col-xs-4 col-indent-1">
+      <p>デスクトップ通知</p>
+    </div>
+    <div class="col-xs-5">
+      <ul class="toggle-button">
+        <li [(ngModel)]="displaySettings.desktopNotify" btnRadio="on">ON</li>
+        <li [(ngModel)]="displaySettings.desktopNotify" btnRadio="off">OFF</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-8 label label-left label-sm">OFFを選択しても約定・失効通知ログには表示されます。</div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-4">
+    <p class="label">レイアウト保存</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="row">
+    <div class="col-xs-4 col-indent-1">
+      <p>終了時のレイアウト保存</p>
+    </div>
+    <div class="col-xs-5">
+      <ul class="toggle-button">
+        <li [(ngModel)]="displaySettings.saveLayout" btnRadio="on">ON</li>
+        <li [(ngModel)]="displaySettings.saveLayout" btnRadio="off">OFF</li>
+      </ul>
+    </div>
+  </div>
+</div>

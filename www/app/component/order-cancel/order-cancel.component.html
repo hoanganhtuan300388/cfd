@@ -1,0 +1,528 @@
+<!-- 注文確認 -->
+<div class="panel-body-content panel-body-content-border" >
+  <div *ngIf="settleType=='0'">
+	<div *ngIf="orderchooice=='single'">
+	  <div class="row row-label">
+	    <div class="col-left col-left-label">
+	      <div class="label label-arrow">{{settleTypeName}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">売買</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==1, 'buy':sellbuyClass==2}">{{sellbuy}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文タイプ</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{orderTypeName}}</div>
+	    </div>
+	  </div>
+
+	  <!-- <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文種類</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{settleTypeName}}</div>
+	    </div>
+	  </div> -->
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">取引数量</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文価格</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-num">{{price}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left text-transform-80">
+	      <div class="label">ロスカットレート</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-num">{{losscut}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">有効期限 </div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{orderTime}}</div>
+	    </div>
+	  </div>
+	</div>
+	<div *ngIf="orderchooice=='ifd'">
+	  <div class="panel-body-content panel-body-content-border" >
+	    <div class="row row-label">
+	      <div class="col-left col-left-label">
+	        <div class="label label-arrow">新規</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">売買</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==1, 'buy':sellbuyClass==2}">{{sellbuy}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">注文タイプ</div>
+	      </div>
+	      <div class="col-right" >
+	        <div class="label">IFD</div>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">取引数量</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">注文価格</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-num">{{price}}</div>
+	      </div>
+	    </div>
+		<div class="row">
+		  <div class="col-left text-transform-80">
+		    <div class="label">ロスカットレート</div>
+		  </div>
+		  <div class="col-right">
+		    <div class="label label-num">{{losscut}}</div>
+		  </div>
+		</div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">指値/逆指値</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-num">{{orderTypeName}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">有効期限</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-num">{{orderTime}}</div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="panel-body-content panel-body-content-border">
+	    <div class="row row-label">
+	      <div class="col-left col-left-label">
+	        <div class="label label-arrow">決済</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">売買</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==2, 'buy':sellbuyClass==1}">{{sellbuyOco}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">取引数量</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-num">{{qtyOco}}&nbsp;(x{{tradeUnit}})</div>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">注文価格</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{priceOco}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">指値/逆指値</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{orderTypeOco}}</div>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">有効期限</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{orderTimeOco}}</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div  *ngIf="orderchooice=='oco'">
+	  <div class="row row-label">
+	    <div class="col-left col-left-label">
+				<div *ngIf="settleType=='0'" class="label label-arrow">新規</div>
+				<div *ngIf="settleType=='1'" class="label label-arrow">決済</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">売買</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==1, 'buy':sellbuyClass==2}">{{sellbuy}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文タイプ</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">OCO</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">取引数量</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+	    </div>
+	  </div>
+	  <div class="row row-double">
+	    <div class="col-left">
+	      <div class="label">注文価格(指値)</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{priceOco}}</div>
+      </div>
+	    <div class="col-left">
+	      <div class="label">　　　　(逆指値)</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{priceOco2}}</div>
+	    </div>      
+	  </div>
+	  <div class="row">
+	    <div class="col-left text-transform-80">
+	      <div class="label">ロスカットレート</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label"></div>
+	    </div>
+	  </div>
+	  <div class="row row-double">
+	    <div class="col-left text-right">
+	      <div class="label">(指値)　</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{priceOcoLossCut}}</div>
+      </div>
+	    <div class="col-left text-right">
+	      <div class="label">(逆指値)</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{priceOcoLossCut2}}</div>
+	    </div>      
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">有効期限</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{orderTime}}</div>
+	    </div>
+	  </div>
+	</div>
+	<div *ngIf="orderchooice=='ifdoco'">
+	  <div class="panel-body-content panel-body-content-border">
+	    <div class="row row-label">
+	      <div class="col-left col-left-label">
+	        <div class="label label-arrow">新規</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">売買</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==1, 'buy':sellbuyClass==2}">{{sellbuy}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">注文タイプ</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">IFD-OCO</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">取引数量</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">注文価格</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{price}}</div>
+	      </div>
+	    </div>
+      <div class="row">
+        <div class="col-left text-transform-80">
+          <div class="label">ロスカットレート</div>
+        </div>
+        <div class="col-right">
+          <div class="label label-num">{{losscut}}</div>
+        </div>
+      </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">指値/逆指値 </div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{orderTypeName}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">有効期限</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{orderTime}}</div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="panel-body-content panel-body-content-border">
+	    <div class="row row-label">
+	      <div class="col-left col-left-label">
+	        <div class="label label-arrow">決済</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">売買</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==2, 'buy':sellbuyClass==1}">{{sellbuyOco}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">取引数量</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label label-num">{{qtyOco}}&nbsp;(x{{tradeUnit}})</div>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">注文価格(指値)</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{priceOco}}</div>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-left text-right">
+  	      <div class="label">(逆指値)</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{priceOco2}}</div>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-left">
+	        <div class="label">有効期限</div>
+	      </div>
+	      <div class="col-right">
+	        <div class="label">{{orderTimeOco}}</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+  </div>
+  <div *ngIf="settleType == '1'">
+	<div class="content-border" *ngIf="orderchooice == 'single'">
+	  <div class="row row-label">
+	    <div class="col-left col-left-label">
+	      <div class="label label-arrow">決済</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">売買</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==1, 'buy':sellbuyClass==2}">{{sellbuy}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文タイプ</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{orderTypeName}}</div>
+	    </div>
+	  </div>
+
+	  <div class="row"  *ngIf="isSave">
+	    <div class="col-left">
+	      <div class="label"></div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">トレーリングストップ</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">取引数量</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+	    </div>
+	  </div>
+
+	  <div class="row" *ngIf="orderType!='1'">
+	    <div class="col-left">
+	      <div class="label">注文価格</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{price}}</div>
+	    </div>
+	  </div>
+	  <div class="row" *ngIf="isSave">
+	    <div class="col-left">
+	      <div class="label">トレール幅</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{trailqty}}</div>
+	    </div>
+	  </div>
+	  <div class="row" *ngIf="orderType!='1'">
+	    <div class="col-left">
+	      <div class="label">有効期限</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{orderTime}}</div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="panel-body-content panel-body-content-border" *ngIf="orderchooice == 'oco'">
+	  <div class="row row-label">
+	    <div class="col-left col-left-label">
+	      <div class="label label-arrow">決済</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">売買</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-order" [ngClass]="{'sell':sellbuyClass ==1, 'buy':sellbuyClass==2}">{{sellbuy}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文タイプ</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">OCO</div>
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">取引数量</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label label-num">{{qty}}&nbsp;(x{{tradeUnit}})</div>
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">注文価格(指値)</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{priceOco}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left text-right">
+	      <div class="label">(逆指値)</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{priceOco2}}</div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-left">
+	      <div class="label">有効期限</div>
+	    </div>
+	    <div class="col-right">
+	      <div class="label">{{orderTime}}</div>
+	    </div>
+	  </div>
+	</div>
+  </div>
+</div>
+
+
+
+
+<!-- DUMMY -->
+<div class="row row-message" >
+  <span></span>
+</div>
+<div class="panel-body-content">
+  <div class="row">
+    <div class="col-left">
+      <label></label>
+    </div>
+    <div class="col-right">
+    </div>
+  </div>
+</div>
+<!-- DUMMY -->
+
+<div class="row row-footer">
+  <div class="col-left">
+    <button class="button button-transparent text-link" (click)="onNavBtnClick('BACK')">キャンセル</button>
+  </div>
+  <div class="col-right">
+    <button class="button button-definite" (click)="onNavBtnClick('GO')">取消確定</button>
+  </div>
+</div>

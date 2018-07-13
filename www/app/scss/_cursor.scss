@@ -1,0 +1,86 @@
+/* Applies a grabbing hand on top of the div that's draggable*/
+.cursor-draggable {
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+
+   /*  Apply a "closed-hand" cursor during drag operation. */
+  &:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+}
+
+/* Applies a resizing hand on top of the div that's resizeable*/
+.gw-resizeable{
+  position: absolute;
+  font-size: 0.1px;
+  display: block;
+  -ms-touch-action: none;
+  touch-action: none;
+  z-index: 11;
+
+  &.gw-resizeable-e{
+    cursor: ew-resize;
+    width: 4px;
+    right: 0;
+    top: 0;
+    height: 100%;
+  }
+
+  &.gw-resizeable-w{
+    cursor: ew-resize;
+    width: 4px;
+    left: 0;
+    top: 0;
+    height: 100%;
+  }
+
+  &.gw-resizeable-s{
+    cursor: ns-resize;
+    height: 4px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+
+  &.gw-resizeable-n{
+    cursor: ns-resize;
+    height: 4px;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  &.gw-resizeable-se{
+    cursor: nwse-resize;
+    width: 12px;
+    height: 12px;
+    right: 0;
+    bottom: 0;
+  }
+
+  &.gw-resizeable-sw{
+    cursor: nesw-resize;
+    width: 12px;
+    height: 12px;
+    left: 0;
+    bottom: 0;
+  }
+  &.gw-resizeable-nw{
+    cursor: nwse-resize;
+    width: 12px;
+    height: 12px;
+    left: 0;
+    top: 0;
+  }
+  &.gw-resizeable-ne{
+    cursor: nesw-resize;
+    width: 12px;
+    height: 12px;
+    right: 0;
+    top: 0;
+  }
+  
+}

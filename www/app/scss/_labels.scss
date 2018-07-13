@@ -1,0 +1,198 @@
+/** ---------- FOR CFD ---------- **/
+.label {
+  // display: inline-block; // 余白ができてしまうため、inline-blockは全体的に適用しないこと
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: $gws-color-font-label;
+  font-size: $gws-font-size-base;
+  font-weight: normal;
+  @extend .text-overflow-ellipsis;
+
+  &.label-left {
+    text-align: left;
+  }
+
+  &:empty {
+    display: inline-block;
+  }
+
+  &.label-arrow {
+    // display: inline-block; // 余白ができてしまうため、inline-blockは全体的に適用しないこと
+    position: relative;
+    padding: 2px 11px 0 12px;
+    line-height: 18px;
+    background: $gws-color-bg-label-order;
+    color: $gws-color-font-label-order;
+    font-size: $gws-font-size-small;
+    letter-spacing: 0.6px;
+
+    &::before {
+      content: "";
+      // display: inline-block; // 余白ができてしまうため、inline-blockは全体的に適用しないこと
+      border: 8px solid transparent;
+      border-left-color: $gws-color-bg-label-order;
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      margin-top: -8px;
+    }
+  }
+
+  &.label-arrow-losscut {
+    position: relative;
+    padding: 3px 35px;
+    line-height: 20px;
+    background: $gws-color-bg-label-losscut-current;
+    color: $gws-color-font-label-losscut;
+    font-size: $gws-font-size-small;
+    letter-spacing: 0.6px;
+
+    &::before {
+      content: "";
+      border-top: 10px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 4px solid $gws-color-bg-label-losscut-current;
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      margin-top: -10px;
+    }
+
+    &::after {
+      content: "";
+      border-top: 10px solid $gws-color-bg-label-losscut-current;
+      border-right: 4px solid $gws-color-bg-label-losscut-current;
+      border-bottom: 10px solid $gws-color-bg-label-losscut-current;
+      border-left: 4px solid transparent;
+      position: absolute;
+      left: -4px;
+      top: 50%;
+      margin-top: -10px;
+    }
+
+    &.change {
+      background: $gws-color-bg-label-losscut-change;
+      padding: 3px 29px;
+      &::before {
+        border-left-color: $gws-color-bg-label-losscut-change;
+      }
+      &::after {
+        border-top-color: $gws-color-bg-label-losscut-change;
+        border-right-color: $gws-color-bg-label-losscut-change;
+        border-bottom-color: $gws-color-bg-label-losscut-change;
+      }
+    }
+  }
+
+  &.label-sm {
+    font-size: $gws-font-size-small;
+    line-height: 24px;
+  }
+
+  &.label-prefix {
+    margin-right: 8px;
+  }
+
+  &.label-lg,
+  &.label-num-lg {
+    font-size: $gws-font-size-large;
+  }
+
+  &.label-num {
+    font-size: $gws-font-size-mid;
+    line-height: 1.14;
+  }
+  &.label-jp {
+    font-size: 0.9em;
+  }
+
+  &[class*="label-num"] {
+    color: $gws-color-font-normal;
+  }
+
+  &.label-bright {
+    color: $gws-color-font-normal;
+  }
+  &.label-font {
+    font-size: 13px;
+    text-align: left;
+    padding-left: 5px;
+  }
+
+  &.label-unit {
+    margin-left: 4px;
+  }
+
+  &.label-order {
+    display: inline-block;
+    width: 78px;
+    line-height: 22px;
+    color: $gws-white;
+    &.sell {
+      background-color: $gws-color-bg-btn-order-sell-active;
+    }
+    &.buy {
+      background-color: $gws-color-bg-btn-order-buy-active;
+    }
+  }
+
+  &.label-order-icon {
+    display: inline-block;
+    padding: 0 3px;
+    margin-bottom: -3px;
+    width: 20px;
+    color: $gws-color-font-normal;
+    &.sell {
+      background-color: $gws-color-bg-label-sell !important; // @NOTE pq-grid ui-state-hilight が importantのため
+    }
+    &.buy {
+      background-color: $gws-color-bg-label-buy !important; // @NOTE pq-grid ui-state-hilight が importantのため
+    }
+  }
+
+  &.label-name {
+    margin-left: 10px;
+    color: $gws-color-font-normal;
+  }
+
+  &.label-transform-70 {
+    transform: scale(0.7 ,1);
+  }
+  &.label-transform-80 {
+    transform: scale(0.8 ,1);
+  }
+  &.label-transform-90 {
+    transform: scale(0.9 ,1);
+  }
+
+  &.label-important {
+    float: left;
+    width: 36px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    background-color: $gws-color-font-label-news-important;
+    color: $gws-color-font-normal;
+  }
+
+  &.label-frame {
+    color: $gws-color-font-label-info-frame;
+    border: 1px solid $gws-color-font-label-info-frame;
+    height: 22px;
+    padding: 4px 8px;
+    &:empty {
+      border: 0;
+    }
+  }
+
+  /* #3015 */
+  &.label-mini-chart {
+    color: $gws-color-font-label-mini-chart;
+    font-size: 10px;
+  }
+  /* [end] #3015 */
+}

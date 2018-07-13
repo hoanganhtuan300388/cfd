@@ -1,0 +1,527 @@
+/** ---------- FOR CFD ---------- **/
+@mixin svg-button($iconType) {
+  background-image: url("../../assets/images/buttons/#{$iconType}.svg");
+}
+
+/* ボタンのスタイルリセット */
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  margin: 0;
+}
+
+.button-group {
+  position: relative;
+  display: inline;
+}
+
+.button {
+  margin: 0;
+  border-radius: 0;
+  height: 24px;
+  line-height: 23px;
+  min-width: 56px;
+  padding: 0 8px;
+  font-size: $gws-font-size-base;
+  cursor: default;
+
+  color: $gws-color-font-normal;
+  background-color: $gws-color-bg-btn-normal;
+
+  border-top: 1px solid $gws-color-border-button-top;
+  box-sizing: border-box;
+
+  &:not([class*="text-link"]) {
+    &:hover,
+    &:focus {
+      border-top: 1px solid $gws-color-border-button-top;
+      color: $gws-white;
+      background-color: $gws-color-bg-btn-normal-hover;
+    }
+    &:active {
+      background-color: $gws-color-bg-btn-normal-active;
+      color: $gws-color-font-btn-active;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid $gws-color-border-button-bottom-active;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    color: $gws-color-font-btn-disabled;
+  }
+
+  &.button-outline {
+    outline: 1px solid $gws-color-bg-btn-bg;
+  }
+
+  &.button-sm {
+    font-size: $gws-font-size-small;
+  }
+
+  &.button-low {
+    height: 22px;
+    line-height: 22px;
+    &.button-icon {
+      min-width: 23px;
+      width: 23px;
+    }
+  }
+
+  &.button-label {
+    border-top: 0;
+    &:not(:disabled) {
+      &:hover,
+      &:focus,
+      &:active {
+        border-top: 0;
+      }
+    }
+  }
+
+  &.button-icon {
+    min-width: 24px;
+    width: 24px;
+  }
+
+  &.button-icon-sm {
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  &.button-icon-tin {
+    min-width: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &.button-icon-dropdown {
+    min-width: 48px;
+    width: 48px;
+    i:first-child {
+      margin-right: 4px;
+    }
+  }
+
+  &.button-num {
+    min-width: 46px;
+    width: 46px;
+  }
+
+  &.button-frame {
+    padding: 1px 0 0;
+    color: $gws-color-font-label;
+    border: solid 1px $gws-color-border-dropdown;
+    background-color: transparent;
+    min-width: 14px;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        border: solid 1px $gws-color-border-dropdown-hover;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.button-dropdown-frame {
+    width: 232px;
+    border: solid 1px $gws-color-border-dropdown;
+    text-align: left;
+    background-color: transparent;
+    @extend .text-overflow-ellipsis;
+    padding-right: 4px;
+    div {
+      display: inline;
+    }
+    i {
+      float: right;
+    }
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        border: solid 1px $gws-color-border-dropdown-hover;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.button-detail {
+    background-color: $gws-color-bg-btn-detail;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-detail-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-detail-active;
+      }
+    }
+  }
+
+  &.button-confirm {
+    font-size: $gws-font-size-mid;
+    background-color: $gws-color-bg-btn-confirm;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        color: $gws-white;
+        background-color: $gws-color-bg-btn-confirm-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-confirm-active;
+      }
+    }
+    &:disabled {
+      background-color: $gws-color-bg-btn-confirm-disable;
+    }
+  }
+
+  &.button-definite {
+    font-size: $gws-font-size-mid;
+    background-color: $gws-color-bg-btn-definite;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        color: $gws-white;
+        background-color: $gws-color-bg-btn-definite-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-definite-active;
+      }
+    }
+    &:disabled {
+      background-color: $gws-color-bg-btn-definite-disable;
+    }
+  }
+
+  &.button-settlement {
+    width: 80px;
+    background-color: $gws-color-bg-btn-settlement;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        color: $gws-white;
+        background-color: $gws-color-bg-btn-settlement-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-settlement-active;
+      }
+    }
+  }
+
+  // ---------------- 注文 ----------------
+  &[class*="button-order-"] {
+    border: 1px solid transparent;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        border: 1px solid $gws-white;
+        color: $gws-white;
+        .price,
+        .price span {
+          color: $gws-white;
+        }
+      }
+      &:active {
+        border: 1px solid rgba(#fff, 0.4);
+        color: $gws-color-font-normal;
+        .price,
+        .price span {
+          color: $gws-color-font-normal;
+        }
+      }
+    }
+
+    &.button-order-bid, {
+      background-color: $gws-color-bg-btn-order-bid;
+      &.speed-order {
+        background-color: rgba($gws-color-bg-btn-speed-order-bid, 0.6);
+        border-top: 1px solid rgba($gws-color-bg-btn-speed-order-bid, 0.6);
+        &:not(:disabled) {
+          &:hover,
+          &:focus {
+            border-top: 1px solid $gws-white;
+            background-color: $gws-color-bg-btn-speed-order-bid;
+          }
+          &:active {
+            border-top: 1px solid rgba(#fff, 0.4);
+            background-color: rgba($gws-color-bg-btn-speed-order-bid, 0.4);
+          }
+        }
+      }
+    }
+
+    &.button-order-ask {
+      background-color: $gws-color-bg-btn-order-ask;
+      &.speed-order {
+        background-color: rgba($gws-color-bg-btn-speed-order-ask, 0.6);
+        border-top: 1px solid rgba($gws-color-bg-btn-speed-order-ask, 0.6);
+        &:not(:disabled) {
+          &:hover,
+          &:focus {
+            border-top: 1px solid $gws-white;
+            background-color: $gws-color-bg-btn-speed-order-ask;
+          }
+          &:active {
+            border-top: 1px solid rgba(#fff, 0.4);
+            background-color: rgba($gws-color-bg-btn-speed-order-ask, 0.4);
+          }
+        }
+      }
+    }
+  }
+
+  &.button-open-account {
+    padding: 0 10px;
+    background: $gws-color-bg-btn-open-account;
+    height: 24px;
+    width: 160px;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-open-account-hover;
+        color: $gws-white;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-open-account-active;
+        color: $gws-color-font-btn-active;
+      }
+    }
+  }
+
+  // ---------------- レート一覧 ----------------
+  &.button-label-order-list {
+    width: 80px;
+    height: 32px;
+    font-size: $gws-font-size-large-button;
+    &.button-order-bid {
+      background-color: $gws-color-bg-btn-order-list-bid;
+    }
+    &.button-order-ask {
+      background-color: $gws-color-bg-btn-order-list-ask;
+    }
+  }
+
+  // ---------------- 建玉一覧 ----------------
+  &[class*="button-position-"] {
+    padding: 2px 0;
+    height: 22px;
+    width: 64px;
+    text-align: center;
+    @extend .button-outline;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        color: $gws-white;
+      }
+      &:active {
+        color: $gws-color-font-btn-active;
+      }
+    }
+  }
+
+  &.button-position-collective-settlement {
+    background: $gws-color-bg-btn-collective-settlement;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-collective-settlement-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-collective-settlement-active;
+      }
+    }
+  }
+
+  &.button-position-collective-change {
+    background: $gws-color-bg-btn-collective-change;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-collective-change-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-collective-change-active;
+      }
+    }
+  }
+
+  &.button-position-settlement {
+    background: $gws-color-bg-btn-settlement;
+    letter-spacing: 1.3px;
+    padding-left: 24px;
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-style: solid;
+      border-width: 16px 0 0 16px;
+      border-color: transparent transparent transparent $gws-color-bg-btn-settlement-triangle;
+      margin-left: -27px;
+      margin-top: 1px;
+    }
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-settlement-hover;
+        &:before {
+          border-color: transparent transparent transparent $gws-color-bg-btn-settlement-triangle-hover;
+        }
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-settlement-active;
+        &:before {
+          border-color: transparent transparent transparent $gws-color-bg-btn-settlement-triangle-active;
+        }
+      }
+    }
+  }
+
+  // ---------------- 注文一覧 ----------------
+  &[class*="button-orderlist-"] {
+    padding: 2px 0;
+    height: 22px;
+    width: 52px;
+    min-width: 52px;
+    text-align: center;
+    @extend .button-outline;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        color: $gws-white;
+      }
+      &:active {
+        color: $gws-color-font-btn-active;
+      }
+    }
+  }
+  &.button-orderlist-change {
+    background: $gws-color-bg-btn-change;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-change-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-change-active;
+      }
+    }
+  }
+
+  &.button-orderlist-cancel {
+    background: $gws-color-bg-btn-cancel;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-cancel-hover;
+      }
+      &:active {
+        background-color:$gws-color-bg-btn-cancel-active;
+      }
+    }
+  }
+
+  /* alert */
+  &.button-orderlist-edit {
+    background: $gws-color-bg-btn-edit;
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: $gws-color-bg-btn-edit-hover;
+      }
+      &:active {
+        background-color:$gws-color-bg-btn-edit-active;
+      }
+    }
+  }
+
+  // ---------------- svg画像背景ボタン ----------------
+  &.button-svg {
+    @extend .button-label;
+    &.btn-platinum-chart {
+      width: 112px;
+      height: 23px;
+      outline: 1px solid $gws-color-border-button-frame;
+      background-color: transparent;
+      @include svg-button("btn-platinum-chart");
+      &:not(:disabled) {
+        &:hover,
+        &:focus {
+          @include svg-button("btn-platinum-chart-hover");
+        }
+        &:active {
+          @include svg-button("btn-platinum-chart-active");
+        }
+      }
+    }
+    &.btn-demo {
+      width: 448px;
+      height: 80px;
+      @include svg-button("btn-demo");
+    }
+  }
+
+  /* 点滅 */
+  &.button-up-blink {
+    animation:up 1s;
+    @keyframes up{
+      // 0% {background-color:rgba($gws-color-bg-btn-order-blink-up, 0.6);}
+      50% {background-color:$gws-color-bg-btn-order-blink-up;}
+      // 0% {background-color:rgba($gws-color-bg-btn-order-blink-up, 0.6);}
+      // 25% {background-color:$gws-color-bg-btn-order-blink-up;}
+      // 50% {background-color:rgba($gws-color-bg-btn-order-blink-up, 0.6);}
+      // 75% {background-color:$gws-color-bg-btn-order-blink-up;}
+    }
+  }
+
+  &.button-down-blink {
+    animation:down 1s;
+    @keyframes down{
+      // 0% {background-color:rgba($gws-color-bg-btn-order-blink-down, 0.6);}
+      50% {background-color:$gws-color-bg-btn-order-blink-down;}
+      // 0% {background-color:rgba($gws-color-bg-btn-order-blink-down, 0.6);}
+      // 25% {background-color:$gws-color-bg-btn-order-blink-down;}
+      // 50% {background-color:rgba($gws-color-bg-btn-order-blink-down, 0.6);}
+      // 75% {background-color:$gws-color-bg-btn-order-blink-down;}
+    }
+  }
+
+  &.button-transparent {
+    padding: 0;
+    background-color: transparent;
+    @extend .button-label;
+    &:not(:disabled) {
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: transparent;
+      }
+    }
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+}
+
+.button[readonly]{
+  pointer-events: none;
+}
+
+.currency[readonly]{
+  pointer-events: none;
+}
+
+.ask-bid-disabled{
+  opacity: 0.4;
+  color: #dde1f0;
+}
+.marginarea{
+  margin-right: 96px;
+}

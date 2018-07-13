@@ -1,0 +1,105 @@
+<div class="main">
+  <div class="row">
+    <div class="col-left">
+      <div class="label label-num label-bright">{{sellBalance}}</div>
+    </div>
+    <div class="col-center">
+      <div class="label">建玉数量</div>
+    </div>
+    <div class="col-left">
+      <div class="label label-num label-bright">{{buyBalance}}</div>
+    </div>
+  </div>
+
+  <div class="main-box">
+    <div class="row">
+      <div class="col-left">
+        <div class="label label-num label-bright">{{sellPrice}}</div>
+      </div>
+      <div class="col-center">
+        <div class="label">平均レート</div>
+      </div>
+      <div class="col-left">
+        <div class="label label-num label-bright">{{buyPrice}}</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-left">
+        <div [ngSwitch]="sellGainLoss[0]">
+          <div *ngSwitchCase="'+'">
+              <div class="label label-num label-bright">
+                <span class="text-price-up">{{sellGainLoss}}</span>
+              </div>
+            </div>
+            <div *ngSwitchCase="'-'">
+              <div class="label label-num label-bright">
+                <span class="text-price-down">{{sellGainLoss}}</span>
+              </div>
+            </div>
+            <div *ngSwitchDefault>
+              <div class="label label-num label-bright">{{sellGainLoss}}</div>
+            </div>
+        </div>
+      </div>
+      <div class="col-center">
+        <div class="label">損益 (pips)</div>
+      </div>
+      <div class="col-left">
+        <div [ngSwitch]="buyGainLoss[0]">
+            <div *ngSwitchCase="'+'">
+              <div class="label label-num label-bright">
+                <span class="text-price-up">{{buyGainLoss}}</span>
+              </div>
+            </div>
+            <div *ngSwitchCase="'-'">
+              <div class="label label-num label-bright">
+                <span class="text-price-down">{{buyGainLoss}}</span>
+              </div>
+            </div>
+            <div *ngSwitchDefault>
+              <div class="label label-num label-bright">{{buyGainLoss}}</div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-last">
+      <div class="col-left">
+        <div [ngSwitch]="sellValGaubLoss[0]">
+          <div *ngSwitchCase="'+'">
+              <div class="label label-num label-bright">
+                <span class="text-price-up">{{sellValGaubLoss}}</span>
+              </div>
+            </div>
+          <div *ngSwitchCase="'-'">
+            <div class="label label-num label-bright">
+              <span class="text-price-down">{{sellValGaubLoss}}</span>
+            </div>
+          </div>
+          <div *ngSwitchDefault>
+            <div class="label label-num label-bright">{{sellValGaubLoss}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-center">
+        <div class="label">評価損益</div>
+      </div>
+      <div class="col-left">
+        <div [ngSwitch]="buyValGaubLoss[0]">
+          <div *ngSwitchCase="'+'">
+            <div class="label label-num label-bright">
+              <span class="text-price-up">{{buyValGaubLoss}}</span>
+            </div>
+          </div>
+          <div *ngSwitchCase="'-'">
+            <div class="label label-num label-bright">
+              <span class="text-price-down">{{buyValGaubLoss}}</span>
+            </div>
+          </div>
+          <div *ngSwitchDefault>
+            <div class="label label-num label-bright">{{buyValGaubLoss}}</div>
+          </div>        
+        </div>
+      </div>
+  </div>
+</div>

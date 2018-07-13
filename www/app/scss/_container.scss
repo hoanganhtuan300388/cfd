@@ -1,0 +1,14 @@
+.container {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  vertical-align: middle;
+  background: $gws-color-bg-container;
+
+  .conteiner-wrapper{
+    background-color: $gws-color-bg-header-add;
+  }
+}

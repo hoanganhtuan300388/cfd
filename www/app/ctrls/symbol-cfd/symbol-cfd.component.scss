@@ -1,0 +1,100 @@
+.dropdown-menu-search {
+  width:280px;
+  position: absolute;
+  overflow: hidden;
+  background-color: #47475a;
+  left: 0;
+  top: 24px;
+  z-index: 1000; /* .dropdown-menu のz-index に合わせる */
+  color: #dde1f0;
+  height: 220px;
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 30, 0.4); // $gws-color-shadow-dropdown
+
+  .left-area{
+    padding: 8px 0 68px;
+    width: 112px;
+    float: left;
+    background-color: rgba(#dde1f0, 0.1);
+  }
+
+  .tab-content {
+    width:100%;
+    height:100%;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    >.active {
+      height:100%
+    }
+    .tab-pane > div {
+      height: 100%;
+    }
+
+    .right-area {
+      cursor: default;
+      padding: 8px 4px;
+      width: 168px;
+      float: left;
+
+      input.input-box {
+        outline: none;
+      }
+
+      .refs {
+        text-align: left;
+        color: #aab8d8;
+        clear: both;
+        padding:1px 5px;
+      }
+
+      .table-area {
+        overflow:hidden;
+        overflow-y: scroll;
+        height:168px;
+        width: 100%;
+        position: initial;
+        margin-top: 8px;
+
+        table {
+          margin-bottom: 0;
+          tr {
+            &:hover,
+            &:focus {
+              background-color: #1777e6; //$gws-color-bg-menu-actiev;
+            }
+          }
+          th, td {
+            text-align: left;
+            // @NOTE 文字数超過時 末尾に...をつける widthを文字数に合わせること
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 0 4px 0 10px;
+            line-height: 24px;
+            border: 0;
+            max-width: 148px;
+          }
+        }
+      }
+    }
+  }
+}
+.svg-icons.icon-dropdown{
+  height: 16px;
+}
+.button{
+  line-height: normal;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  span{
+    width: 85%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 20px;
+    vertical-align: middle;
+  }
+
+}

@@ -1,0 +1,360 @@
+<div *ngIf="!isError" class="tables">
+  <!-- 注文内容 -->
+  <div class="row row-table-title">
+    <div class="col-xs-12">
+      <div class="label label-lg label-bright">注文内容</div>
+    </div>
+  </div>
+  <table class="table table-stripe">
+    <thead>
+      <tr>
+        <th style="width:160px;" class="text-left">銘柄</th>
+        <th style="width:48px;">取引</th>
+        <th style="width:48px;">売買</th>
+        <th style="width:96px;">注文タイプ</th>
+        <th style="width:96px;">発注数</th>
+        <th style="width:72px;">執行条件</th>
+        <th style="width:192px;">注文価格</th>
+        <th style="width:112px;">状態・失効理由</th>
+        <th style="width:112px;" class="th-transform">
+          <div class="text-transform-80"><span class="label">ロスカットレート</span></div>
+        </th>
+        <th style="width:120px;">受注日時</th>
+        <th style="width:120px;">有効期限</th>
+        <th style="width:80px;">注文番号</th>
+
+        <!-- DUMMY -->
+        <th style="width:22px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detail of orderDetailList let i = index">
+
+        <!-- 銘柄 -->
+        <td *ngIf="IFListDetail == '1'" class="text-left" style="max-width:160px;" title="{{detail.cfdProductCodeDetail}}">{{detail.cfdProductCodeDetail}}</td>
+        <td *ngIf="(IFListDetail == '2' || IFListDetail == '3' || IFListDetail == '4') && i%rowCount==0" class="text-left text-ellipsis" title="{{detail.cfdProductCodeDetail}}">{{detail.cfdProductCodeDetail}}</td>
+        <td *ngIf="(IFListDetail == '2' || IFListDetail == '3' || IFListDetail == '4') && i%rowCount!=0"></td>
+
+        <!-- 取引 -->
+        <td>{{detail.settleTypeDetail}}</td>
+
+        <!-- 売買 -->
+        <td>
+          <span class="label label-order-icon sell" *ngIf="detail.buySellType==1">{{detail.buySellTypeDetail}}</span>
+          <span class="label label-order-icon buy" *ngIf="detail.buySellType==2">{{detail.buySellTypeDetail}}</span>
+        </td>
+
+        <!-- 注文タイプ -->
+        <td *ngIf="IFListDetail == '1'">{{detail.orderTypeDetail}}</td>
+        <td *ngIf="(IFListDetail == '2' || IFListDetail == '3' || IFListDetail == '4') && i%rowCount==0">{{detail.orderTypeDetail}}</td>
+        <td *ngIf="(IFListDetail == '2' || IFListDetail == '3' || IFListDetail == '4') && i%rowCount!=0"><i class='svg-icons icon-logic-order'></i></td>
+
+        <!-- 発注数 -->
+        <td class="text-right text-num">{{detail.orderQuantityDetail}}</td>
+        <!-- 執行条件 -->
+        <td>{{detail.executionTypeDetail}}</td>
+        <!-- 注文価格 -->
+        <td class="text-right text-num">{{detail.orderPriceDetail}}<span class="unit">{{detail.orderPriceDetailUnit}}</span></td>
+        <!-- 状態・失効理由 -->
+        <td>{{detail.orderStatusDetail}}&nbsp;{{detail.failureReasonDetail}}</td>
+        <!-- ロスカットレート -->
+        <td class="text-num">{{detail.losscutRateDetail}}</td>
+        <!-- 受注日時 -->
+        <td class="text-num">{{detail.orderDatetimeDetail}}</td>
+        <!-- 有効期限 -->
+        <td class="text-num">{{detail.invalidDatetimeDetail}}</td>
+        <!-- 注文番号 -->
+        <td class="text-num">{{detail.orderJointIdDetail}}</td>
+
+        <!-- DUMMY -->
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- 注文履歴 -->
+  <div class="row row-table-title" *ngIf="showOperation">
+    <div class="col-xs-12">
+      <div class="label label-lg label-bright">注文履歴</div>
+    </div>
+  </div>
+  <table class="table table-stripe" *ngIf="showOperation">
+    <thead>
+      <tr>
+        <th style="width:64px;">区分</th>
+
+        <th style="width:144px;">受注日時</th>
+
+        <!-- DUMMY -->
+        <th style="width:48px;"></th>
+
+        <th style="width:96px;" *ngIf="IFListDetail =='2' || IFListDetail =='3' || IFListDetail =='4' ">注文タイプ</th>
+        <th style="width:48px;" *ngIf="IFListDetail =='2' || IFListDetail =='4' ">取引</th>
+        <th style="width:96px;" *ngIf="IFListDetail =='3' || IFListDetail =='4' ">執行条件</th>
+        <th style="width:96px;" >注文価格</th>
+        <th style="width:96px;" *ngIf="IFListDetail =='1' ">トレール幅</th>
+        <th style="width:112px;" class="th-transform">
+          <div class="text-transform-80"><span class="label">ロスカットレート</span></div>
+        </th>
+        <th style="width:120px;" >有効期限</th>
+
+        <!-- DUMMY -->
+        <th *ngIf="IFListDetail =='1' " style="width:600px;"></th>
+        <th *ngIf="IFListDetail =='2' " style="width:552px;"></th>
+        <th *ngIf="IFListDetail =='3' " style="width:504px;"></th>
+        <th *ngIf="IFListDetail =='4' " style="width:456px;"></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let oper of operationList let i = index">
+
+        <!-- 区分 -->
+        <td *ngIf="!oper.isGroup">{{oper.orderOperType}}</td>
+        <td *ngIf="oper.isGroup"></td>
+
+        <!-- 受注日時 -->
+        <td *ngIf="!oper.isGroup" class="text-num">{{oper.orderDateOper}}</td>
+        <td *ngIf="oper.isGroup"></td>
+
+        <!-- DUMMY -->
+        <td></td>
+
+        <!-- 注文タイプ -->
+        <td *ngIf="(IFListDetail == '2' || IFListDetail == '3' || IFListDetail == '4') && i%rowCount==0 && !oper.isGroup">{{oper.orderType}}</td>
+        <td *ngIf="(IFListDetail == '2' || IFListDetail == '3' || IFListDetail == '4') && i%rowCount!=0 && !oper.isGroup"></td>
+        <td *ngIf="oper.isGroup"><i class='svg-icons icon-logic-order'></i></td>
+
+        <!-- 取引 -->
+        <td *ngIf="IFListDetail == '2' || IFListDetail == '4' ">{{oper.settleType}}</td>
+
+        <!-- 執行条件 -->
+        <td *ngIf="IFListDetail == '3' || IFListDetail == '4' ">{{oper.orderExec}}</td>
+
+        <!-- 注文価格 -->
+        <td class="text-right text-num">{{oper.orderPrice}}</td>
+
+        <!-- トレール幅 -->
+        <td class="text-num" *ngIf="IFListDetail =='1' ">{{oper.trailWidth}}</td>
+
+        <!-- ロスカットレート -->
+        <td class="text-num">{{oper.losscut}}</td>
+
+        <!-- 有効期限 -->
+        <td class="text-num">{{oper.orderDate}}</td>
+
+        <!-- DUMMY -->
+        <td></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- 約定内容 -->
+  <div class="row row-table-title" *ngIf="showExection">
+    <div class="col-xs-12">
+      <div class="label label-lg label-bright">約定内容</div>
+    </div>
+  </div>
+  <table class="table table-stripe" *ngIf="showExection">
+    <thead>
+      <tr>
+        <th style="width:160px;" rowspan="2" class="text-left">銘柄</th>
+        <th style="width:48px;" rowspan="2">取引</th>
+        <th style="width:48px;" rowspan="2">売買</th>
+        <th style="width:144px;">約定日時</th>
+        <th style="width:96px;">約定数</th>
+        <th style="width:128px;" rowspan="2" class="th-transform">
+          <div class="text-transform-80"><span class="label">コンバージョンレート</span></div>
+        </th>
+        <th style="width:480px;" colspan="4">受渡金額</th>
+
+        <!-- DUMMY -->
+        <th style="width:24px;" rowspan="2"></th>
+        <th style="width:80px;" rowspan="2">約定番号</th>
+
+        <!-- DUMMY -->
+        <th style="width:72px;" rowspan="2"></th>
+      </tr>
+      <tr>
+        <th style="width:144px;">受渡日</th>
+        <th style="width:96px;">約定価格</th>
+        <th style="width:120px;">決済損益</th>
+        <th style="width:120px;">金利・価格調整額</th>
+        <th style="width:120px;">権利調整額</th>
+        <th style="width:120px;">手数料（税込）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exec of executionList let i = index">
+
+        <!-- 銘柄 -->
+        <td class="text-left" style="max-width:160px;" title="{{exec.cfdProductCode}}">{{exec.cfdProductCode}}</td>
+
+        <!-- 取引 -->
+        <td>{{exec.settleType}}</td>
+
+        <!-- 売買 -->
+        <td>
+          <span class="label label-order-icon sell" *ngIf="exec.buySellType==1">{{exec.buySellTypeDetail}}</span>
+          <span class="label label-order-icon buy" *ngIf="exec.buySellType==2">{{exec.buySellTypeDetail}}</span>
+        </td>
+
+        <td class="text-num">
+          <!-- 約定日時 -->
+          <div>{{exec.excutionDate}}</div>
+          <!-- 受渡日 -->
+          <div>{{exec.settleDate}}</div>
+        </td>
+
+        <td class="text-right text-num">
+          <!-- 約定数 -->
+          <div>{{exec.executionQuantity}}</div>
+          <!-- 約定価格 -->
+          <div>{{exec.executionPrice}}</div>
+        </td>
+
+        <!-- コンバージョンレート -->
+        <td class="text-right text-num">{{exec.conversionRate}}<span *ngIf="exec.conversionRate!='' && exec.conversionRate!='-'" class="unit">円</span></td>
+
+        <td colspan="4" class="text-num">
+          <!-- 受渡金額 -->
+          <div><span [ngClass]="{'minus': exec.settleAmountWithColor}">{{exec.settleAmount}}</span><span *ngIf="exec.settleAmount!='' && exec.settleAmount!='-'" class="unit">円</span></div>
+          <div>
+            <ul>
+              <!-- 決済損益 -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': exec.profitLossWithColor}">{{exec.profitLoss}}</span><span *ngIf="exec.profitLoss!='' && exec.profitLoss!='-'" class="unit">円</span></li>
+              <!-- 金利・価格調整額 -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': exec.interestRateAmountWithColor}">{{exec.interestRateAmount}}</span><span *ngIf="exec.interestRateAmount!='' && exec.interestRateAmount!='-'" class="unit">円</span></li>
+              <!-- 権利調整額 -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': exec.dividendAmountWithColor}">{{exec.dividendAmount}}</span><span *ngIf="exec.dividendAmount!='' && exec.dividendAmount!='-'" class="unit">円</span></li>
+              <!-- 手数料（税込） -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': exec.commissionWithColor}">{{exec.commission}}</span><span *ngIf="exec.commission!='' && exec.commission!='-'" class="unit">円</span></li>
+            </ul>
+          </div>
+        </td>
+
+        <!-- DUMMY -->
+        <td></td>
+        <!-- 約定番号 -->
+        <td class="text-num">{{exec.executionKey}}</td>
+
+        <!-- DUMMY -->
+        <td></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- 決済建玉の詳細 -->
+  <div class="row row-table-title" *ngIf="showSettlePosition">
+    <div class="col-xs-12">
+      <div class="label label-lg label-bright">決済建玉の詳細</div>
+    </div>
+  </div>
+  <table class="table table-stripe" *ngIf="showSettlePosition">
+    <thead>
+      <tr>
+        <th style="width:160px;" rowspan="2" class="text-left">銘柄</th>
+        <!-- DUMMY -->
+        <th style="width:48px;" rowspan="2"></th>
+        <th style="width:48px;" rowspan="2">売買</th>
+        <th style="width:144px;">約定日時</th>
+        <th style="width:96px;">建玉数量</th>
+        <th style="width:128px;">決済数量</th>
+        <th style="width:480px;" colspan="4">受渡金額</th>
+
+        <!-- DUMMY -->
+        <th style="width:24px;" rowspan="2"></th>
+        <th style="width:80px;" rowspan="2">建玉番号</th>
+
+        <!-- DUMMY -->
+        <th style="width:72px;" rowspan="2"></th>
+      </tr>
+      <tr>
+        <th style="width:144px;">決済期日</th>
+        <th style="width:96px;">建単価</th>
+        <th style="width:128px;">決済単価</th>
+        <th style="width:120px;">決済損益</th>
+        <th style="width:120px;">金利・価格調整額</th>
+        <th style="width:120px;">権利調整額</th>
+        <th style="width:120px;">手数料（税込）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let settle of orderSettleList">
+
+        <!-- 銘柄 -->
+        <td class="text-left" style="max-width:160px;" title="{{settle.settle_cfdProductCode}}">{{settle.settle_cfdProductCode}}</td>
+
+        <!-- DUMMY -->
+        <td></td>
+
+        <!-- 売買 -->
+        <td>
+          <span class="label label-order-icon sell" *ngIf="settle.settle_buySellType =='1'">{{settle.settle_buySellTypeName}}</span>
+          <span class="label label-order-icon buy" *ngIf="settle.settle_buySellType =='2'">{{settle.settle_buySellTypeName}}</span>
+        </td>
+
+        <td class="text-num">
+          <!-- 約定日時 -->
+          <div>{{settle.settle_excutionDate}}</div>
+          <!-- 決済期日 -->
+          <div>{{settle.settle_settlementDueDate}}</div>
+        </td>
+
+        <td class="text-num text-right">
+          <!-- 建玉数量 -->
+          <div>{{settle.settle_currentQuantity}}</div>
+          <!-- 建単価 -->
+          <div>{{settle.settle_quotationPrice}}</div>
+        </td>
+
+        <td class="text-num text-right">
+          <!-- 決済数量 -->
+          <div>{{settle.settle_settlementQuantity}}</div>
+          <!-- 決済単価 -->
+          <div>{{settle.settle_settlementPrice}}</div>
+        </td>
+
+
+        <td colspan="4" class="text-num">
+          <!-- 受渡金額 -->
+          <div><span [ngClass]="{'minus': settle.settle_settleAmountWithColor}">{{settle.settle_settleAmount}}</span><span *ngIf="settle.settle_settleAmount!='' && settle.settle_settleAmount!='-'" class="unit">円</span></div>
+          <div>
+            <ul>
+              <!-- 決済損益 -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': settle.settle_profitLossWithColor}">{{settle.settle_profitLoss}}</span><span *ngIf="settle.settle_profitLoss!='' && settle.settle_profitLoss!='-'" class="unit">円</span></li>
+              <!-- 金利・価格調整額 -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': settle.settle_interestRateAmountWithColor}">{{settle.settle_interestRateAmount}}</span><span *ngIf="settle.settle_interestRateAmount!='' && settle.settle_interestRateAmount!='-'" class="unit">円</span></li>
+              <!-- 権利調整額 -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': settle.settle_dividendAmountWithColor}">{{settle.settle_dividendAmount}}</span><span *ngIf="settle.settle_dividendAmount!='' && settle.settle_dividendAmount!='-'" class="unit">円</span></li>
+              <!-- 手数料（税込） -->
+              <li class="text-right text-num"><span [ngClass]="{'minus': settle.settle_commissionWithColor}">{{settle.settle_commission}}</span><span *ngIf="settle.settle_commission!='' && settle.settle_commission!='-'" class="unit">円</span></li>
+            </ul>
+          </div>
+        </td>
+
+        <!-- DUMMY -->
+        <td></td>
+        <!-- 約定番号 -->
+        <td class="text-num">{{settle.settle_positionKey}}</td>
+
+        <!-- DUMMY -->
+        <td></td>
+
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="row row-dummy"></div>
+
+</div>
+
+<div *ngIf="isError" class="panel-content-msg">
+    <div>{{errTxt}}</div>
+</div>

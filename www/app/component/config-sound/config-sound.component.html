@@ -1,0 +1,61 @@
+<!-- 設定：サウンド -->
+<div class="row">
+  <div class="col-xs-8">
+    <p class="label">約定音</p>
+  </div>
+  <div class="col-xs-4">
+    <ul class="toggle-button">
+      <li [(ngModel)]="soundSettings.executionSound" btnRadio="on">ON</li>
+      <li [(ngModel)]="soundSettings.executionSound" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-8 col-indent-1">
+    <div class="">
+      <input class="input-box input-box-file" [(ngModel)]="executionSoundFile" type="text" [disabled]="true">
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <ul class="toggle-button">
+      <li (click)="viewSound('execution')"><span>再生</span></li>
+      <li (click)="selectSoundFile('execution')"><span class="ref-file">参照</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row row-gap"></div>
+
+<div class="row">
+  <div class="col-xs-8">
+    <p class="label">アラート音</p>
+  </div>
+  <div class="col-xs-4">
+    <ul class="toggle-button">
+      <li [(ngModel)]="soundSettings.alertSound" btnRadio="on">ON</li>
+      <li [(ngModel)]="soundSettings.alertSound" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-8 col-indent-1">
+    <div class="">
+      <input class="input-box input-box-file" [(ngModel)]="alertSoundFile" type="text" [disabled]="true">
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <ul class="toggle-button">
+      <li (click)="viewSound('alert')"><span>再生</span></li>
+      <li (click)="selectSoundFile('alert')"><span class="ref-file">参照</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row row-gap"></div>
+
+<div class="row">
+  <div class="col-xs-10"></div>
+  <div class="col-xs-2">
+    <button class="button button-transparent text-link" (click)="init()">初期値に戻す</button>
+  </div>
+</div>

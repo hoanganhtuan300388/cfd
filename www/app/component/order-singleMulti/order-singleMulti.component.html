@@ -1,0 +1,6 @@
+<div class="outer">
+  <ul class="toggle-button toggle-button-trans inner" *ngIf="singleMultiShow==true">
+    <li [(ngModel)]="orderSelect" name="orderSelect" btnRadio="1" (click)="orderSingleMulti()" [attr.tabindex]="baseIdx+20" tab-Index [type]="'ToggleButton'">通常注文</li>
+    <li [(ngModel)]="orderSelect" name="orderSelect" btnRadio="2" (click)="orderSingleMulti()" [attr.tabindex]="baseIdx+21" tab-Index [type]="'ToggleButton'">複合注文</li>
+  </ul>
+</div>

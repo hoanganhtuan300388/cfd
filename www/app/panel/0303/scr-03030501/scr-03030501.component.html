@@ -1,0 +1,35 @@
+<!-- ニュース：本文 -->
+<div class="panel panel-news-detail panel-animate" ng2-resizeable (resizing)="onResizing($event)">
+    <title-bar [title]="title()" [frame]="this"></title-bar>
+
+    <div class="panel-body open">
+        <div class="panel-content-news">
+            <dl class="view_box">
+                <dt>
+          <p class="title">{{newsData.title}}</p>
+          <p class="sub-title"><i class="svg-icons" [ngClass]="newsVenderIcon"></i>{{newsData.newsVenderName}}</p>
+        </dt>
+                <dd>
+                    <div [innerHtml]="newsData.pureStory" *ngIf="newsData.resourceType!='0011'"></div>
+                    <div class="file-box" *ngIf="newsData.resourceType=='0011'">
+                        <i class="text-link-pdf"></i>
+                        <a href="{{fileUrl}}" class="text-link-underline">本文を開く</a>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="cpc_box">
+            <a class="text-link-news" href="#" *ngFor="let data of relevantProducts;" (click)="itemClick(data.product_cpc)">{{data.product_name}}</a>
+            <span class="label" *ngIf="noList && !searchErr">関連銘柄なし</span>
+            <span class="" *ngIf="!noList && searchErr">{{searchErrMsg}}</span>
+        </div>
+
+        <div class="panel-btn-footer">
+            <button class="button button-icon btn_open btn-left"><i class="svg-icons icon-close-exdata"></i></button>
+
+            <button class="button button-icon" (click)="onListUp($event)" [disabled]="upBtnCheck==true"><i class="svg-icons icon-prev"></i></button>
+            <button class="button button-icon" (click)="onListDown($event)" [disabled]="downBtnCheck==true"><i class="svg-icons icon-next"></i></button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+<!-- チャート -->
+<div ng2-resizeable (resizing)="onResizing($event)" class="panel panel-chart panel-chart-mini panel-animate">
+  <title-bar [title]="title()" [frame]="this"></title-bar>
+  <div class="panel-body">
+    <div class="panel-body-chart">
+      <div class="panel-body-chart-wrapper">
+        <chart-cfd-mini #chart></chart-cfd-mini>
+      </div>
+    </div>
+  </div>
+</div>

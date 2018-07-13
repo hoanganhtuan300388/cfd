@@ -1,0 +1,27 @@
+.chart-wrapper-area {
+  top:0px;
+  height: calc(100%);
+
+  #idChartWrap {
+    position: relative !important;
+    background-color: rgba(#fff, 0) !important;
+  }
+
+  #idChartArea {
+    background-color: rgba(#fff, 0) !important;
+  }
+
+  #idChartDrawArea {
+    background-color: rgba(#fff, 0) !important;
+  }
+
+  /* #2205 */
+  #eidTimeLabel {
+    position: absolute;
+    float:left;
+    top: calc(100% - 18px);
+    left: 5px;
+    height: 17px;
+  }
+  /* [end] #2205 */
+}

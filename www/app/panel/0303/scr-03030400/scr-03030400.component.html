@@ -1,0 +1,46 @@
+<!-- お知らせ:リスト -->
+<div class="panel panel-customer panel-animate" ng2-resizeable (resizing)="onResizing($event)" tabindex="100">
+  <title-bar [title]="title()" [frame]="this"></title-bar>
+  <div class="panel-body">
+    <dl class="tab">
+      <dt>
+        <ul class="toggle-button toggle-button-fill">
+          <li class="info-for-all" [(ngModel)]="selectedTab" btnRadio="0" (click) ="onSelectedTab($event)">会員のみなさまへ</li>
+          <li class="info-for-client" [(ngModel)]="selectedTab" btnRadio="1" (click) ="onSelectedTab($event)" id="tab-nickname"><span class="nicknamebr" *ngIf="!nickNameFlg">{{nickName}}様へ<span>のお知らせ</span></span><span *ngIf="nickNameFlg">お客様へのお知らせ</span></li>
+        </ul>
+      </dt>
+      <dd>
+        <div class="con_re">
+          <div class="con con_hd">
+            <div class="panel-content-msg" *ngIf="listErrShow==true">
+              <div>{{listErrText}}</div>
+            </div>
+            <div id="grid{{pageId}}"></div>
+          </div>
+          <i></i>
+          <div class="con con_bt panel-content-news">
+            <div class="panel-content-msg" *ngIf="msgErrShow==true">
+              <div>{{msgErrText}}</div>
+            </div>
+            <dl>
+              <dt>
+                <div class="title">{{messageData.title}}</div>
+                <div class="info">
+                    <div class="label label-important" *ngIf="warnCheck">重要</div>
+                    <span>{{messageData.day}}</span>
+                </div>
+              </dt>
+              <dd>
+                <div [innerHtml]="messageData.msg"></div>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </dd>
+    </dl>
+    <div class="panel-btn-footer">
+      <button class="button button-icon" (click)="onUpBtnClick($event)" [disabled]="upBtnCheck==true"><i class="svg-icons icon-prev"></i></button>
+      <button class="button button-icon" (click)="onDownBtnClick($event)" [disabled]="downBtnCheck==true"><i class="svg-icons icon-next"></i></button>
+    </div>
+  </div>
+</div>

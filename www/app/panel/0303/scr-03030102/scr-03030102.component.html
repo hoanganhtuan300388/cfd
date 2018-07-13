@@ -1,0 +1,141 @@
+<!-- 企業情報 -->
+<div class="panel panel-info panel-animate" ng2-resizeable resizeable="height" >
+  <title-bar [title]="title()" [frame]="this" [fixed-width]="true" [title-show]="true"></title-bar> 
+
+  <div class="panel-body">
+
+      <div class="accordion list-group" *ngIf="errShow">
+        <div [innerHtml]="errText"></div>
+      </div>
+
+      <div class="accordion list-group" *ngIf="!errShow">
+        <div class="accordion-toggle">
+          <a class="list-group-item" href="#{{cfdProductCode}}collapse-1" data-toggle="collapse">
+            企業情報<span class="label label-frame">{{categoryName}}</span>
+          </a>
+        </div>
+        <div id="{{cfdProductCode}}collapse-1" class="collapse in">
+          <div class="article">{{businessSummary}}</div>
+        </div>
+
+        <div class="accordion-toggle">
+          <a href="#{{cfdProductCode}}collapse-2" data-toggle="collapse" class="list-group-item">
+            規模・業績
+          </a>
+        </div>
+        <div id="{{cfdProductCode}}collapse-2" class="collapse in">
+          <table class="table table-stripe">
+            <tbody>
+              <tr>
+                <th style="width:60%;">原資産時価総額 (百万{{priceCurrency}})</th>
+                <td class="text-num" style="width:40%;">{{marketCapitalization}}</td>
+              </tr>
+              <tr>
+                <th>売上高 (百万{{priceCurrency}})</th>
+                <td class="text-num">{{salesRevenue}}</td>
+              </tr>
+              <tr>
+                <th>当期純利益 (百万{{priceCurrency}})</th>
+                <td class="text-num">{{netIncome}}</td>
+              </tr>
+              <tr>
+                <th>企業価値 (EV) (百万{{priceCurrency}})</th>
+                <td class="text-num">{{enterpriseValue}}</td>
+              </tr>
+              <tr>
+                <th>EBITDA (百万{{priceCurrency}})</th>
+                <td class="text-num">{{ebitda}}</td>
+              </tr>
+              <tr>
+                <th>従業員数</th>
+                <td class="text-num">{{employees}}<span *ngIf="employees != ''" class="unit">人</span></td>
+              </tr>
+              <tr>
+                <th>粗利益率</th>
+                <td class="text-num">{{grossProfitMargin}}</td>
+              </tr>
+              <tr>
+                <th>PER</th>
+                <td class="text-num">{{per}}<span *ngIf="per != ''" class="unit">倍</span></td>
+              </tr>
+              <tr>
+                <th>PBR</th>
+                <td class="text-num">{{pbr}}<span *ngIf="pbr != ''" class="unit">倍</span></td>
+              </tr>
+              <tr>
+                <th>ROE</th>
+                <td class="text-num">{{roe}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="accordion-toggle">
+          <a href="#{{cfdProductCode}}collapse-3" data-toggle="collapse" class="list-group-item">
+            1株当たりデータ
+          </a>
+        </div>
+        <div id="{{cfdProductCode}}collapse-3" class="collapse in">
+          <table class="table table-stripe">
+              <tbody>
+                <tr>
+                    <th>1株当たり売上高 ({{priceCurrency}})</th>
+                    <td class="text-num">{{salesRevenuePerShare}}</td>
+                  </tr>
+                  <tr>
+                    <th>1株当たり純資産 ({{priceCurrency}})</th>
+                    <td class="text-num">{{netAssetPerShare}}</td>
+                  </tr>
+                  <tr>
+                    <th>1株当たり配当 ({{priceCurrency}})</th>
+                    <td class="text-num">{{dividendPerShare}}</td>
+                  </tr>
+                  <tr>
+                    <th>1株当たり純利益 ({{priceCurrency}})</th>
+                    <td class="text-num">{{earningsPerShare}}</td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+
+        <div class="accordion-toggle">
+          <a href="#{{cfdProductCode}}collapse-4" data-toggle="collapse" class="list-group-item">
+            業績予測
+          </a>
+        </div>
+        <div id="{{cfdProductCode}}collapse-4" class="collapse in">
+            <table class="table table-stripe">
+              <tbody>
+                <tr>
+                  <th>売上高 (百万{{priceCurrency}})</th>
+                  <td class="text-num">{{estimateSalesRevenue}}</td>
+                </tr>
+                <tr>
+                  <th>当期純利益 (百万{{priceCurrency}})</th>
+                  <td class="text-num">{{estimateNetIncome}}</td>
+                </tr>
+                <tr>
+                  <th>EPS ({{priceCurrency}})</th>
+                  <td class="text-num">{{estimateEps}}</td>
+                </tr>
+                <tr>
+                  <th>PER</th>
+                  <td class="text-num">{{estimatePer}}<span *ngIf="estimatePer != ''" class="unit">倍</span></td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+
+
+        <div class="accordion-toggle">
+          <a href="#{{cfdProductCode}}collapse-5" data-toggle="collapse" class="list-group-item">
+            URL
+          </a>
+        </div>
+        <div id="{{cfdProductCode}}collapse-5" class="collapse in">
+          <div class="article"><a href="#" (click)="onClickUrl($event,url)" class="text-link">{{url}}</a></div>
+        </div>
+      </div>
+
+  </div>
+</div>

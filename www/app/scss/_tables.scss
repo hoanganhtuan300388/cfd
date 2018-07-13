@@ -1,0 +1,107 @@
+table {
+  &,
+  tr,
+  th {
+    font-weight: 300;
+  }
+}
+
+dl,
+dt,
+dd {
+  font-weight: 300;
+}
+
+/* override bootstrap */
+.table.table-stripe {
+  width: auto;
+  margin-bottom: 0;
+  border-bottom: 1px solid $gws-color-border-table;
+
+  > tbody > tr {
+    &:nth-child(odd) {
+      background-color: $gws-color-bg-table-row-odd;
+    }
+    &:nth-child(even) {
+      background-color: $gws-color-bg-table-row-even;
+    }
+    &:not(.tr-dummy):hover {
+      background-color: $gws-color-bg-table-row-hover;
+    }
+    &:first-child>td {
+      height: 29px; // border-top 分
+    }
+  }
+
+  >tbody>tr>td,
+  >tbody>tr>th,
+  >tfoot>tr>td,
+  >tfoot>tr>th,
+  >thead>tr>td,
+  >thead>tr>th {
+    height: 28px;
+    padding: 0;
+    line-height: 20px;
+    vertical-align: middle;
+    border-top: 0;
+    text-align: center;
+    @extend .text-overflow-ellipsis;
+
+    &.text-left {
+      text-align: left;
+      padding-left: 8px;
+      &:first-child {
+        padding-left: 16px;
+      }
+    }
+    &.text-right {
+      text-align: right;
+      padding-right: 8px;
+    }
+    &.text-num {
+      font-size: $gws-font-size-large;
+      .unit {
+        font-size: $gws-font-size-base;
+      }
+    }
+
+    &.cell-indent-1 {
+      padding-left: 26px;
+    }
+
+    .label {
+      margin-top: 3px;
+      margin-bottom: -3px;
+      line-height: 20px;
+    }
+  }
+
+  >thead>tr>th {
+    border-bottom: 1px solid $gws-color-border-table-header;
+    vertical-align: middle;
+    color: $gws-color-font-table-header;
+    background-color: $gws-color-bg-table-header;
+    &.th-transform {
+      padding: 0;
+    }
+  }
+
+  >tbody>tr>td {
+    div {
+      height: 28px;
+      padding-top: 4px;
+      &:first-child {
+        border-bottom: 1px solid $gws-color-border-table;
+      }
+      ul {
+        display: table;
+        margin-bottom: 0;
+        li {
+          display: table-cell;
+          width: 120px;
+        }
+      }
+    }
+  }
+
+}

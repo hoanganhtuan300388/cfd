@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+body {
+  width: 100%;
+  height: 100%;
+
+  font-family: $gws-font-family;
+  font-weight: 300;
+  font-size: $gws-font-size-base;
+
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+
+  * {
+    letter-spacing: normal;
+    color: $gws-color-font-normal;
+  }
+
+  p {
+    margin-bottom: 5px;
+  }
+
+  .h1, .h2, .h3, .h4, h1, h2, h3, h4, h5, h6 {
+    font-family: $gws-font-family;
+    font-weight: 300;
+    line-height: 0.8;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: default;
+    color: $gws-color-font-normal;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: $gws-white;
+      outline: none;
+    }
+  }
+
+}
+
+mdi-area{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+ /* native */
+@import "scrollbar";
+@import "range";
+
+/* icon */
+@import "svg-icons";
+
+/* bootstrap material */
+@import "container";
+@import "rows";
+@import "navbar";
+@import "task-bar";
+@import "panels";
+@import "tables";
+@import "inputs";
+@import "checkboxes";
+@import "labels";
+@import "pagination";
+@import "carousel";
+@import "modal";
+@import "accordions";
+
+/* original*/
+@import "buttons";
+@import "cursor";
+@import "toggle-buttons";
+@import "footer";
+@import "dropdown";
+@import "color-picker";
+@import "global";
+@import "window-controller";
+@import "notice-label";
+@import "tooltip";
+@import "radio";
+
+/* lib */
+@import "pq-grid";

@@ -1,0 +1,43 @@
+<!-- 注文一覧 -->
+<div ng2-resizeable (resizing)="onResizing($event)" class="panel panel-order-list panel-animate" tabindex="100">
+  <title-bar [title]="title()" [frame]="this" [add]="addTitleBarId"></title-bar>
+
+  <!-- add to title-bar -->
+  <div id="title-bar-add-content" class="selectTabbar">
+    <!-- LEFT -->
+    <div id="title-bar-add-content-left">
+      <div class="content-col dropdown-list">
+        <dropdown [items]="stockItem" [select]="stockSelected" (changed)="onChgSymbolStock($event)" [dropdown-option-show]="true" [disabled]="!loadCompleteFlg"></dropdown>
+        <dropdown [items]="orderTypeItem" [select]="orderTypeSelected" (changed)="onChangeOrderType($event)" [disabled]="!loadCompleteFlg"></dropdown>
+        <dropdown [items]="orderStatuItem" [select]="orderStatuSelected" (changed)="onChangeStatus($event)" [disabled]="!loadCompleteFlg"></dropdown>
+        <dropdown [items]="dateItem" [select]="dateSelected" (changed)="onChangeDate($event)" [disabled]="!loadCompleteFlg"></dropdown>
+
+        <!-- RIGHT -->
+        <div class="content-right content-gap"></div>
+        <button type="button" class="button button-icon content-right" (click)="onClickRefresh($event)" [disabled]="!loadCompleteFlg"><i class="svg-icons icon-refresh"></i></button>
+
+        <div class="content-right pagination" *ngIf="hasPage()">
+          <div class="pagination-page"><a href="#">{{currentPage}} / {{totalPage}}</a></div>
+          <button class="button button-icon pageination-button" type="button" (click)="onPrevPage($event)" title="{{TOOLTIP_PREV_MOVE}}" [disabled]="currentPage==1 || !loadCompleteFlg"><i class="svg-icons icon-arrow-prev"></i></button>
+          <button class="button button-icon pageination-button" type="button" (click)="onNextPage($event)" title="{{TOOLTIP_NEXT_MOVE}}" [disabled]="currentPage==totalPage || !loadCompleteFlg"><i class="svg-icons icon-arrow-next"></i></button>
+          <div class="content-gap"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel-body">
+    <div id="grid"></div>
+  </div>
+</div>
+
+<context-menu #contextMenuComponent>
+  <ng-template *ngFor="let item of contextItems;"
+    contextMenuItem
+    [enabled]="item.enabled"
+    [divider]="item.divider ? 'true' : ''"
+    (execute)="onClickContextItem($event.item, item)">
+    {{item.title}}
+  </ng-template>
+</context-menu>

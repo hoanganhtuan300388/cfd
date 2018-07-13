@@ -1,0 +1,36 @@
+<!-- 注文変更 -->
+<div class="panel panel-order panel-animate">
+  <title-bar [title]="title()" [frame]="this" [hide-max]="true" [title-show]="true" [attr.tabindex]="baseIdx" tab-Index [type]="'Input'"></title-bar>
+
+  <div class="panel-body">
+    <div class="process-loading" *ngIf="isLoading">
+      <div class="process-loading-bg"></div>
+      <div class="process-loading-mark"></div>
+    </div>
+
+    <div class="row row-header-name">
+      <div class="col-xs-12">
+        <div class="label label-name">{{productName}}</div>
+        <i class="svg-icons icon-attention" *ngIf="hasAttentionMessage" title="{{attentionMessage}}"></i>
+      </div>
+    </div>
+
+    <div class="col-xs-2"></div>
+    <div class="row">
+      <div class="col-xs-12">
+        <ask-bid-unit #askbid (changed)="onClickOrderPrice($event)"></ask-bid-unit>
+      </div>
+    </div>
+    <div #slider class="carousel slide" data-interval="false">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <order-modify (onErrClick)="onCanvasBoolean()" (onErrorDismiss)="onErrorDismiss()" #ordermodify></order-modify>
+          <order-sendButton #orderSendButton (onNavButtonClick)="onNavBtnClick('INPUT', $event)"></order-sendButton>
+        </div>
+        <div class="item">
+          <order-modify-confirm #orderModifyConfirm (onNavButtonClick)="onNavBtnClick('CONFIRM', $event)"></order-modify-confirm>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

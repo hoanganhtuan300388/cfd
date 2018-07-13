@@ -1,0 +1,34 @@
+<!-- 信用スピード注文の同意事項画面表示 -->
+
+<div class="panel modal-speed-order-confirm" #dragTarget>
+  <div class="panel-body">
+
+    <div class="row modal-header">
+      <div class="col-xs-12">
+        <p>スピード注文のご利用に関する同意事項</p>
+      </div>
+    </div>
+
+    <div class="row modal-body">
+      <div *ngIf="!demoTrade" class="col-xs-12">
+        <p>スピード注文は、ワンクリックで成行注文が発注されるなどお客様の利便性を追求した簡易な注文方法であるため、通常の注文方法に比べ、お客様の誤操作により誤った注文が発注、約定する危険が大きい注文方法です。</p>
+        <p>お客様におかれましては、<a href="#" class="text-link-underline" (click)="showManual()">操作マニュアル(PDF)</a>
+        を熟読してご理解いただき、デモトレードの利用で操作方法に十分慣れた上、お客様ご自身の責任でご利用ください。当社はお客様がスピード注文をご利用になることで発生したあらゆる損害に関し、一切の責任を負わないものといたします。</p>
+        <p>上記についてご同意いただける場合は下記の「同意する」ボタンを押し、利用を開始してください。</p>
+      </div>
+      <div *ngIf="demoTrade" class="col-xs-12">
+        <p>スピード注文は、ワンクリックで成行注文が発注されるなどお客様の利便性を追求した簡易な注文方法であるため、通常の注文方法に比べ、お客様の誤操作により誤った注文が発注、約定する危険が大きい注文方法です。</p>
+        <p>お客様におかれましては、<a href="#" class="text-link-underline" (click)="showManual()">操作マニュアル(PDF)</a>
+          を熟読してご理解いただいた上、お客様ご自身の責任でご利用ください。当社はお客様がスピード注文をご利用になることで発生したあらゆる損害に関し、一切の責任を負わないものといたします。</p>
+        <p>上記についてご同意いただける場合は下記の「同意する」ボタンを押し、利用を開始してください。</p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="button" (click)="disagreed()">同意しない</button>
+      <button class="button" (click)="agreed()">同意する</button>
+    </div>
+
+  </div>
+
+</div>

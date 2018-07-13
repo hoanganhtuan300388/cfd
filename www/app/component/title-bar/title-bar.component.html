@@ -1,0 +1,37 @@
+<!-- タイトルバー -->
+<div ng2-draggable [drag-target]="dragTarget" class="navbar navbar-titlebar" [ngClass]="{'external-window':isExternalWindow(),'titlebar-draggable': isExternalWindow()}"
+(contextmenu)="showContextMenu($event)">
+  <div class="navbar-titlebar-region-top" *ngIf="isExternalWindow()"></div>
+  <div class="navbar-titlebar-region-left"></div>
+
+  <ul class="nav navbar-nav">
+    <li *ngIf="_titleShow" title="{{title}}" class="navbar-titlebar-title" [ngClass]="{'navbar-titlebar-title-long':_hideMax}">{{title}}</li>
+    <li *ngIf="!_titleShow" class="navbar-titlebar-title">{{title}}</li>
+
+    <!-- タイトルバーに追加する項目 -->
+    <li id="title-bar-add-area" class="navbar-titlebar-content" ></li>
+
+    <!-- タイトルバーのD&D -->
+    <li class="navbar-titlebar-grab"></li>
+
+    <li id="title-bar-add-area-right" class="navbar-window-right">
+      <!-- #2925 -->
+      <window-controller #windowController
+        [frame]='_frame' [hide-min]='_hideMin' [hide-max]='_hideMax' [hide-export]='_hideExport' [hide-close]='_hideClose' [fixed-width]='_fixedWidth'
+        [disable-export]="_disableExport"
+      >
+      </window-controller>
+      <!-- [end] #2925 -->
+    </li>
+  </ul>
+</div>
+
+<context-menu #contextMenuComponent>
+  <ng-template *ngFor="let item of contextItems;"
+      contextMenuItem
+      [visible]="item.visible"
+      [enabled]="item.enabled"
+      (execute)="onClickContextItem(item)">
+      {{item.title}}
+  </ng-template>
+</context-menu>

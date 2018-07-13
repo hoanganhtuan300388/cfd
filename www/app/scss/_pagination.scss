@@ -1,0 +1,16 @@
+/** ---------- FOR CFD ---------- **/
+.pagination {
+  .pagination-page {
+    float: left;
+    text-align: right;
+    min-width: 40px;
+    margin-right: 8px;
+    line-height: 24px;
+    a {
+      line-height: 22px
+    }
+  }
+  .pageination-btn {
+    margin-right: 0;
+  }
+}

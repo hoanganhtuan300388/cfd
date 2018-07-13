@@ -1,0 +1,127 @@
+<!-- 設定：チャート表示-->
+<div class="row">
+  <div class="col-xs-5">
+    <p class="label">グリッドの表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.gridDisplay" btnRadio="vertical" style="width:54px">垂直</li>
+      <li [(ngModel)]="chartSettings.gridDisplay" btnRadio="horizontal" style="width:54px">水平</li>
+      <li [(ngModel)]="chartSettings.gridDisplay" btnRadio="cross" style="width:54px">クロス</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-5">
+    <p class="label">詳細価格情報の表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.detailPriceDisplay" btnRadio="on">ON</li>
+      <li [(ngModel)]="chartSettings.detailPriceDisplay" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-5">
+    <p class="label">現在値の表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.currentPriceDisplay" btnRadio="on">ON</li>
+      <li [(ngModel)]="chartSettings.currentPriceDisplay" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-5">
+    <p class="label">高値/安値の表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.highLowPriceDisplay" btnRadio="on">ON</li>
+      <li [(ngModel)]="chartSettings.highLowPriceDisplay" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row row-gap"></div>
+
+<div class="row">
+  <p>初期画面設定</p>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-5 col-indent-1">
+    <p class="label">銘柄</p>
+  </div>
+  <div class="col-xs-6">
+    <symbol-cfd (changed)="onChangedSymbol($event)" [product]='chartSettings.initProduct'></symbol-cfd>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-5 col-indent-1">
+    <p class="label">足の種類</p>
+  </div>
+  <div class="col-xs-6">
+    <dropdown class="dropdown-type-frame" [items]="timeTypeList" [select]="chartSettings.initFoot" (changed)="onChangedFootType($event)" [btnwidth]="113">
+    </dropdown>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-5 col-indent-1">
+    <p class="label">注文ラインの表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.orderLineDisplay" btnRadio="on">ON</li>
+      <li [(ngModel)]="chartSettings.orderLineDisplay" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-5 col-indent-1">
+    <p class="label">建玉情報表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.positionDisplay" btnRadio="on">ON</li>
+      <li [(ngModel)]="chartSettings.positionDisplay" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+
+<!-- #3451 -->
+<!--
+<div class="row">
+  <div class="col-xs-5 col-indent-1">
+    <p class="label">約定情報表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.executionDisplay" btnRadio="on">ON</li>
+      <li [(ngModel)]="chartSettings.executionDisplay" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>
+-->
+<!-- [end] #3451 -->
+
+<div class="row">
+  <div class="col-xs-5 col-indent-1">
+    <p class="label">アラートライン表示</p>
+  </div>
+  <div class="col-xs-6">
+    <ul class="toggle-button">
+      <li [(ngModel)]="chartSettings.alertLineDisplay" btnRadio="on">ON</li>
+      <li [(ngModel)]="chartSettings.alertLineDisplay" btnRadio="off">OFF</li>
+    </ul>
+  </div>
+</div>

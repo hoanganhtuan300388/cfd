@@ -1,0 +1,126 @@
+/* Override Modal */
+.modal {
+  z-index: 1001;//index($gws-z-indexes, modal);
+  &.fade.in{
+    background-color: rgba(0,0,0,0.5);
+  }
+  &.fade {
+    -webkit-transition: opacity .3s linear;
+    -o-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    border-bottom: 0;
+    border-top: 0;
+
+    p {
+      margin-bottom: 16px;
+      line-height: 20px;
+    }
+  }
+}
+
+.panel.panel-default>.panel-heading,
+.panel>.panel-heading {
+  background-color: $gws-color-bg-header;
+}
+
+.panel-default>.panel-heading,
+.panel:not([class*=panel-])>.panel-heading {
+  color: $gws-color-font-normal;
+}
+
+.panel {
+  &[class*="modal-"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    margin-left: 0;
+
+    .panel-heading {
+      background: $gws-color-bg-header;
+      border-top: 1px solid $gws-color-border-header-top;
+      height: 24px;
+      line-height: 24px;
+      box-sizing: border-box;
+      padding: 0 16px;
+      border-radius: 0;
+      .button {
+        float: right;
+      }
+    }
+
+    .panel-body {
+      padding: 8px 0 0;
+    }
+
+    &.modal-speed-order-confirm {
+      width: 480px;
+      height: 480px;
+      padding: 57px 0;
+
+      .modal-header {
+        padding: 0 32px;
+        text-align: center;
+        margin-bottom: 16px;
+        line-height: 20px;
+      }
+
+      .modal-body {
+        padding: 0 32px;
+        line-height: 20px;
+      }
+
+      .modal-footer {
+        bottom: 48px;
+        position: absolute;
+        padding: 0;
+        margin-left: 80px;
+        .button {
+          width: 144px;
+          height: 48px;
+          font-size: 18px;
+          line-height: 1.11;
+          background-color: rgba($gws-white, 0.2);
+          &:not(:first-child) {
+            margin-left: 32px;
+          }
+        }
+      }
+    }
+
+
+    &.modal-alert {
+      width: 320px;
+      height: 200px;
+      .panel-body{
+        height: calc(100% - 24px); /* header */
+      }
+      .row {
+        &.row-content:first-child {
+          padding-top: 8px;
+          height: 36px;
+        }
+        &:not([class*="row-"]) {
+          margin-top: 16px;
+          .col-left {
+            width: 96px;
+            padding-left: 8px;
+          }
+        }
+        &.row-footer {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+      .message-wrap {
+        margin-top: 26px;
+      }
+    }
+
+  }
+}

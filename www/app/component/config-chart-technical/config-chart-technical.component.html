@@ -1,0 +1,1159 @@
+<!-- 設定：チャート指標 -->
+<div class="row" *ngIf="!isPageDisabled">
+  <p>初期画面設定</p>
+</div>
+
+<div class="row row-no-gap">
+
+<div class="row">
+  <div class="col-xs-5 configbox configbox-left">
+      <p>トレンド系</p>
+      <ul class="technical-list techTab">
+          <li *ngFor="let trend of indicatorInfos.trends; let idx = index;" class="checkbox" [ngClass]="{disabled:trend.__disabled__}">
+            <label [ngModel]="techTab" btnRadio="trend.code" (ngModelChange)="onSelectIndicator(trend.code)" (click)="onClickSelectTab($event)">
+              <input type="checkbox" [ngModel]="trend.show" (click)="onClickIndicatorShowOnOff(trend.code)" [disabled]="trend.__disabled__">{{trend.display}}<span *ngIf="trend.attention" class="label label-unit">※</span>
+            </label>
+          </li>
+      </ul>
+
+      <p>オシレーター系</p>
+      <ul class="technical-list">
+          <li *ngFor="let oscillator of indicatorInfos.oscillators; let idx = index;" class="checkbox" [ngClass]="{disabled:oscillator.__disabled__}">
+            <label btnRadio="oscillator.code" [ngModel]="techTab" (ngModelChange)="onSelectIndicator(oscillator.code)" (click)="onClickSelectTab($event)">
+              <input type="checkbox" [ngModel]="oscillator.show" (click)="onClickIndicatorShowOnOff(oscillator.code)" [disabled]="oscillator.__disabled__">{{oscillator.display}}<span *ngIf="oscillator.attention" class="label label-unit">※</span>
+            </label>
+          </li>
+      </ul>
+      <div class="label technical-text">※印は3つまで選択可能です。</div>
+  </div>
+
+
+  <div class="col-xs-7 configbox configbox-right">
+      <!-- テクニカル -->
+      <div class="techtab-content">
+        <!-- 単純移動平均線 -->
+        <div *ngIf="techTab=='0600'">
+          <p class="label">単純移動平均線</p>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ma1_disable" (click)="onClickPlotOnOff('0600', 0)">MA1</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0600_0" [(ngModel)]="config.parameters.ma1" (blur)="onChangedParamInput('0600', 0, $event)" (keydown)="onKeyParamInput('0600', 0, $event)">
+                  <button type="button" class="button button-low button-icon"
+                           long-press (onLongPressing)="onLongPressParameterChange('0600', 0, false)"
+                           (click)="onClickParameterChange('0600', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0600', 0, true)"
+                          (click)="onClickParameterChange('0600', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="200" [(ngModel)]="config.parameters.ma1" (input)="onScrollToChange('0600', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ma2_disable" (click)="onClickPlotOnOff('0600', 1)">MA2</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0600_1" [(ngModel)]="config.parameters.ma2" (blur)="onChangedParamInput('0600', 1, $event)" (keydown)="onKeyParamInput('0600', 1, $event)">
+                  <button type="button" class="button button-low button-icon"
+                            long-press (onLongPressing)="onLongPressParameterChange('0600', 1, false)"
+                            (click)="onClickParameterChange('0600', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                           long-press (onLongPressing)="onLongPressParameterChange('0600', 1, true)"
+                           (click)="onClickParameterChange('0600', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="200" [(ngModel)]="config.parameters.ma2" (input)="onScrollToChange('0600', 1, $event)" >
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ma3_disable" (click)="onClickPlotOnOff('0600', 2)">MA3</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0600_2" [(ngModel)]="config.parameters.ma3" (blur)="onChangedParamInput('0600', 2, $event)" (keydown)="onKeyParamInput('0600', 2, $event)">
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0600', 2, false)"
+                          (click)="onClickParameterChange('0600', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                           long-press (onLongPressing)="onLongPressParameterChange('0600', 2, true)"
+                           (click)="onClickParameterChange('0600', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="200" [(ngModel)]="config.parameters.ma3" (input)="onScrollToChange('0600', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0600')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!--指数平滑移動平均線-->
+        <div *ngIf="techTab=='0609'">
+          <p class="label">指数平滑移動平均線</p>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ema1_disable" (click)="onClickPlotOnOff('0609', 0)">EMA1</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0609_0" [(ngModel)]="config.parameters.ema1" (blur)="onChangedParamInput('0609', 0, $event)" (keydown)="onKeyParamInput('0609', 0, $event)">
+                  <button type="button" class="button button-low button-icon"
+                           long-press (onLongPressing)="onLongPressParameterChange('0609', 0, false)"
+                           (click)="onClickParameterChange('0609', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0609', 0, true)" (click)="onClickParameterChange('0609', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="200" [(ngModel)]="config.parameters.ema1" (input)="onScrollToChange('0609', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ema2_disable" (click)="onClickPlotOnOff('0609', 1)">EMA2</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0609_1" pattern="[0-9]{3}"
+                         [(ngModel)]="config.parameters.ema2" (blur)="onChangedParamInput('0609', 1, $event)" (keydown)="onKeyParamInput('0609', 1, $event)">
+                  <button type="button" class="button button-low button-icon"
+                            long-press (onLongPressing)="onLongPressParameterChange('0609', 1, false)"
+                            (click)="onClickParameterChange('0609', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                           long-press (onLongPressing)="onLongPressParameterChange('0609', 1, true)"
+                           (click)="onClickParameterChange('0609', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="200" [(ngModel)]="config.parameters.ema2" (input)="onScrollToChange('0609', 1, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ema3_disable" (click)="onClickPlotOnOff('0609', 2)">EMA3</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0609_2" pattern="[0-9]{3}"
+                    [(ngModel)]="config.parameters.ema3" (blur)="onChangedParamInput('0609', 2, $event)" (keydown)="onKeyParamInput('0609', 2, $event)">
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0609', 2, false)"
+                          (click)="onClickParameterChange('0609', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0609', 2, true)"
+                          (click)="onClickParameterChange('0609', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="200" [(ngModel)]="config.parameters.ema3" (input)="onScrollToChange('0609', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0609')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!--ボリンジャーバンド-->
+        <div *ngIf="techTab=='0610'">
+          <p class="label">ボリンジャーバンド</p>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.bollingerMA_disable" (click)="onClickPlotOnOff('0610', 0)">ボリンジャーバンド</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0610_0" pattern="[0-9]{3}"
+                         [(ngModel)]="config.parameters.bollingerMA" (blur)="onChangedParamInput('0610', 0, $event)" (keydown)="onKeyParamInput('0610', 0, $event)">
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0610', 0, false)"
+                          (click)="onClickParameterChange('0610', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0610', 0, true)"
+                          (click)="onClickParameterChange('0610', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="188" [(ngModel)]="config.parameters.bollingerMA" (input)="onScrollToChange('0610', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.bollinger1_disable" (click)="onClickPlotOnOff('0610', 1)">1σ</label><!-- #3088 -->
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.bollinger2_disable" (click)="onClickPlotOnOff('0610', 2)">2σ</label><!-- #3088 -->
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.bollinger3_disable" (click)="onClickPlotOnOff('0610', 3)">3σ</label><!-- #3088 -->
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-5">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0610')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- スーパーボリンジャー -->
+        <div *ngIf="techTab=='0601'">
+            <p class="label">スーパーボリンジャー</p>
+
+            <div class="row">
+                <div class="col-xs-7">
+                  <div class="checkbox">
+                    <label><input type="checkbox" [ngModel]="!config.parameters.superBollingerMA_disable" (click)="onClickPlotOnOff('0601', 0)">移動平均</label>
+                  </div>
+                </div>
+
+                <div class="col-xs-5">
+                  <div class="input-qty-set">
+                    <input type="text" class="input-box qty-input" id="eidIndi_0601_0" [(ngModel)]="config.parameters.superBollingerMA" (blur)="onChangedParamInput('0601', 0, $event)" (keydown)="onKeyParamInput('0601', 0, $event)" >
+                    <button type="button" class="button button-low button-icon"
+                            long-press (onLongPressing)="onLongPressParameterChange('0601', 0, false)"
+                            (click)="onClickParameterChange('0601', 0, true)" ><i class="svg-icons icon-minus"></i>
+                    </button>
+                    <button type="button" class="button button-low button-icon"
+                            long-press (onLongPressing)="onLongPressParameterChange('0601', 0, true)"
+                            (click)="onClickParameterChange('0601', 0, false)" ><i class="svg-icons icon-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs-7"></div>
+                  <div class="col-xs-4">
+                    <div class="range-slider">
+                      <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.superBollingerMA" (input)="onScrollToChange('0601', 0, $event)">
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.superBollingerLag_disable" (click)="onClickPlotOnOff('0601', 1)">遅行スパン</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0601_1" [(ngModel)]="config.parameters.superBollingerLag" (blur)="onChangedParamInput('0601', 1, $event)" (keydown)="onKeyParamInput('0601', 1, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0601', 1, false)"
+                          (click)="onClickParameterChange('0601', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0601', 1, true)"
+                          (click)="onClickParameterChange('0601', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.superBollingerLag" (input)="onScrollToChange('0601', 1, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.superBollinger1_disable" (click)="onClickPlotOnOff('0601', 2)">バンド1</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0601_2" [(ngModel)]="config.parameters.superBollinger1" (blur)="onChangedParamInput('0601', 2, $event)" (keydown)="onKeyParamInput('0601', 2, $event)">
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0601', 2, false)" (click)="onClickParameterChange('0601', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0601', 2, true)" (click)="onClickParameterChange('0601', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="5" [(ngModel)]="config.parameters.superBollinger1" (input)="onScrollToChange('0601', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.superBollinger2_disable" (click)="onClickPlotOnOff('0601', 3)">バンド2</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0601_3" [(ngModel)]="config.parameters.superBollinger2" (blur)="onChangedParamInput('0601', 3, $event)" (keydown)="onKeyParamInput('0601', 3, $event)">
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0601', 3, false)" (click)="onClickParameterChange('0601', 3, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0601', 3, true)" (click)="onClickParameterChange('0601', 3, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="5" [(ngModel)]="config.parameters.superBollinger2" (input)="onScrollToChange('0601', 3, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.superBollinger3_disable" (click)="onClickPlotOnOff('0601', 4)">バンド3</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0601_4" [(ngModel)]="config.parameters.superBollinger3" (blur)="onChangedParamInput('0601', 4, $event)" (keydown)="onKeyParamInput('0601', 4, $event)">
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0601', 4, false)" (click)="onClickParameterChange('0601', 4, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0601', 4, true)" (click)="onClickParameterChange('0601', 4, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="5" [(ngModel)]="config.parameters.superBollinger3" (input)="onScrollToChange('0601', 4, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link"  (click)="onClickRollback('0601')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- スパンモデル -->
+        <div *ngIf="techTab=='0602'">
+            <p class="label">スパンモデル</p>
+
+            <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.spanPrecede1_disable" (click)="onClickPlotOnOff('0602', 0)">転換線</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0602_0" [(ngModel)]="config.parameters.spanPrecede1" (blur)="onChangedParamInput('0602', 0, $event)" (keydown)="onKeyParamInput('0602', 0, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                        long-press (onLongPressing)="onLongPressParameterChange('0602', 0, false)" (click)="onClickParameterChange('0602', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0602', 0, true)" (click)="onClickParameterChange('0602', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.spanPrecede1" (input)="onScrollToChange('0602', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.spanPrecede2_disable" (click)="onClickPlotOnOff('0602', 1)">基準線</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0602_1" [(ngModel)]="config.parameters.spanPrecede2" (blur)="onChangedParamInput('0602', 1, $event)" (keydown)="onKeyParamInput('0602', 1, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                        long-press (onLongPressing)="onLongPressParameterChange('0602', 1, false)" (click)="onClickParameterChange('0602', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0602', 1, true)" (click)="onClickParameterChange('0602', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.spanPrecede2" (input)="onScrollToChange('0602', 1, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.spanLater1_disable" (click)="onClickPlotOnOff('0602', 2)">遅行スパン</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0602_2" [(ngModel)]="config.parameters.spanLater1" (blur)="onChangedParamInput('0602', 2, $event)" (keydown)="onKeyParamInput('0602', 2, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                        long-press (onLongPressing)="onLongPressParameterChange('0602', 2, false)" (click)="onClickParameterChange('0602', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0602', 2, true)" (click)="onClickParameterChange('0602', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.spanLater1" (input)="onScrollToChange('0602', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link"  (click)="onClickRollback('0602')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- 一目均衡表 -->
+        <div *ngIf="techTab=='0605'">
+          <p class="label">一目均衡表</p>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ichimokuTransit_disable" (click)="onClickPlotOnOff('0605', 0)">転換線</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0605_0" [(ngModel)]="config.parameters.ichimokuTransit" (blur)="onChangedParamInput('0605', 0, $event)" (keydown)="onKeyParamInput('0605', 0, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0605', 0, false)" (click)="onClickParameterChange('0605', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0605', 0, true)" (click)="onClickParameterChange('0605', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.ichimokuTransit" (input)="onScrollToChange('0605', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ichimokuBase_disable" (click)="onClickPlotOnOff('0605', 1)">基準線</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0605_1" [(ngModel)]="config.parameters.ichimokuBase" (blur)="onChangedParamInput('0605', 1, $event)" (keydown)="onKeyParamInput('0605', 1, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0605', 1, false)" (click)="onClickParameterChange('0605', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0605', 1, true)" (click)="onClickParameterChange('0605', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.ichimokuBase" (input)="onScrollToChange('0605', 1, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ichimokuPrecede1_disable" (click)="onClickPlotOnOff('0605', 2)">先行スパン１</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0605_2" [(ngModel)]="config.parameters.ichimokuPrecede1" (blur)="onChangedParamInput('0605', 2, $event)" (keydown)="onKeyParamInput('0605', 2, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0605', 2, false)" (click)="onClickParameterChange('0605', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0605', 2, true)" (click)="onClickParameterChange('0605', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.ichimokuPrecede1" (input)="onScrollToChange('0605', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ichimokuPrecede2_disable" (click)="onClickPlotOnOff('0605', 3)">先行スパン2</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0605_3" [(ngModel)]="config.parameters.ichimokuPrecede2" (blur)="onChangedParamInput('0605', 3, $event)" (keydown)="onKeyParamInput('0605', 3, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0605', 3, false)" (click)="onClickParameterChange('0605', 3, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0605', 3, true)" (click)="onClickParameterChange('0605', 3, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.ichimokuPrecede2" (input)="onScrollToChange('0605', 3, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.ichimokuLater1_disable" (click)="onClickPlotOnOff('0605', 4)">遅行スパン</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0605_4" [(ngModel)]="config.parameters.ichimokuLater1" (blur)="onChangedParamInput('0605', 4, $event)" (keydown)="onKeyParamInput('0605', 4, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0605', 4, false)" (click)="onClickParameterChange('0605', 4, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0605', 4, true)" (click)="onClickParameterChange('0605', 4, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.ichimokuLater1" (input)="onScrollToChange('0605', 4, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0605')">初期値に戻す</button>
+              </div>
+          </div>
+
+        </div>
+
+        <!-- 平均足 -->
+        <div *ngIf="techTab=='0603'">
+          <p class="label">平均足</p>
+
+          <div class="row">
+            <div class="col-xs-7 col-indent-1">平均足</div><!-- #3080 -->
+            <div class="col-xs-5">
+              <div class="input-qty-set">
+                <input type="text" class="input-box qty-input" id="eidIndi_0603_0" [(ngModel)]="config.parameters.average" (blur)="onChangedParamInput('0603', 0, $event)" (keydown)="onKeyParamInput('0603', 0, $event)" >
+                <button type="button" class="button button-low button-icon"
+                        long-press (onLongPressing)="onLongPressParameterChange('0603', 0, false)" (click)="onClickParameterChange('0603', 0, true)" ><i class="svg-icons icon-minus"></i>
+                </button>
+                <button type="button" class="button button-low button-icon"
+                        long-press (onLongPressing)="onLongPressParameterChange('0603', 0, true)" (click)="onClickParameterChange('0603', 0, false)" ><i class="svg-icons icon-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-7"></div>
+              <div class="col-xs-4">
+                <div class="range-slider">
+                  <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.average" (input)="onScrollToChange('0603', 0, $event)">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0603')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- MACD -->
+        <div *ngIf="techTab=='0607'">
+          <p class="label">MACD</p>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.macdShort_disable" (click)="onClickPlotOnOff('0607', 0)">MACD短期</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0607_0" [(ngModel)]="config.parameters.macdShort" (blur)="onChangedParamInput('0607', 0, $event)" (keydown)="onKeyParamInput('0607', 0, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0607', 0, false)" (click)="onClickParameterChange('0607', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0607', 0, true)" (click)="onClickParameterChange('0607', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.macdShort" (input)="onScrollToChange('0607', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-7 col-indent-1">MACD長期</div>
+            <div class="col-xs-5">
+              <div class="input-qty-set">
+                <input type="text" class="input-box qty-input" id="eidIndi_0607_1" [(ngModel)]="config.parameters.macdLong" (blur)="onChangedParamInput('0607', 1, $event)" (keydown)="onKeyParamInput('0607', 1, $event)" >
+                <button type="button" class="button button-low button-icon"
+                        long-press (onLongPressing)="onLongPressParameterChange('0607', 1, false)" (click)="onClickParameterChange('0607', 1, true)" ><i class="svg-icons icon-minus"></i>
+                </button>
+                <button type="button" class="button button-low button-icon"
+                        long-press (onLongPressing)="onLongPressParameterChange('0607', 1, true)" (click)="onClickParameterChange('0607', 1, false)" ><i class="svg-icons icon-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-7"></div>
+              <div class="col-xs-4">
+                <div class="range-slider">
+                  <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.macdLong" (input)="onScrollToChange('0607', 1, $event)">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.macdSignal_disable" (click)="onClickPlotOnOff('0607', 2)">シグナル日数</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0607_2" [(ngModel)]="config.parameters.macdSignal" (blur)="onChangedParamInput('0607', 2, $event)" (keydown)="onKeyParamInput('0607', 2, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0607', 2, false)" (click)="onClickParameterChange('0607', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0607', 2, true)" (click)="onClickParameterChange('0607', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.macdSignal" (input)="onScrollToChange('0607', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0607')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- ストキャスティクス -->
+        <div *ngIf="techTab=='0606'">
+            <p class="label">ストキャスティクス</p>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.perK_disable" (click)="onClickPlotOnOff('0606', 0)">%K</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0606_0" [(ngModel)]="config.parameters.perK" (blur)="onChangedParamInput('0606', 0, $event)" (keydown)="onKeyParamInput('0606', 0, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0606', 0, false)" (click)="onClickParameterChange('0606', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0606', 0, true)" (click)="onClickParameterChange('0606', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.perK" (input)="onScrollToChange('0606', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.perD_disable" (click)="onClickPlotOnOff('0606', 1)">%D</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0606_1" [(ngModel)]="config.parameters.perD" (blur)="onChangedParamInput('0606', 1, $event)" (keydown)="onKeyParamInput('0606', 1, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0606', 1, false)" (click)="onClickParameterChange('0606', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0606', 1, true)" (click)="onClickParameterChange('0606', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.perD" (input)="onScrollToChange('0606', 1, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.slowPerD_disable" (click)="onClickPlotOnOff('0606', 2)">Slow%D</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0606_2" [(ngModel)]="config.parameters.slowPerD" (blur)="onChangedParamInput('0606', 2, $event)" (keydown)="onKeyParamInput('0606', 2, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0606', 2, false)" (click)="onClickParameterChange('0606', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0606', 2, true)" (click)="onClickParameterChange('0606', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.slowPerD" (input)="onScrollToChange('0606', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0606')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- RSI -->
+        <div *ngIf="techTab=='0604'">
+          <p class="label">RSI</p>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.cutlerRSIShort_disable" (click)="onClickPlotOnOff('0604', 0)">RSI短期</label><!-- #3069 -->
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0604_0" [(ngModel)]="config.parameters.cutlerRSIShort" (blur)="onChangedParamInput('0604', 0, $event)" (keydown)="onKeyParamInput('0604', 0, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0604', 0, false)" (click)="onClickParameterChange('0604', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0604', 0, true)" (click)="onClickParameterChange('0604', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range"id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.cutlerRSIShort" (input)="onScrollToChange('0604', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.cutlerRSIMiddle_disable" (click)="onClickPlotOnOff('0604', 1)">RSI中期</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0604_1" [(ngModel)]="config.parameters.cutlerRSIMiddle" (blur)="onChangedParamInput('0604', 1, $event)" (keydown)="onKeyParamInput('0604', 1, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0604', 1, false)" (click)="onClickParameterChange('0604', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0604', 1, true)" (click)="onClickParameterChange('0604', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.cutlerRSIMiddle" (input)="onScrollToChange('0604', 1, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">
+                <div class="checkbox">
+                  <label><input type="checkbox" [ngModel]="!config.parameters.cutlerRSILong_disable" (click)="onClickPlotOnOff('0604', 2)">RSI長期</label>
+                </div>
+              </div>
+
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0604_2" [(ngModel)]="config.parameters.cutlerRSILong" (blur)="onChangedParamInput('0604', 2, $event)" (keydown)="onKeyParamInput('0604', 2, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0604', 2, false)" (click)="onClickParameterChange('0604', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0604', 2, true)" (click)="onClickParameterChange('0604', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.cutlerRSILong" (input)="onScrollToChange('0604', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0604')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+        <!-- RCI -->
+        <div *ngIf="techTab=='0608'">
+          <p class="label">RCI</p>
+
+          <div class="row">
+              <div class="col-xs-7">RCI短期</div>
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0608_0" [(ngModel)]="config.parameters.rciShort" (blur)="onChangedParamInput('0608', 0, $event)" (keydown)="onKeyParamInput('0608', 0, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0608', 0, false)" (click)="onClickParameterChange('0608', 0, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0608', 0, true)" (click)="onClickParameterChange('0608', 0, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.rciShort" (input)="onScrollToChange('0608', 0, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">RCI中期</div>
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0608_1" [(ngModel)]="config.parameters.rciMiddle" (blur)="onChangedParamInput('0608', 1, $event)" (keydown)="onKeyParamInput('0608', 1, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0608', 1, false)" (click)="onClickParameterChange('0608', 1, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0608', 1, true)" (click)="onClickParameterChange('0608', 1, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.rciMiddle" (input)="onScrollToChange('0608', 1, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-xs-7">RCI長期</div>
+              <div class="col-xs-5">
+                <div class="input-qty-set">
+                  <input type="text" class="input-box qty-input" id="eidIndi_0608_2" style="text-align:right;" [(ngModel)]="config.parameters.rciLong" (blur)="onChangedParamInput('0608', 2, $event)" (keydown)="onKeyParamInput('0608', 2, $event)" >
+                  <button type="button" class="button button-low button-icon"
+                         long-press (onLongPressing)="onLongPressParameterChange('0608', 2, false)" (click)="onClickParameterChange('0608', 2, true)" ><i class="svg-icons icon-minus"></i>
+                  </button>
+                  <button type="button" class="button button-low button-icon"
+                          long-press (onLongPressing)="onLongPressParameterChange('0608', 2, true)" (click)="onClickParameterChange('0608', 2, false)" ><i class="svg-icons icon-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7"></div>
+                <div class="col-xs-4">
+                  <div class="range-slider">
+                    <input type="range" id="changeOpacitySlider" min="1" max="255" [(ngModel)]="config.parameters.rciLong" (input)="onScrollToChange('0608', 2, $event)">
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row row-gap"></div>
+
+          <div class="row">
+            <div class="col-xs-7"></div>
+            <div class="col-xs-4 text-center">
+                <button class="button button-transparent text-link" (click)="onClickRollback('0608')">初期値に戻す</button>
+              </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>

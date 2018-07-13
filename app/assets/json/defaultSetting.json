@@ -1,0 +1,171 @@
+{
+  "status": "0",
+  "message": "",
+  "datetime": "",
+  "result": [
+    {
+      "001": [
+        {
+          "orderSettings": {
+            "initProduct": "00001060000",
+            "initOrderType": "1",
+            "initConfirmOmit": false,
+            "initOrderFormDisplay": false,
+            "initSpeedOrderProduct": "00001060000"
+          }
+        }
+      ]
+    },
+    {
+      "002": [{}]
+    },
+    {
+      "003": [
+        {
+          "soundSettings": {
+            "executionSound": "on",
+            "executionSoundFolder": "",
+            "executionSoundFile": "ベル01.mp3",
+            "alertSound": "on",
+            "alertSoundFolder": "",
+            "alertSoundFile": "お知らせ01.mp3"
+          }
+        }
+      ]
+    },
+    {
+      "004": [
+        {
+          "displaySettings": {
+            "priceFlashing": "on",
+            "priceFlashingUpColor": "#f00",
+            "priceFlashingDownColor": "#00f",
+            "desktopNotify": "on",
+            "saveLayout": "on"
+          }
+        }
+      ]
+    },
+    {
+      "005": [
+        {
+          "chartSettings": {
+            "gridDisplay": "cross",
+            "detailPriceDisplay": "on",
+            "currentPriceDisplay": "on",
+            "highLowPriceDisplay": "on",
+            "initProduct": "00001060000",
+            "initFoot": "2",
+            "orderLineDisplay": "on",
+            "positionDisplay": "on",
+            "executionDisplay": "on",
+            "alertLineDisplay": "on"
+          }
+        }
+      ]
+    },
+    {
+      "006": [
+        {
+          "chartColorSettings": {
+            "gridColor": "#535466",
+            "positiveLineFillColor": "#e02424",
+            "hiddenLineFillColor": "#13a5c2",
+            "sameColor": false
+          }
+        }
+      ]
+    },
+    {
+      "007": [
+        {
+          "favItem":{
+            "description":""
+          },
+          "display": {
+            "ma": false,
+            "ema": false,
+            "bollinger": false,
+            "superBollinger": false,
+            "span": false,
+            "ichimoku": false,
+            "average": false,
+            "macd": false,
+            "stochastic": false,
+            "rci": false,
+            "rsi": false
+          },
+          "parameters": {
+            "ma1": 5,
+            "ma1_disable": false,
+            "ma2": 25,
+            "ma2_disable": false,
+            "ma3": 75,
+            "ma3_disable": false,
+            "ema1": 5,
+            "ema1_disable": false,
+            "ema2": 10,
+            "ema2_disable": false,
+            "ema3": 20,
+            "ema3_disable": false,
+            "bollingerMA": 20,
+            "bollingerMA_disable": false,
+            "bollinger1": 1,
+            "bollinger1_disable": false,
+            "bollinger2": 2,
+            "bollinger2_disable": false,
+            "bollinger3": 3,
+            "bollinger3_disable": false,
+            "superBollingerMA": 21,
+            "superBollingerMA_disable": false,
+            "superBollingerLag": 21,
+            "superBollingerLag_disable": false,
+            "superBollinger1": 1,
+            "superBollinger1_disable": false,
+            "superBollinger2": 2,
+            "superBollinger2_disable": false,
+            "superBollinger3": 3,
+            "superBollinger3_disable": false,
+            "spanPrecede1": 9,
+            "spanPrecede1_disable": false,
+            "spanPrecede2": 26,
+            "spanPrecede2_disable": false,
+            "spanLater1": 26,
+            "spanLater1_disable": false,
+            "ichimokuTransit": 9,
+            "ichimokuTransit_disable": false,
+            "ichimokuBase": 26,
+            "ichimokuBase_disable": false,
+            "ichimokuPrecede1": 26,
+            "ichimokuPrecede1_disable": false,
+            "ichimokuPrecede2": 52,
+            "ichimokuPrecede2_disable": false,
+            "ichimokuLater1": 26,
+            "ichimokuLater1_disable": false,
+            "average": 3,
+            "macdShort": 12,
+            "macdShort_disable": false,
+            "macdLong": 26,
+            "macdSignal": 9,
+            "macdSignal_disable": false,
+            "perK": 9,
+            "perK_disable": false,
+            "perD": 3,
+            "perD_disable": false,
+            "slowPerD": 3,
+            "slowPerD_disable": false,
+            "cutlerRSIShort": 7,
+            "cutlerRSIShort_disable": false,
+            "cutlerRSIMiddle": 14,
+            "cutlerRSIMiddle_disable": false,
+            "cutlerRSILong": 42,
+            "cutlerRSILong_disable": false,
+            "rciShort": 9,
+            "rciMiddle": 26,
+            "rciLong": 52
+          }
+        }
+      ]
+    }
+  ]
+}

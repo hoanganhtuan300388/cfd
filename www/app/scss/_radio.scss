@@ -1,0 +1,64 @@
+/* reset bootstrap style */
+.radio {
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+.radio input[type=radio], label.radio-inline input[type=radio] {
+  opacity: 1;
+  overflow: visible;
+}
+
+label.radio {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid $gws-color-bg-radio;
+  border-radius: 100%;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 1;
+    background-color: $gws-color-bg-radio;
+  }
+
+  input[type="radio"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    position: absolute;
+    z-index: 2;
+    top: -2px;
+    left: -23px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    box-shadow: 20px 0 $gws-color-bg-panel;
+
+    &:checked {
+      box-shadow: none;
+    }
+    &:active {
+      box-shadow: 20px 0 $gws-color-bg-panel;
+      opacity: 0.4;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $gws-color-bg-radio-hover;
+    &:before {
+      background-color: $gws-color-bg-radio-hover;
+    }
+  }
+
+}

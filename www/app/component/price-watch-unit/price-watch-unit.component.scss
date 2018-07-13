@@ -1,0 +1,184 @@
+.panel {
+  padding: 4px 3px;
+  margin-bottom: 0;
+  width: 236px;
+  height: 254px; /* border分2px狭く */
+  box-shadow: none;
+  border: 1px solid #656678;
+  // border-top: none;
+  // border-left: none;
+  position: relative;
+  margin-left: -1px;
+  margin-top: -1px;
+  top:1px;
+  left: 1px;
+
+  .row.hd {
+    position: relative;
+    height: 24px;
+    [class*="col-"] {
+      height: 24px;
+    }
+    .col-left {
+      width: 34px;
+      padding-left: 10px;
+      padding-top: 0;
+    }
+    .col-center {
+      line-height: 24px;
+      width: 160px;
+      margin-left: 2px;
+      // @NOTE 文字数超過時 末尾に...をつける widthを文字数に合わせること
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .col-right {
+      width: 20px;
+      padding-top: 2px;
+      margin-left: 4px;
+      .button {
+        outline: 0;
+      }
+    }
+  }
+
+  .num_box{
+    position: relative;
+    clear: both;
+    overflow:hidden;
+
+    .num_box-price {
+      position:relative;
+      display:block;
+      float:left;
+      width:50%;
+      margin-top: 3px;
+
+      [class*='num_box-price-'] {
+        line-height: 24px;
+      }
+      .num_box-price-bid {
+        i{
+          left:12px;
+          position:absolute;
+        }
+        span{
+          padding-left: 37px;
+        }
+      }
+
+      .num_box-price-ask {
+        i{
+          right:12px;
+          position:absolute;
+        }
+        span{
+          padding-right: 37px;
+          float: right;
+        }
+      }
+
+      button {
+        display: block;
+        font-size: 24px;
+        text-align: right;
+        height: 40px;
+        line-height: 40px;
+        width: 113px;
+        &.button-2nd {
+          margin-left: 1px;
+        }
+      }
+    }
+
+    .num_box-currency {
+      position: absolute;
+      left:0;
+      right:0;
+      text-align:center;
+      top: 4px;
+    }
+  }
+
+  .rate {
+    height: 24px;
+    line-height: 24px;
+    .rate-item {
+      float: right;
+      margin-right: 17px;
+      padding-top: 6px;
+    }
+  }
+
+  .grp_box{
+    margin: 0 4px 4px;
+    height: 82px;
+    overflow: hidden;
+    position: relative;
+    padding-left: 135px;
+    p {
+      margin-bottom: 0;
+      margin-left: 8px;
+    }
+    span{
+      font-size: 15px;
+      &.jp {
+        font-size: 14px;
+        margin-right: 4px;
+      }
+    }
+
+    .panel-mini-chart {
+      position: absolute;
+      height: calc(100% - 10px); /* #2205 */
+      width : calc(100% - 80px);
+      left  : 0px;
+      top   : 0px;
+    }
+
+    /* #2205 */
+    .panel-ohlc-label {
+      float: right;
+      width: 80px;
+    }
+    /* [end] #2205 */
+  }
+
+  .grp_info {
+    margin-top: 4px;
+    .row {
+      height: 20px;
+      margin-bottom: 0;
+      [class*="col-"] {
+        height: 20px;
+
+        &.info-right {
+          text-align: right;
+        }
+        &.info-center {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .con{
+    padding:0;
+    > ul{
+      padding:0;
+      text-align:center;
+      margin:7px 10px;
+      li{
+        list-style:none;
+        &:first-child span:nth-child(2){
+          padding:0 5px
+        }
+      }
+    }
+  }
+}
+.panel-moved{
+  border-top: 1px solid #656678;
+  border-left: 1px solid #656678;
+}

@@ -1,0 +1,40 @@
+<!-- #1966 -->
+<div class="chart-context-menu">
+  <context-menu #contextMenu>
+    <!-- メインメニュー -->
+    <template *ngFor="let menu1Item of contextMenuItems1;" contextMenuItem (execute)="onContextMenuProc($event, menu1Item.actionCode, menu1Item.extraData)">{{menu1Item.title}}</template>
+    <template contextMenuItem *ngIf="isAvailableMenuItem1 == true" [divider]="true"></template>
+    <!-- スピード注文部分 -->
+    <template *ngFor="let menu2Item of contextMenuItems2;" contextMenuItem (execute)="onContextMenuProc($event, menu2Item.actionCode, menu2Item.extraData)">{{menu2Item.title}}</template>
+    <template contextMenuItem [divider]="true"></template>
+    <!-- 新規注文部分 -->
+    <template *ngFor="let menu3Item of contextMenuItems3;" contextMenuItem (execute)="onContextMenuProc($event, menu3Item.actionCode, menu3Item.extraData)">{{menu3Item.title}}</template>
+    <template contextMenuItem [divider]="true"></template>
+    <!-- アラート -->
+    <template *ngFor="let menu4Item of contextMenuItems4;" contextMenuItem (execute)="onContextMenuProc($event, menu4Item.actionCode, menu4Item.extraData)">{{menu4Item.title}}</template>
+    <!-- #2353 -->
+    <!--template contextMenuItem [divider]="true"></template-->
+    <!-- 通常右クリックメニュー -->
+    <!--template *ngFor="let menu5Item of contextMenuItems5;" contextMenuItem (execute)="onContextMenuProc($event, menu5Item.actionCode, menu5Item.extraData)">{{menu5Item.title}}</template-->
+    <!-- [end] #2353 -->
+  </context-menu>
+</div>
+
+<!-- Chart area -->
+<div #wrapperChart class="chart-wrapper-area">
+  <!-- Chart body -->
+  <div id="eidChart_part" class="" style="height: 100%">
+    <div class="classChartWrap" id="idChartWrap" >
+      <div class="classChartArea" id="idChartArea">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- #1556 -->
+<div #wrapperScroll class="chart-scroll-area">
+  <div id="eidZs_part" class="chart-scroll-area-wrap">
+    <div class="classZsWrap" id="idZsWrap" >
+    </div>
+  </div>
+</div>

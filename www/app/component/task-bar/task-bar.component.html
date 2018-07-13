@@ -1,0 +1,72 @@
+<!-- タスクバー -->
+<div class="task-bar">
+  <ul class="task-bar-list" *ngIf="!isGroupBtn()" >
+    <li class="button-group" *ngFor="let scr of panels()">
+      <button (click)="winFocus(scr.uniqueId)"
+          [ngClass]="scr.uniqueId"
+          type="button"
+          class="button button-label"
+          (contextmenu)="showContextMenu($event,'btn',scr.uniqueId)">
+        <span *ngIf="taskGroupViewOnOff(scr.id)">{{ scr.subTitle }}</span>
+        <span *ngIf="!taskGroupViewOnOff(scr.id)">{{ scr.title }}</span>
+      </button>
+    </li>
+  </ul>
+
+  <ul class="task-bar-list" *ngIf="isGroupBtn()">
+    <li class="button-group" *ngFor="let scr of groupPanel()">
+      <button *ngIf="samePanelCnt(scr.id,scr.subId) == 1"
+              (click)="winFocus(scr.uniqueId)"
+              type="button"
+              [ngClass]="scr.uniqueId"
+              class="button button-label"
+              aria-expanded="false"
+              (contextmenu)="showContextMenu($event,'btn',scr.uniqueId)">
+        <span>{{ getOnePanelTitle(scr.title, scr.subTitle) }}</span>
+      </button>
+
+      <button *ngIf="samePanelCnt(scr.id,scr.subId) > 1"
+              type="button"
+              [ngClass]="getUniqueIds(scr.id)"
+              class="dropdown-toggle button button-label"
+              data-toggle="dropdown"
+              aria-expanded="false"
+              (click)="btnGroupClicked($event)"
+              (contextmenu)="showContextMenu($event,'btnGroup',scr.groupUniqueIds)">
+        <span>{{samePanelCnt(scr.id,scr.subId)}}</span>
+        <span class="panel-name">{{getGroupTitle(scr)}}</span>
+        <i class="svg-icons icon-arrow-drop-up"></i>
+      </button>
+      <ul *ngIf="samePanelCnt(scr.id,scr.subId) > 1" class="dropdown-menu" role="menu">
+        <li role="menuitem" *ngFor="let scr2 of scr.groupUniqueIds; let subIdx = index;" [ngClass]="scr2">
+          <i class="svg-icons"></i>
+          <a class="dropdown-item"
+            [btnRadio]="scr2"
+            [(ngModel)]="select"
+            (click)="winFocus(scr2)"
+            (contextmenu)="showContextMenu($event,'btn',scr2)">{{ getGroupPanelTitle(scr.groupUniqueIds[subIdx]) }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <div *ngIf="resource.environment.demoTrade" class="notice-label button button-open-account show-when-window-narrow marginarea" (click)="openUrl('kouzaOpenURL')">
+    口座開設はこちら
+  </div>
+  <div *ngIf="!(resource.environment.demoTrade) && !cfdStatus" class="notice-label button button-open-account show-when-window-narrow marginarea" (click)="openUrl('kouzaOpenURL')">
+    お取引開始はこちら
+  </div>
+  <div class="notice-label button logout" (click)="logOut()">ログアウト</div>
+
+</div>
+
+<!-- 画面表示には使わない。設定画面の[tbTaskBar]の変更した値を拾うため定義する。-->
+<div *ngIf="isTaskBarKbn()"></div>
+
+<context-menu #contextMenuComponent>
+    <ng-template
+        contextMenuItem
+        (execute)="onClickContextItem($event.item)">
+        {{taskBtnFlg}}
+    </ng-template>
+</context-menu>

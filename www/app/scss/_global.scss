@@ -1,0 +1,198 @@
+/* ------------ FOR CFD ------------ */
+.text-buy, p.text-buy, div.sell-buy, span.sell-buy, li.sell-buy {
+  color: $gws-color-font-buy;
+  div, p, span, i {
+    color: $gws-color-font-buy;
+  }
+}
+.text-sell, p.text-sell, div.sell-bid, span.sell-bid, li.sell-bid {
+  color: $gws-color-font-sell;
+  div, p, span, i {
+    color: $gws-color-font-sell;
+  }
+}
+.text-bid, p.text-bid, div.text-bid, span.text-bid, li.text-bid {
+  color: $gws-color-font-bid;
+  div, p, span, i {
+    color:$gws-color-font-bid;
+  }
+}
+.text-ask, p.text-ask, div.text-ask, span.text-ask, li.text-ask {
+  color: $gws-color-font-ask;
+  div, p, span, i {
+    color: $gws-color-font-ask;
+  }
+}
+.text-rate-bid, p.text-rate-bid, div.text-rate-bid, span.text-rate-bid, li.text-rate-bid {
+  color: $gws-color-font-rate-bid;
+  div, p, span, i {
+    color:$gws-color-font-rate-bid;
+  }
+}
+.text-rate-ask, p.text-rate-ask, div.text-rate-ask, span.text-rate-ask, li.text-rate-ask {
+  color: $gws-color-font-rate-ask;
+  div, p, span, i {
+    color: $gws-color-font-rate-ask;
+  }
+}
+.text-price-up, p.text-price-up, div.text-price-up, span.text-price-up, li.text-price-up {
+  color: $gws-color-font-price-up !important;
+  div, p, span, i {
+    color: $gws-color-font-price-up;
+  }
+}
+.text-price-down, p.text-price-down, div.text-price-down, span.text-price-downe, li.text-price-down, {
+  color: $gws-color-font-price-down !important;
+  div, p, span, i {
+    color: $gws-color-font-price-down;
+  }
+}
+.text-price-change, p.text-price-change, div.text-price-change, span.text-price-change, li.text-price-change, {
+  color: $gws-color-font-price-change;
+  div, p, span, i {
+    color: $gws-color-font-price-change;
+  }
+}
+.text-news-unread, p.text-news-unread, div.text-news-unread, span.text-news-unread, li.text-news-unread, {
+  color: $gws-color-font-label-news-unread;
+  div, p, span, i, * {
+    color: $gws-color-font-label-news-unread;
+  }
+}
+.text-cal-soon, p.text-cal-soon, div.text-cal-soon, span.text-cal-soon, li.text-cal-soon, {
+  color: $gws-color-font-label-cal-soon;
+  div, p, span, i, * {
+    color: $gws-color-font-label-cal-soon;
+  }
+}
+.text-label-margin-call, p.text-label-margin-call, div.text-label-margin-call, span.text-label-margin-call, li.text-label-margin-call, {
+  color: $gws-color-font-label-margin-call;
+  div, p, span, i, * {
+    color: $gws-color-font-label-margin-call;
+  }
+}
+.text-wait-settlement, p.text-wait-settlement, div.text-wait-settlement, span.text-wait-settlement, li.text-wait-settlement, {
+  color: $gws-color-font-label-wait-settlement;
+  div, p, span, i, * {
+    color: $gws-color-font-label-wait-settlement;
+  }
+}
+
+.text-transform-70 {
+  transform: scale(0.7 ,1) translate(-21.5%, 0);
+  width: 143%;
+}
+.text-transform-80 {
+  transform: scale(0.8 ,1) translate(-12.5%, 0);
+  width: 125%;
+}
+.text-transform-90 {
+  transform: scale(0.9 ,1) translate(-5.5%, 0);
+  width: 111%;
+}
+
+.text-error-message {
+  color: $gws-color-font-error-message;
+  div, p, span, i {
+    color: $gws-color-font-error-message;
+  }
+}
+.text-link {
+  &, div, p, span, i {
+    color: $gws-color-font-link;
+    &:hover,
+    &:focus {
+      color: $gws-color-font-link-hover;
+    }
+    &:active {
+      color: $gws-color-font-link-active;
+    }
+    &:disabled {
+      color: $gws-color-font-link-disable;
+    }
+  }
+}
+.text-link-news {
+  &, div, p, span, i {
+    color: $gws-color-font-news-link;
+    &:hover,
+    &:focus {
+      color: $gws-color-font-news-link-hover;
+    }
+    &:active {
+      color: $gws-color-font-news-link-active;
+    }
+  }
+}
+
+.text-link-underline {
+  &, div, p, span, i {
+    text-decoration: none;
+    color: $gws-color-font-normal;
+    border-bottom: 1px solid $gws-color-font-normal-underline;
+    padding-bottom: 0;
+    &:hover,
+    &:focus {
+      color: $gws-color-font-normal;
+      text-decoration: none;
+      border-bottom: 1px solid $gws-color-font-normal-underline-hvoer;
+    }
+  }
+}
+
+
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-small, p.text-small, div.text-small, span.text-small, li.text-small,
+  {
+  font-size: $gws-font-size-small;
+  div, p, span, i , li {
+    font-size: $gws-font-size-small;
+  }
+}
+.text-base, p.text-base, div.text-base, span.text-base, li.text-base
+{
+  font-size: $gws-font-size-base;
+  div, p, span, i , li {
+    font-size: $gws-font-size-base;
+  }
+}
+.text-mid, p.text-mid, div.text-mid, span.text-mid, li.text-mid
+{
+  font-size: $gws-font-size-mid;
+  div, p, span, i , li {
+    font-size: $gws-font-size-mid;
+  }
+}
+.text-large, p.text-large, div.text-large, span.text-large, li.text-large
+{
+  font-size: $gws-font-size-large;
+  div, p, span, i , li {
+    font-size: $gws-font-size-large;
+  }
+}
+.text-huge, p.text-huge, div.text-huge, span.text-huge, li.text-huge
+{
+  font-size: $gws-font-size-huge;
+  div, p, span, i , li {
+    font-size: $gws-font-size-huge;
+  }
+}
+.text-enormous, p.text-enormous, div.text-enormous, span.text-enormous, li.text-enormous
+{
+  font-size: $gws-font-size-enormous;
+  div, p, span, i , li {
+    font-size: $gws-font-size-enormous;
+  }
+}
+
+.text-unit {
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+/* ------------ FOR CFD ------------ */

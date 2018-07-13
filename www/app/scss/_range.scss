@@ -1,0 +1,109 @@
+.range-slider input[type="range"]:hover::-webkit-slider-thumb,
+.range-slider input[type="range"]:active::-webkit-slider-thumb {
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+}
+.range-slider input[type="range"]:hover::-moz-range-thumb,
+.range-slider input[type="range"]:active::-moz-range-thumb {
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+}
+.range-slider input[type="range"]:hover::-ms-thumb,
+.range-slider input[type="range"]:active::-ms-thumb {
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+}
+
+.range-slider input[type="range"]::-ms-thumb {
+background: $gws-color-bg-range-slider-thumb;
+}
+.range-slider input[type="range"]::-moz-range-thumb {
+background: $gws-color-bg-range-slider-thumb;
+}
+.range-slider input[type="range"]::-webkit-slider-thumb {
+background-color: $gws-color-bg-range-slider-thumb;
+}
+
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+background-color: $gws-color-bg-range-slider-track;
+}
+.range-slider input[type="range"]::-moz-range-track {
+ background-color: $gws-color-bg-range-slider-track;
+}
+.range-slider input[type="range"]::-ms-fill-upper,
+.range-slider input[type="range"]::-ms-fill-lower {
+background-color: $gws-color-bg-range-slider-track;
+}
+
+.range-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding:0;
+  position:relative;
+  display:inline-block;
+}
+.panel-config .range-slider input[type="range"] {
+  width: 100px;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-top: -4px;
+  border: none;
+}
+
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  border-radius: 0;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+}
+
+.range-slider input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  border-radius: 0;
+}
+
+.range-slider input[type="range"]::-ms-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.range-slider input[type="range"]::-ms-track { //「IE」バーに刻まれる目盛り
+  border-top: 6px;
+  border-bottom: 7px;
+  border-left: 1px;
+  border-right: 1px;
+  border-style: solid;
+  height: 2px;
+  background: transparent;
+  color: transparent;
+}
+
+.range-slider input[type="range"]::-ms-fill-lower,
+.range-slider input[type="range"]::-ms-fill-upper {
+  border-radius: 0px;
+}

@@ -1,0 +1,68 @@
+<!--メニュー-->
+<div class="navbar navbar-menu titlebar-draggable">
+  <div class="navbar-menu-grab-area-top"></div>
+  <div class="navbar-menu-grab-area-left"></div>
+
+  <ul class="nav navbar-nav">
+    <li class="navbar-menu-logo" [ngClass]="{'navbar-menu-logo-demo':isDemo}"></li>
+
+    <li><a (click)="openScreen('03020100')">注文</a></li>
+    <li><a (click)="openSpeedOrderConfirm()">スピード注文</a></li>
+    <li><a (click)="openScreen('03030600')">チャート</a></li>
+
+    <li class="dropdown" (mouseover)="showDropMenu($event,true)" (mouseleave)="showDropMenu($event,false)" >
+      <a class="dropdown-toggle">照会</a>
+      <ul class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03020300')">注文一覧</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03020400')">建玉一覧</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03020500')">約定履歴</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03010400')">約定・失効通知ログ</a></li>
+      </ul>
+    </li>
+    <li class="dropdown" (mouseover)="showDropMenu($event,true)" (mouseleave)="showDropMenu($event,false)" >
+      <a class="dropdown-toggle">マーケット</a>
+      <ul class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03030100')">レート一覧</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03030200')">マーケットサマリー</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03030500')">ニュース</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openScreen('03030300')">経済カレンダー</a></li>
+      </ul>
+    </li>
+
+    <li><a (click)="openScreen('03030400')">お知らせ</a></li>
+    <li><a (click)="openScreen('03010500')">アラート</a></li>
+    <li *ngIf="!resource.environment.demoTrade"><a (click)="openScreen('03020600')">振替</a></li>
+    <li *ngIf="!resource.environment.demoTrade"><a (click)="openUrl('cashManagementURL')" >入金</a></li>
+    <li><a (click)="openScreen('03010300')">設定</a></li>
+
+    <li class="dropdown" (mouseover)="showDropMenu($event,true)" (mouseleave)="showDropMenu($event,false)" >
+      <a class="dropdown-toggle">レイアウト</a>
+      <ul class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item" (click)="layoutSave()">レイアウト保存</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="layoutLoad()">レイアウト読込</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="layoutRestore()">初期レイアウトに戻す</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown" (mouseover)="showDropMenu($event,true)" (mouseleave)="showDropMenu($event,false)" >
+      <a class="dropdown-toggle">ヘルプ</a>
+      <ul class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item" (click)="openUrl('operationManualURI')" >操作マニュアル</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openUrl('regCfdShop')" >利用規約</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openUrl('riskInfoURL')" >重要事項</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openUrl('disclaimerURL')"  >ディスクレーマー</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="showVersionInfo($event)">バージョン情報</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openUrl('QAURL')" >お問い合わせ</a></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="openUrl('toolInformationURL')" >はっちゅう君CFDについて</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <div class="button button-svg btn-platinum-chart" (click)="openUrl('platinumChartCfdURL')"></div>
+    </li>
+
+  </ul>
+
+  <window-controller [frame]='frameWindow' [hide-export]="true"></window-controller>
+
+</div>

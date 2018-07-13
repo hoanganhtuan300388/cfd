@@ -1,0 +1,73 @@
+/**
+ * 余力情報取得
+ */
+export interface IReqPowerAmount {
+}
+
+export interface IResPowerAmount {
+    status:string;
+    message:string;
+    datetime:string;
+    result:IPowerAmount;
+}
+
+export interface IPowerAmount{
+    tradeRemainingPowerSecurities:number;
+    tradeRemainingPowerCommodity:number;
+    tradeRemainingPowerStock:number;
+    cashTransferPossible:number;
+    margin:number;
+    optionalMargin:number;
+    orderMargin:number;
+    secReliefRemarginAmount:number;
+    secRemainingRemarginAmount:number;
+    secQuotationAppraisementTotal:number;
+    secMargin:number;
+    secMarginMaintenanceRatio:number;
+    comCashTransferPossibleFromSecAccount:number;
+    stkCashTransferPossibleFromSecAccount:number;
+    comReliefRemarginAmount:number;
+    comRemainingRemarginAmount:number;
+    comQuotationAppraisementTotal:number;
+    comMargin:number;
+    comMarginMaintenanceRatio:number;
+    stkReliefRemarginAmount:number;
+    stkRemainingRemarginAmount:number;
+    stkQuotationAppraisementTotal:number;
+    stkMargin:number;
+    stkMarginMaintenanceRatio:number;
+    quotationAppraisementTotal:number;
+    outstandingProfitLoss:number;
+    outstandingPositionInterestProfitLoss:number;
+    outstandingInterestProfitLoss:number;
+    outstandingPriceAdjustProfitLoss:number;
+    outstandingDividenProfitLoss:number;
+    accountBalance:number;
+    cashPosition:number;
+    cashTransferAmount:number;
+    unrealizedStraightPositionProfitLoss:number;
+    interestRateAmountPl:number;
+    priceAdjustAmountPl:number;
+    dividendAmountPl:number;
+    secRemargin:number;
+    comRemargin:number;
+    stkRemargin:number;
+    tradeRemainingPowerVariety:number;
+    varCashTransferPossibleFromSecAccount:number;
+    varReliefRemarginAmount:number;
+    varRemainingRemarginAmount:number;
+    varQuotationAppraisementTotal:number;
+    varMargin:number;
+    varMarginMaintenanceRatio:number;
+    varRemargin:number;
+    orderOptionalMargin:number;
+    todaysProfitloss:number;
+    secRemarginStatusCode:string;
+    comRemarginStatusCode:string;
+    stkRemarginStatusCode:string;
+    varRemarginStatusCode:string;
+    secRemarginStatusName:string;
+    comRemarginStatusName:string;
+    stkRemarginStatusName:string;
+    varRemarginStatusName:string;
+};

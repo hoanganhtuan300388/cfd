@@ -1,0 +1,45 @@
+<!-- 約定履歴 -->
+<div ng2-resizeable (resizing)="onResizing($event)" class="panel panel-contract-list panel-animate" tabindex="100">
+  <title-bar #titleBar [title]="title()" [frame]="this" [add]="addTitleBarId"></title-bar>
+
+  <div id="title-bar-add-content" class="selectTabbar">
+    <div id="title-bar-add-content-left">
+      <div class="content-col dropdown-list">
+        <dropdown #dropDownExecutionProduct [items]="executionProductItem" [select]="executionProductItem[0].value" (changed)="onChangeExecutionProduct($event)" [dropdown-option-show]="true" [disabled]="!loadCompleteFlg"></dropdown>
+        <dropdown #dropDownOrderType [items]="orderTypeItem" [select]="orderTypeItem[0].value" (changed)="onChangeOrderType($event)" [disabled]="!loadCompleteFlg"></dropdown>
+        <dropdown #dropDownDate [items]="dateItem" [select]="dateItem[0].value" (changed)="onChangeDate($event)" [disabled]="!loadCompleteFlg"></dropdown>
+
+        <!-- RIGHT -->
+        <div class="content-right content-gap content-gap2"></div>
+        <button class="button button-icon content-right" type="button" (click)="onClickRefresh($event)" [disabled]="!loadCompleteFlg"><i class="svg-icons icon-refresh"></i></button>
+
+        <div class="content-right content-gap"></div>
+        
+        <button class="button content-right" type="button" (click)="onClickExportCSV($event)" [disabled]="!loadCompleteFlg">CSV出力</button>
+
+        <div class="content-right content-gap content-gap1"></div>
+
+        <div class="content-right pagination" *ngIf="hasPage()">
+          <div class="pagination-page"><a href="#">{{currentPage}} / {{totalPage}}</a></div>
+          <button class="button button-icon pageination-button" [disabled]="currentPage==1 || !loadCompleteFlg" type="button" (click)="prevPage($event)" title="{{TOOLTIP_PREV_MOVE}}"><i class="svg-icons icon-arrow-prev"></i></button>
+          <button class="button button-icon pageination-button" [disabled]="currentPage==totalPage || !loadCompleteFlg" type="button" (click)="nextPage($event)" title="{{TOOLTIP_NEXT_MOVE}}"><i class="svg-icons icon-arrow-next"></i></button>
+          <div class="content-gap"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel-body">
+    <div id="grid{{pageId}}"></div>
+  </div>
+</div>
+<context-menu #contextMenuComponent>
+  <ng-template *ngFor="let item of contextItems;"
+    contextMenuItem
+    [enabled]="item.enabled"
+    [divider]="item.divider ? 'true' : ''"
+    (execute)="onClickContextItem($event.item, item)">
+    {{item.title}}
+  </ng-template>
+</context-menu>

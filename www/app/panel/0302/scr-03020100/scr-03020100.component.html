@@ -1,0 +1,48 @@
+<!-- 新規注文 -->
+<div class="panel panel-order panel-animate">
+
+  <title-bar [title]="title()" [frame]="this" [hide-max]="true" [title-show]="true" [attr.tabindex]="baseIdx" tab-Index [type]="'Input'"></title-bar>
+  <div class="panel-body" >
+
+    <div class="process-loading" *ngIf="isLoading">
+      <div class="process-loading-bg"></div>
+      <div class="process-loading-mark"></div>
+    </div>
+
+    <div class="row row-header-name">
+      <div class="col-xs-12" *ngIf="singleMultiShow==true">
+        <symbol-cfd #symbolCfd (changed)="onChangeSymbol($event)"></symbol-cfd>
+        <i class="svg-icons icon-attention" *ngIf="hasAttentionMessage" title="{{attentionMessage}}"></i>
+      </div>
+      <div class="col-xs-12" *ngIf="singleMultiShow==false">
+        <div class="label label-name">{{productName}}</div>
+        <i class="svg-icons icon-attention" *ngIf="hasAttentionMessage" title="{{attentionMessage}}"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <ask-bid-unit #askbid (changed) = "onClickOrderPrice($event)"></ask-bid-unit>
+      </div>
+    </div>
+
+    <div #slider class="carousel slide" data-interval="false">
+      <div class="carousel-inner" role="listbox">
+
+        <div class="item active">
+          <div class="row">
+            <div class="col-xs-12">
+              <order-singleMulti #singleMulti (singleMultiEvent)="onSingleMulti()" [singleMultiShow]="singleMultiShow"></order-singleMulti>
+            </div>
+          </div>
+          <order-input (onErrClick)="onCanvasBoolean()" (onOrderTypeClick)="onOrderType()" (onPanelRefresh)="onPanelTitleRefresh()" (onErrorDismiss)="onErrorDismiss()" #orderInput></order-input>
+          <order-sendButton #orderSendButton (onNavButtonClick)="onNavBtnClick('INPUT', $event)"></order-sendButton>
+        </div>
+        <div class="item">
+          <order-confirm #orderConfirm (onNavButtonClick)="onNavBtnClick('CONFIRM', $event)"></order-confirm>
+        </div>
+      </div>
+    </div>
+
+  </div><!--// panel-body E -->
+</div>

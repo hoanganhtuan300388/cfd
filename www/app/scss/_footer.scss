@@ -1,0 +1,9 @@
+.footer {
+  width: 100%;
+  height: 24px;
+  bottom: 0;
+  position: absolute;
+  padding: 0;
+  z-index: index($gws-z-indexes, footer);
+  background: $gws-color-bg-footer;
+}

@@ -1,0 +1,552 @@
+/** Overwide PQ-GRID **/
+
+// ------ テーブル全体 ------
+.ui-widget {
+  font-family: $gws-font-family;
+}
+div.pq-grid * {
+  font-size: $gws-font-size-base;
+}
+.pq-grid *:not(.button):focus {
+  outline: 0;
+}
+.ui-widget-content {
+  background: $gws-color-bg-table-header;
+}
+.ui-widget.ui-widget-content {
+  border-radius: 0;
+  border-top: 0;
+}
+.pq-grid-center {
+  margin-top: -1px; // ヘッダー上に1px隙間があく
+}
+// // テーブルボディ
+table.pq-grid-table {
+  border-collapse: collapse;
+}
+.pq-grid-table > tbody > .pq-grid-row {
+  border-width: 1px;
+}
+
+// ------ ヘッダー ------
+.pq-header-outer.ui-widget-header {
+  height: 27px !important; // ヘッダー上に1px隙間があく分
+  border: 0;
+  // background-color: $gws-color-bg-table-header;
+}
+// ２行の場合は以下
+// ------ レート一覧 ------
+.panel-rate-list {
+  div.pq-grid * {
+    line-height: 1.23;
+  }
+  .pq-header-outer.ui-widget-header {
+    height: 39px !important; // ヘッダー上に1px隙間があく分
+    .pq-grid-title-row {
+      .pq-grid-col {
+        padding: 6px 5px 5px;
+        .pq-td-div,
+        .pq-td-div *
+        .pd-td-div .label {
+          line-height: 1.23;
+        }
+      }
+      &:nth-child(2) {
+        .header-col-double {
+          padding: 6px 5px 0;
+        }
+      }
+      &:nth-child(3) {
+        .pq-grid-col {
+          padding: 0 5px 5px;
+        }
+      }
+    }
+  }
+}
+
+
+.pq-grid-title-row,
+.ui-widget.ui-widget-content {
+  border-color: $gws-color-bg-table-header;
+}
+// 選択されたheader column
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active, a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 0;
+  background: transparent;
+}
+table.pq-grid-header-table div.pq-td-div {
+  color: $gws-color-font-table-header;
+}
+.pq-grid-title-row .pq-td-div:hover {
+  text-decoration: none;
+}
+// ヘッダーのカラムをhoverしたら、同列のカラム全てに背景色
+.pq-grid-title-hovering,
+.ui-state-active, .ui-widget-content .ui-state-active.pq-grid-title-hovering {
+  background: $gws-color-bg-table-header-select;
+}
+// カラム幅変更　border
+.pq-grid-drag-bar {
+  background-color: $gws-color-bg-table-drag-bar;
+}
+
+// sort icon
+.ui-state-active .ui-icon {
+  &[class*="ui-icon-triangle-1"] {
+    background-position: 0;
+    margin-bottom: -4px;
+    margin-left: 4px;
+  }
+}
+.ui-state-active .ui-icon.ui-icon-triangle-1-n {
+  background-image: url("../../assets/images/icons/icon-sort-asc.svg");
+}
+.ui-state-active .ui-icon.ui-icon-triangle-1-s {
+  background-image: url("../../assets/images/icons/icon-sort-desc.svg");
+}
+
+// open/close icon
+.pq-grid-cont-outer  {
+  .ui-icon, .ui-widget-content .ui-icon {
+    &[class*="ui-icon-triangle-1"] {
+      background-color: $gws-color-bg-btn-normal;
+      background-position: 0;
+      &:hover {
+        background-color: $gws-color-bg-btn-normal-hover;
+      }
+      &:active {
+        background-color: $gws-color-bg-btn-normal-active;
+      }
+    }
+    &.ui-icon-triangle-1-se {
+      background-image: url("../../assets/images/icons/icon-position-close.svg");
+      &:hover {
+        background-image: url("../../assets/images/icons/icon-position-close-hover.svg");
+      }
+      &:active {
+        background-image: url("../../assets/images/icons/icon-position-close-active.svg");
+      }
+    }
+
+    &.ui-icon-triangle-1-e {
+      background-image: url("../../assets/images/icons/icon-position-open.svg");
+      &:hover {
+        background-image: url("../../assets/images/icons/icon-position-open-hover.svg");
+      }
+      &:active {
+        background-image: url("../../assets/images/icons/icon-position-open-active.svg");
+      }
+    }
+  }
+}
+
+.pq-group-title-cell .pq-group-icon {
+  cursor: default;
+  border-radius: 0;
+  top: 0;
+  margin: 0;
+  border: 3px solid transparent;
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+  &:hover {
+    border-color: transparent;
+  }
+}
+
+// ------ スクロールバー ------
+.ui-widget-header .ui-state-default {
+  width: 100% !important;
+}
+// 縦方向
+.pq-sb-vert-t {
+  background: transparent;
+  width: 12px;
+}
+.pq-sb-vert-t > .top-btn,
+.pq-sb-vert-t > .bottom-btn {
+  display: none;
+}
+.pq-sb-vert-t > .pq-sb-slider {
+  width: 8px;
+  left: 0 !important;
+  background: $gws-color-scroll-bar;
+  border: 0;
+  border-radius: 4px;
+  &:before {
+    content: ' ';
+    border: 14px solid transparent;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    background: $gws-color-scroll-bar-active;
+  }
+}
+div.pq-hvscroll-square {
+  width: 1px;
+  height: 1px;
+}
+.pq-grid-cont-inner {
+  width: 100% !important;
+  height: 100% !important;
+}
+// 横方向
+.pq-sb-horiz-t {
+  background: transparent;
+  height: 8px;
+}
+.pq-sb-horiz-t > .pq-sb-btn {
+  display: none;
+}
+.pq-sb-horiz-t > .pq-sb-slider-h {
+  height: 8px;
+  top: -4px !important;
+  background: $gws-color-scroll-bar;
+  border: 0;
+  border-radius: 4px;
+  &:hover,
+  &:focus,
+  &:active {
+    background: $gws-color-scroll-bar-active;
+  }
+}
+div.pq-hscroll {
+  height: 8px;
+}
+
+// ------ row ------
+.pq-grid-table > tbody > .pq-grid-row:nth-child(odd) {
+  background-color: $gws-color-bg-table-row-even; /** pq-grid is opposte **/
+}
+.pq-grid-table > tbody > .pq-grid-row:nth-child(even){
+  background-color: $gws-color-bg-table-row-odd;/** pq-grid is opposte **/
+}
+// 選択されたrow
+// -- hover
+.pq-grid-table > tbody > .pq-grid-row:hover {
+  background: $gws-color-bg-table-row-hover;
+}
+.pq-grid-select-overlay {
+  background: $gws-color-bg-table-header-select;
+  border: 0 !important;
+}
+// -- click
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+  background-color: $gws-color-bg-table-current !important;
+  border: 0;
+  td {
+    color: $gws-white !important;
+    div, span, .button, .label {
+      &:not([class*="text-"]):not(".unit"):not(".jp") {
+        color: $gws-white !important;
+      }
+    }
+  }
+}
+.ui-state-highlight td,
+.ui-widget-content .ui-state-highlight td,
+.ui-widget-header .ui-state-highlight .ui-state-checked *, {
+  &.text-news-unread {
+    color: $gws-color-font-label-news-unread !important;
+  }
+}
+.ui-state-highlight.text-cal-soon {
+  td {
+    color: $gws-color-font-label-cal-soon !important;
+  }
+}
+
+// -- 注文変更/取消画面にフォーカスがあるとき
+.pq-grid-table > tbody > .pq-grid-row.sync {
+  background-color: $gws-color-bg-table-sync !important;
+  td {
+    color: $gws-white !important;
+    div, span, .button, .label {
+      &:not([class*="text-"]):not(".unit"):not(".jp") {
+        color: $gws-white !important;
+      }
+    }
+  }
+}
+.pq-fill-handle {
+  border: 0 !important;
+}
+// 選択されたcolum
+.pq-grid .pq-grid-cell:focus {
+  outline: 0;
+}
+// セル
+.pq-grid-cell,
+.pq-grid-number-cell {
+  padding: 2px 6px 2px 4px;
+  height: 28px;
+}
+// グループ マージされたセル
+.pq-merge-cell-div > div > div {
+  @extend .text-overflow-ellipsis;
+}
+// 最初のセル
+price-list .pq-grid-table > tbody > .pq-grid-row {
+  td:first-child:not(.body-col-no-padding) {
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+}
+
+// ------ レート一覧 ------
+.panel-rate-list {
+  .pq-grid-cell,
+  .pq-grid-number-cell {
+    height: 40px;
+    >.button.button-icon-sm,
+    >i.svg-icons {
+      margin-top: 2px;
+    }
+  }
+  .label.label-single-row {
+    padding: 5px 5px 5px 10px;
+    display: inline-block;
+  }
+}
+
+// グループ 建玉一覧
+// @NOTE:
+//   www/assets/libs/paramquery-4.0.0/pqgrid.dev.jsのgenerateRowメソッドを修正して、
+//   pq-grid-row-groupをtrに付与するように変更しています。
+.panel-position-list {
+  .pq-grid-row.pq-grid-row-group {
+    border-top: 1px solid $gws-color-border-table-section;
+    .pq-grid-cell {
+      padding-top: 2px;
+    }
+  }
+}
+
+// ----------- colModel cls に設定するスタイル --------
+// ヘッダーに適用するスタイル
+.pq-grid-title-row {
+  .header-col-text-transform-70 {
+    .pq-td-div {
+      @extend .text-transform-70;
+    }
+  }
+  .header-col-text-transform-80 {
+    .pq-td-div {
+      @extend .text-transform-80;
+    }
+  }
+  .header-col-text-transform-90 {
+    .pq-td-div {
+      @extend .text-transform-90;
+    }
+  }
+  .header-col-left * {
+    text-align: left;
+  }
+  .header-col-right * {
+    text-align: right;
+    padding-right: 8px;
+  }
+}
+// ボディに適用するスタイル
+.pq-grid-cont-outer {
+  .body-col-dark {
+    color: $gws-color-font-label;
+  }
+  .body-col-first {
+    padding-left: 16px;
+    padding-right: 8px;
+  }
+  .body-col-num,
+  .body-col-num-mid {
+    font-size: $gws-font-size-large;
+    &.body-col-num-mid {
+      font-size: $gws-font-size-mid;
+    }
+    span,a {
+      font-size: $gws-font-size-large;
+    }
+    span.label,
+    span.unit,
+    .button {
+      font-size: $gws-font-size-base;
+    }
+    span.label {
+      //color: $gws-color-font-label;
+      color: $gws-white;
+      &.label-bright {
+        color: $gws-color-font-normal;
+      }
+    }
+    a.num-link {
+      text-decoration: none;
+      border-bottom: 1px solid $gws-color-font-normal-underline;
+      padding-bottom: 0;
+      margin-right: 14px;
+      &:hover {
+        text-decoration: none;
+        border-bottom: 1px solid $gws-color-font-normal-underline-hvoer;
+      }
+    }
+  }
+  .body-col-no-padding {
+    &.pq-grid-cell {
+      padding: 0;
+      > div {
+        height: 100%;
+        width: 100%;
+        padding: 2px 6px 2px 4px;
+        &.body-col-num-mid {
+          padding-top: 4px;
+        }
+        &.body-col-bg-divider {
+          height: 24px;
+        }
+      }
+    }
+  }
+  .body-col-bg-divider {
+    background-color: $gws-color-border-table-divider;
+  }
+
+  .body-col-side-by-side {
+    padding-left: 8px;
+    padding-bottom: 0;
+    > div {
+      display: inline-block;
+    }
+  }
+  .body-col-v-top {
+    vertical-align: top;
+    padding-top: 4px;
+  }
+}
+
+// ----------- loading -----------
+div.pq-loading-mask {
+  background-image: url("../../assets/images/loading/loding-normal.svg");
+  background-size: 64px;
+  width: 64px;
+  height: 64px;
+  top: calc(50% - 25px);
+  left: calc(50% + 25px);
+  padding: 0;
+  z-index: 10;
+  animation: spin 1.5s ease infinite;
+    @keyframes spin {
+    0% {transform: rotate(37deg);}
+    50% {transform: rotate(-37deg);}
+    100% {transform: rotate(37deg);}
+    }
+  &.ui-state-highlight {
+    background-color: transparent !important;
+  }
+  > div {
+    display: none;
+  }
+}
+
+div.pq-loading-bg {
+  background-color: $gws-color-bg-loading;
+  opacity: 0.5 !important;
+}
+
+// ------------ checkboxChecked -----------
+.pq-grid label input[type='checkbox'] {
+  margin-right: 0;
+}
+
+// ------------ No Rows Message -----------
+.pq-grid-norows {
+  top: 0;
+  margin-top: 0;
+  padding: 16px;
+  text-align: left;
+}
+
+// ------- No header pointer --------
+.panel-calendar table.pq-grid-header-table div.pq-td-div{
+  cursor: default !important;
+}
+.pq-grid-cont-outer .body-col-num a.num-link{
+    margin-right: 0;
+}
+.pull-right{
+  display: inline-grid;
+  float: none!important;
+}
+.panel-news .pq-grid-cell{
+  padding: 2px 0px 2px 4px;
+}
+.body-col-first2{
+  //padding: 2px 20px 2px 16px;
+  padding-left: 16px !important;
+}
+.column-span{
+  text-align: right !important;
+}
+.column-span2{
+  text-align: center !important;
+}
+.pq-grid-table > tbody > tr > .pq-grid-cell a{
+  color: #dde1f0;
+}
+.ui-state-highlight td, .ui-widget-content .ui-state-highlight td a{
+  color: #fff !important;
+}
+.pq-grid-table > tbody > .pq-grid-row.sync td a{
+  color: #fff !important;
+}
+
+.ui-widget-content .ui-state-highlight td div.iconlogic i{
+  background-image: url("../../assets/images/icons/icon-logic-order-hover.svg");
+  background-repeat: no-repeat;
+}
+.pq-grid-table > tbody > .pq-grid-row.sync td div.iconlogic i{
+  background-image: url("../../assets/images/icons/icon-logic-order-hover.svg");
+  background-repeat: no-repeat;
+}
+.pq-grid-table > tbody > tr > .pq-grid-cell .chart-wrapper-area:hover{
+  border: 1px solid #fff;
+}
+.textoverflow2:after{
+  content: "PDF";
+  color: #dde1f0;
+  margin-left: 20px;
+  border: 1px solid #dde1f0;
+  padding: 0px 2.2px;
+  font-size: 9px !important;
+  display: inline-block;
+}
+.text-link-pdf:after{
+  content: "PDF";
+  color: #dde1f0;
+  margin-right: 5px;
+  border: 1px solid #dde1f0;
+  padding: 0px 2.2px;
+  font-size: 9px !important;
+  display: inline-block;
+  font-style: normal;
+  line-height: 11px;
+}
+.panel-alert .pq-grid-cont-outer .body-col-first{
+  padding-left: 5px;
+}
+.panel-market .pq-grid-row .pq-grid-cell:first-child{
+  padding-left: 17px;
+
+}
+.panel-market td.body-col-num{
+  padding-right: 15px;
+}
+.panel-market td.body-col-num2{
+  padding-right: 45px;
+}

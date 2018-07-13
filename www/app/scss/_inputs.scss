@@ -1,0 +1,91 @@
+/* hide number input's spin box */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* display: none; <- Crashes Chrome on hover */
+    margin: 0;                /* Apparently some margin are still there even though it's hidden */
+}
+
+/* hide number input's spin box for FireFox,IE */
+input[type="number"] {
+    -moz-appearance:textfield;
+}
+// IEのinput要素のxボタンを消す
+input::-ms-clear {
+    display: none;
+}
+input::-ms-reveal {
+    display: none;
+}
+input::placeholder {
+  color: rgba(221, 225, 240, 0.5);
+}
+input::-webkit-input-placeholder {
+  color: rgba(221, 225, 240, 0.5);
+}
+
+// 代替文字のスタイル
+input::-webkit-input-placeholder {
+  font-size: $gws-font-size-base;
+  text-align: left;
+}
+
+/** ---------- FOR CFD ---------- **/
+.input-box {
+  height: 22px;
+  background: $gws-color-bg-input;
+  border: solid 1px $gws-color-border-input;
+  font-size: $gws-font-size-large;
+  padding: 0 7px;
+  width: 78px;
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      color: $gws-white;
+      border: solid 1px $gws-color-border-input-hover;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.input-box-search {
+    height: 24px;
+    background-color: transparent;
+    width: 140px;
+  }
+
+  &.input-box-num {
+    text-align: right;
+  }
+
+  &.input-box-file {
+    width: 100%;
+    height: 24px;
+    cursor: no-drop;
+    font-size: $gws-font-size-small;
+    // @extend .text-overflow-ellipsis;
+  }
+}
+
+.input-qty-set {
+  * {
+    display: inline-block;
+    float: left;
+  }
+  .input-box {
+    margin-right: 1px;
+    text-align: right;
+    &:disabled{
+      opacity: 0.4;
+    }
+  }
+  .button {
+  }
+  .label {
+    line-height: 22px;
+    width: 40px;
+    text-align: right;
+  }
+}

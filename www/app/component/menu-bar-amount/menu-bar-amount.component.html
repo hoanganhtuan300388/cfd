@@ -1,0 +1,46 @@
+<!--power-amonut-->
+<div class="navbar navbar-amount">
+  <div class="row navbar-amount-row">
+    <span  *ngIf="pageInfoStatus == '1'">
+    <div class="navbar-amount-col wide">指数</div>
+    <div class="navbar-amount-col number-box" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerSecurities < 0}">{{ powerAmount.tradeRemainingPowerSecurities | number }}<span class="jp">円</span></div>
+    <div class="navbar-amount-col wide">商品</div>
+    <div class="navbar-amount-col number-box" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerCommodity < 0}">{{ powerAmount.tradeRemainingPowerCommodity | number }}<span class="jp">円</span></div>
+    <div class="navbar-amount-col wide">株式</div>
+    <div class="navbar-amount-col number-box" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerStock < 0}">{{ powerAmount.tradeRemainingPowerStock | number }}<span class="jp">円</span></div>
+    <div class="navbar-amount-col">バラエティ</div>
+    <div class="navbar-amount-col number-box" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerVariety < 0}">{{ powerAmount.tradeRemainingPowerVariety | number }}<span class="jp">円</span></div>
+    <div class="navbar-amount-col">評価損益</div>
+
+    <div class="navbar-amount-col number-box" *ngIf="powerAmount.outstandingProfitLoss > 0"
+    [ngClass]="{'text-price-up':powerAmount.outstandingProfitLoss > 0}">+{{ powerAmount.outstandingProfitLoss | number }}<span class="jp">円</span></div>
+
+    <div class="navbar-amount-col number-box" *ngIf="powerAmount.outstandingProfitLoss <= 0"
+    [ngClass]="{'text-price-down':powerAmount.outstandingProfitLoss < 0}">{{ powerAmount.outstandingProfitLoss | number }}<span class="jp">円</span></div>
+
+
+    <div class="navbar-amount-col">時価評価総額</div>
+    <div class="navbar-amount-col number-box" [ngClass]="{'text-price-down':powerAmount.quotationAppraisementTotal < 0}">{{ powerAmount.quotationAppraisementTotal | number }}<span class="jp">円</span></div>
+    </span>
+    <span class="ng-msg" *ngIf="pageInfoStatus == '2'">{{ noInfoMsg }}</span>
+    <span *ngIf="pageInfoStatus == '3'">{{ noInternetMsg }}</span>
+
+    <div class="navbar-amount-col" *ngIf="pageInfoStatus == '1'">
+      <button class="button button-detail" (click)="openScreen('03020700')" >詳細</button>
+      <button class="button button-icon" (click)="getPowerAmount()" [disabled]="disabledCheck == true" title="最終更新 {{dataTime}}"><i class="svg-icons icon-refresh"></i></button>
+    </div>
+    <div class="navbar-amount-col navbar-amount-col2" *ngIf="pageInfoStatus != '1'">
+      <button class="button button-icon" (click)="getPowerAmount()" [disabled]="disabledCheck == true"><i class="svg-icons icon-refresh"></i></button>
+    </div>
+
+    <div *ngIf="resource.environment.demoTrade" class="notice-label button button-open-account show-when-window-wide" (click)="openUrl('kouzaOpenURL')">
+      口座開設はこちら
+    </div>
+    <div *ngIf="!(resource.environment.demoTrade) && !cfdStatus" class="notice-label button button-open-account show-when-window-wide" (click)="openUrl('kouzaOpenURL')">
+      お取引開始はこちら
+    </div>  
+
+
+  </div>
+
+</div>

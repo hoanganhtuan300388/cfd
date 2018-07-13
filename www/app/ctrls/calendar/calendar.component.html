@@ -1,0 +1,15 @@
+<div class="form-group form-input-base">
+  <input class="form-control form-control-date" [disabled]="isDisabled" required
+    ngui-datetime-picker date-format="YYYY/MM/DD"
+    [date-only]="isDateOnly"
+    [default-value]="defaultValue"
+    [min-date]="minDate"
+    [max-date]="maxDate"
+    [disabled-dates]="disabledDates"
+    name="designatedDateInput"
+    #designatedDateInput="ngModel"
+    [(ngModel)]="dateModel"
+    (ngModelChange)="onValueChanged($event)"
+    (focus)="onFocus($event)"
+    >
+</div>

@@ -1,0 +1,16 @@
+<!-- アラート追加訂正 -->
+<div class="panel modal-alert" *ngIf="isShow" #dragTarget (contextmenu)="showContextMenu($event)">
+  <div ng2-draggable [drag-target]="dragTarget" class="panel-heading">アラート<button class="button button-icon-tin button-transparent" (click)="close()"><i class="svg-icons icon-window-close"></i></button>
+  </div>
+  <div class="panel-body">
+    <alert-add-modify [alert]="alertInfo" (onConfirm)="onConfirm($event)"></alert-add-modify>
+  </div>
+</div>
+
+<context-menu #contextMenuComponent>
+  <ng-template *ngFor="let item of contextItems;"
+      contextMenuItem
+      (execute)="onClickContextItem(item)">
+      {{item.title}}
+  </ng-template>
+</context-menu>

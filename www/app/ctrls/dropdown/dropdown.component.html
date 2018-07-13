@@ -1,0 +1,17 @@
+<div class="dropdown-item" dropdown [isDisabled]="disabled">
+  <button *ngIf="_titleShow" type="button" class="button dropdown-toggle" dropdownToggle title="{{selectedText()}}">
+    <i class="svg-icons icon-dropdown"></i>
+    <div>{{selectedText()}}</div>
+  </button>
+  <button *ngIf="!_titleShow" type="button" class="button dropdown-toggle" dropdownToggle>
+    <i class="svg-icons icon-dropdown"></i>
+    <div>{{selectedText()}}</div>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <li role="menuitem" *ngFor="let item of items">
+      <a *ngIf="!_titleOptionShow" class="dropdown-item" (ngModelChange)="onChangeSelect($event)"  [(ngModel)]="select" [btnRadio]="item.value">{{item.text}}</a>
+      <a *ngIf="_titleOptionShow && item.text !='全銘柄'" class="dropdown-item" (ngModelChange)="onChangeSelect($event)"  [(ngModel)]="select" [btnRadio]="item.value"  title="{{item.text}}">{{item.text}}</a>
+      <a *ngIf="item.text =='全銘柄'" class="dropdown-item" (ngModelChange)="onChangeSelect($event)"  [(ngModel)]="select" [btnRadio]="item.value" >{{item.text}}</a>
+    </li>
+  </ul>
+</div>

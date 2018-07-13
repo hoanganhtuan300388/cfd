@@ -1,0 +1,7 @@
+<!-- = □ × menu float right -->
+<div class="window-controller" >
+  <button *ngIf="_hideExport==false" class="button button-icon-tin button-transparent" (click)="inoutWindow()" [disabled]="_disableExport==true"><i class="svg-icons icon-window-appinout"></i></button>
+  <button *ngIf="_hideMin==false"    class="button button-icon-tin button-transparent" (click)="minisize()"><i class="svg-icons icon-window-min"></i></button>
+  <button *ngIf="_hideMax==false"    class="button button-icon-tin button-transparent" (click)="maximize()"><i class="svg-icons icon-window-max"></i></button>
+  <button *ngIf="_hideClose==false"  class="button button-icon-tin button-transparent" (click)="close()"><i class="svg-icons icon-window-close"></i></button>
+</div>

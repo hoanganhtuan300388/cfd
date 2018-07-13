@@ -1,0 +1,97 @@
+.tab {
+    margin-bottom: 0;
+    >dt {
+        display: table;
+        width: 100%;
+        margin-left: 16px;
+        height: 28px;
+        padding: 1px 0;
+        li {
+          width: calc(50% - 18px);
+          font-size: 13px;
+          &:first-child {
+            margin-right: 4px;
+          }
+        }
+        li.info-for-client span.nicknamebr.nicknamebr2{
+            display: block;
+            font-size: 12px;
+            line-height: 12px;
+            >span{
+                display: block;
+            }
+
+        }
+    }
+}
+
+.con_re {
+    height: 458px;
+    overflow: hidden;
+    position: relative;
+    box-sizing: content-box;
+    .con {
+        position: relative;
+        z-index: 1;
+        &.con_hd {
+          overflow: hidden;
+          height: 37%;
+        }
+        &.con_bt {
+          height: calc(63% - 32px);
+          margin-top: 8px;
+          &.panel-content-news {
+            dl {
+              dt {
+                .title {
+                  width: calc(100% - 108px - 16px);
+                }
+              }
+            }
+          }
+        }
+    }
+    >i {
+        position: absolute;
+        background-color: #47475a;
+        border-top: 1px solid rgba(#dde1f0, 0.2);
+        height: 8px;
+        left: 0;
+        right: 0;
+        top: 37%;
+        z-index: 1;
+        cursor: s-resize;
+        text-align: center;
+        &::before,
+        &::after {
+            display: block;
+            content: '';
+            width: 16px;
+            height: 1px;
+            background-color: #9294a5;
+            position: absolute;
+            left: 50%;
+            margin-left: -8px;
+            top: calc(50% - 1px);
+        }
+        &::before {
+            margin-top: -1px
+        }
+        &::after {
+            margin-top: 1px
+        }
+    }
+    pre {
+        background-color: transparent;
+        border: 0;
+        margin-bottom: 0;
+        padding: 0
+    }
+}
+
+.toggle-button li.info-for-client span.nicknamebr{
+    display: inline;
+}
+.toggle-button > li{
+   text-overflow: initial;
+}

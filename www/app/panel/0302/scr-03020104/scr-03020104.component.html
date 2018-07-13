@@ -1,0 +1,30 @@
+<!-- スピード注文 -->
+<div class="panel panel-speed-order panel-animate">
+  <title-bar [title]="title()" [frame]="this" [hide-max]="true" [title-show]="true" [attr.tabindex]="baseIdx" tab-Index [type]="'Input'"></title-bar>
+  <div class="panel-body panel-body2">
+
+  	<div class="row row-header-name">
+      <div class="col-xs-12">
+        <symbol-cfd #symbolcfd (changed)="onChangeSymbol($event)"></symbol-cfd>
+        <i class="svg-icons icon-attention" *ngIf="hasAttentionMessage" title="{{attentionMessage}}"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <ask-bid-unit #askbid (changed) = "orderSender($event)" [speed-order]="true" [validFlag]="validFlag"></ask-bid-unit>
+      </div>
+    </div>
+
+    <div class="row row-content">
+      <div class="col-xs-12">
+        <speed-order #speedOrder></speed-order>
+        <speed-order-qty #speedOrderQty (onErrorDismiss)="onErrorDismiss()"  [resetNum]="resetNum"></speed-order-qty>
+      </div>
+    </div>
+
+    <div *ngIf="errCanvas" [ngClass]="{'row':true,'row-message':true,'err':errCanvas}" >
+      <span>{{errMessage}}</span>
+    </div>
+  </div>
+</div>

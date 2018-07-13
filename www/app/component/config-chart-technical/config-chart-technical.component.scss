@@ -1,0 +1,45 @@
+.technical-list {
+  padding: 4px 12px 4px 16px;
+  li {
+    margin-top: 2px;
+  }
+  .checkbox {
+    label {
+      &.active {
+        color: #4ea32d; // $gws-color-bg-checkbox
+      }
+    }
+
+    &.disabled label {
+      cursor: default;
+      pointer-events: auto;
+    }
+  }
+  p {
+    margin-left: -16px;
+    margin-top: 8px;
+    margin-bottom: -16px;
+  }
+}
+
+.techtab-content {
+  .row {
+    margin-top: 12px;
+    [class*="col-"]:first-child {
+      padding-left: 16px;
+
+      &.col-indent-1 {
+        margin-left: 24px;
+        margin-right: -24px;
+      }
+    }
+  }
+}
+
+.input-box {
+  width: 50px;
+}
+.technical-text{
+  position: relative;
+  top: -10px;
+}

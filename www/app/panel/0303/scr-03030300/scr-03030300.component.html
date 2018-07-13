@@ -1,0 +1,29 @@
+<!-- 経済カレンダー -->
+<div class="panel panel-calendar panel-animate" ng2-resizeable (resizing)="onResizing()" tabindex="100">
+    <title-bar [title]="title()" [frame]="this"></title-bar>
+
+    <div class="panel-body">
+
+        <div class="row row-header">
+            <div class="col-left">
+                <dropdown class="dropdown-type-frame" #countryListChild [items]="countryList" [select]="countryList[0].value" (changed)="onChgCountryList($event)" [disabled]="disabledCheck==true" [btnwidth]="160"></dropdown>
+            </div>
+            <div class="col-right">
+                <button class="button button-low button-recent" (click)="onResetClick($event)" [disabled]="disabledCheck==true">直近</button>
+                <button class="button button-icon" (click)="onSearchClick($event)" [disabled]="disabledCheck==true"><i class="svg-icons icon-refresh"></i></button>
+            </div>
+        </div>
+
+        <div class="grd">
+            <div class="panel-content-msg" *ngIf="listErrShow==true">
+                <div>{{listErrText}}</div>
+            </div>
+            <div id="grid{{pageId}}"></div>
+        </div>
+
+        <div class="row row-table-footer">
+        </div>
+
+    </div>
+
+</div>

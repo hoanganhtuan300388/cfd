@@ -1,0 +1,310 @@
+<!-- 余力詳細 -->
+<div class="panel panel-potential panel-animate" ng2-resizeable>
+
+  <title-bar [title]="title()" [frame]="this"></title-bar>
+
+  <div class="panel-body">
+
+    <div class="row row-header">
+      <div class="col-left">
+        <span class="label label-bright">最終更新日時</span>
+      </div>
+      <div class="col-center">
+        <span class="label label-num label-bright">{{dataTime }}</span>
+      </div>
+      <div class="col-right">
+        <button class="button button-icon" [disabled]="disabledCheck == true" (click)="getPowerAmount()"><i class="svg-icons icon-refresh"></i></button>
+      </div>
+    </div>
+
+
+    <div class="tables" *ngIf="infoStatus == '1'">
+
+      <!-- 口座情報 -->
+      <table class="table table-stripe">
+
+        <thead>
+          <tr class="tr-narrow">
+            <th colspan="6"><span class="label label-lg label-bright">口座情報</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th>取引余力</th>
+            <th>株価指数CFD</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerSecurities < 0}">{{ powerAmount.tradeRemainingPowerSecurities | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th>拘束証拠金</th>
+            <td class="text-right text-num">{{powerAmount.needTempMargin | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th></th>
+            <th>商品CFD</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerCommodity < 0}">{{ powerAmount.tradeRemainingPowerCommodity | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">必要証拠金</th>
+            <td class="text-right text-num">{{ powerAmount.margin | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th></th>
+            <th>株式CFD</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerStock < 0}">{{ powerAmount.tradeRemainingPowerStock | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">任意証拠金</th>
+            <td class="text-right text-num">{{ powerAmount.optionalMargin | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th></th>
+            <th>バラエティCFD</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.tradeRemainingPowerVariety < 0}">{{ powerAmount.tradeRemainingPowerVariety | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">注文中必要証拠金</th>
+            <td class="text-right text-num">{{ powerAmount.orderMargin | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th>振替可能額</th>
+            <th></th>
+            <td class="text-right text-num">{{ powerAmount.cashTransferPossible | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">注文中任意証拠金</th>
+            <td class="text-right text-num">{{ powerAmount.orderOptionalMargin | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr class="tr-dummy"><td colspan="6"></td></tr>
+
+          <tr>
+            <th colspan="2">時価評価総額(評価損益+口座残高)</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.quotationAppraisementTotal < 0}">{{ powerAmount.quotationAppraisementTotal | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th>口座残高</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.accountBalance < 0}">{{ powerAmount.accountBalance | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th colspan="3"></th>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">現金残高</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.cashPosition < 0}">{{ powerAmount.cashPosition | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th colspan="2">評価損益</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.outstandingProfitLoss < 0}">{{ powerAmount.outstandingProfitLoss | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">締後振替</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.cashTransferAmount < 0}">{{ powerAmount.cashTransferAmount | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th colspan="2" class="cell-indent-1">未決済建玉評価損益</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.outstandingPositionInterestProfitLoss < 0}">{{ powerAmount.outstandingPositionInterestProfitLoss | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">既決済取引損益</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.unrealizedStraightPositionProfitLoss < 0}">{{ powerAmount.unrealizedStraightPositionProfitLoss | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th colspan="2" class="cell-indent-1">未決済金利調整額</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.outstandingInterestProfitLoss < 0}">{{ powerAmount.outstandingInterestProfitLoss | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">金利調整額</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.interestRateAmountPl < 0}">{{ powerAmount.interestRateAmountPl | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th colspan="2" class="cell-indent-1">未決済価格調整額</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.outstandingPriceAdjustProfitLoss < 0}">{{ powerAmount.outstandingPriceAdjustProfitLoss | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">価格調整額</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.priceAdjustAmountPl < 0}">{{ powerAmount.priceAdjustAmountPl | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th colspan="2" class="cell-indent-1">未決済権利調整額</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.outstandingDividenProfitLoss < 0}">{{ powerAmount.outstandingDividenProfitLoss | number }}<span class="unit">円</span></td>
+
+            <th class="th-dummy"></th>
+
+            <th class="cell-indent-1">権利調整額</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.dividendAmountPl < 0}">{{ powerAmount.dividendAmountPl | number }}<span class="unit">円</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 追加証拠金情報 -->
+      <table class="table table-stripe">
+        <thead>
+          <tr>
+            <th style="width:224px;"><span class="label label-lg label-bright">追加証拠金情報</span></th>
+            <th style="width:120px;">株価指数CFD</th>
+            <th style="width:120px;">商品CFD</th>
+            <th style="width:120px;">株式CFD</th>
+            <th style="width:152px;">バラエティCFD</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th>追証ステータス</th>
+            <td [ngClass]="{'text-label-margin-call':powerAmount.secRemarginStatusName == '追証発生中','text-wait-settlement':powerAmount.secRemarginStatusName == '強制決済待ち'}">{{ powerAmount.secRemarginStatusName }}</td>
+            <td [ngClass]="{'text-label-margin-call':powerAmount.comRemarginStatusName == '追証発生中','text-wait-settlement':powerAmount.comRemarginStatusName == '強制決済待ち'}">{{ powerAmount.comRemarginStatusName }}</td>
+            <td [ngClass]="{'text-label-margin-call':powerAmount.stkRemarginStatusName == '追証発生中','text-wait-settlement':powerAmount.stkRemarginStatusName == '強制決済待ち'}">{{ powerAmount.stkRemarginStatusName }}</td>
+            <td [ngClass]="{'text-label-margin-call':powerAmount.varRemarginStatusName == '追証発生中','text-wait-settlement':powerAmount.varRemarginStatusName == '強制決済待ち'}">{{ powerAmount.varRemarginStatusName }}</td>
+          </tr>
+
+          <tr>
+            <th>追証発生金額</th>
+            <td class="text-right text-num">{{ powerAmount.secRemargin | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.comRemargin | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.stkRemargin | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.varRemargin | number  }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th class="cell-indent-1">追証解消済金額</th>
+            <td class="text-right text-num">{{ powerAmount.secReliefRemarginAmount | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.comReliefRemarginAmount | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.stkReliefRemarginAmount | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.varReliefRemarginAmount | number  }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th class="cell-indent-1">追証未解消金額</th>
+            <td class="text-right text-num">{{ powerAmount.secRemainingRemarginAmount | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.comRemainingRemarginAmount | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.stkRemainingRemarginAmount | number  }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.varRemainingRemarginAmount | number  }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr class="tr-dummy"><th colspan="6" class="text-small">※追加証拠金の判定は、毎営業日(祝日を除く)取引時間終了時点で実施します。</th></tr>
+
+        </tbody>
+      </table>
+
+      <!-- 口座別時価評価情報 -->
+      <table class="table table-stripe">
+        <thead>
+          <tr>
+            <th style="width:224px;"><span class="label label-lg label-bright">口座別時価評価情報</span></th>
+            <th style="width:120px;">株価指数CFD</th>
+            <th style="width:120px;">商品CFD</th>
+            <th style="width:120px;">株式CFD</th>
+            <th style="width:152px;">バラエティCFD</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th>時価評価総額</th>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.secQuotationAppraisementTotal < 0}">{{ powerAmount.secQuotationAppraisementTotal | number }}<span class="unit">円</span></td>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.comQuotationAppraisementTotal < 0}">{{ powerAmount.comQuotationAppraisementTotal | number }}<span class="unit">円</span></td>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.stkQuotationAppraisementTotal < 0}">{{ powerAmount.stkQuotationAppraisementTotal | number }}<span class="unit">円</span></td>
+            <td class="text-right text-num" [ngClass]="{'text-price-down':powerAmount.varQuotationAppraisementTotal < 0}">{{ powerAmount.varQuotationAppraisementTotal | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th>必要証拠金</th>
+            <td class="text-right text-num">{{ powerAmount.secMargin | number }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.comMargin | number }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.stkMargin | number }}<span class="unit">円</span></td>
+            <td class="text-right text-num">{{ powerAmount.varMargin | number }}<span class="unit">円</span></td>
+          </tr>
+
+          <tr>
+            <th>証拠金維持率</th>
+            <td class="text-right text-num" *ngIf="!secMarginMaintenanceRatioFlg">{{ powerAmount.secMarginMaintenanceRatio }}%</td>
+            <td class="text-right text-num" *ngIf="secMarginMaintenanceRatioFlg">-</td>
+
+            <td class="text-right text-num" *ngIf="!comMarginMaintenanceRatioFlg">{{ powerAmount.comMarginMaintenanceRatio }}%</td>
+            <td class="text-right text-num" *ngIf="comMarginMaintenanceRatioFlg">-</td>
+
+            <td class="text-right text-num" *ngIf="!stkMarginMaintenanceRatioFlg">{{ powerAmount.stkMarginMaintenanceRatio }}%</td>
+            <td class="text-right text-num" *ngIf="stkMarginMaintenanceRatioFlg">-</td>
+
+            <td class="text-right text-num" *ngIf="!varMarginMaintenanceRatioFlg">{{ powerAmount.varMarginMaintenanceRatio }}%</td>
+            <td class="text-right text-num" *ngIf="varMarginMaintenanceRatioFlg">-</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 株価指数CFD取引口座からの振替可能額 -->
+      <table class="table table-stripe">
+        <thead>
+          <tr>
+            <th style="width:344px;" colspan="2"><span class="label label-bright">株価指数CFD取引口座からの振替可能額</span></th>
+            <th style="width:120px;"></th>
+            <th style="width:120px;"></th>
+            <th style="width:152px;"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th style="width:224px;">商品CFD取引口座へ</th>
+            <td style="width:120px;" class="text-right text-num">{{ powerAmount.comCashTransferPossibleFromSecAccount | number }}<span class="unit">円</span></td>
+            <td colspan="3"></td>
+          </tr>
+
+          <tr>
+            <th>株式CFD取引口座へ</th>
+            <td class="text-right text-num">{{ powerAmount.stkCashTransferPossibleFromSecAccount | number }}<span class="unit">円</span></td>
+            <td colspan="3"></td>
+          </tr>
+
+          <tr>
+            <th style="width:224px;">バラエティCFD取引口座へ</th>
+            <td class="text-right text-num">{{ powerAmount.varCashTransferPossibleFromSecAccount | number }}<span class="unit">円</span></td>
+            <td colspan="3"></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="info"  *ngIf="infoStatus == '1'">
+      <div class="row">
+        <div class="col-xs-12">
+          ・外貨建ての建玉を保有している場合、未決済建玉評価損益、時価評価総額は<a href='#' (click)="onUrlText('1')" class="text-link-underline">コンバージョンレート</a>を用いて円換算した概算値です。
+        </div>
+        <div class="col-xs-12">
+          ・締後振替の金額は翌証券営業日の7:00(米国夏時間は6:00)に現金残高に反映されます。
+        </div>
+        <div class="col-xs-12">
+          ・追証判定は株価指数CFD・商品CFD・株式CFD・バラエティCFDで個別に行います。詳細については<a href='#' (click)="onUrlText('2')" class="text-link-underline">こちら</a>をご覧ください。
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="infoStatus == '2'" class="infomassage">{{ noInfoMsg }}</div>
+    <div *ngIf="infoStatus == '3'" class="infomassage">{{ noInternetMsg }}</div>
+
+  </div>
+</div>
